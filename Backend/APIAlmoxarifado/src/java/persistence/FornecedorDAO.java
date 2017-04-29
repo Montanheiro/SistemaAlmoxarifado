@@ -1,6 +1,7 @@
 package persistence;
 
 import constructor.Contato;
+import constructor.Endereco;
 import constructor.Fornecedor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,6 @@ public class FornecedorDAO {
     private FornecedorDAO() {
     }
 
-    //Metodo CREATE esta OK, testado e funcionando
     public static int create(Fornecedor fornecedor) throws SQLException {
         Statement stm
                 = Database.createConnection().
@@ -35,7 +35,7 @@ public class FornecedorDAO {
         EnderecoDAO.create(fornecedor.getEndereco());
         
         for (Contato c : fornecedor.getContato()) {
-            c.setPessoaId(key);
+            c.setFornecedorId(key);
             ContatoDAO.create(c);
         }
 
@@ -50,13 +50,12 @@ public class FornecedorDAO {
         String sql = "SELECT * FROM pessoa where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        Endereco e = EnderecoDAO.retreaveByPessoa(id);
-        ArrayList<Contato> todosOscontatos = ContatoDAO.retreaveByPessoa(id);
-        ArrayList<Email> todosOsEmails = EmailDAO.retreaveByPessoa(id);
-        return new Pessoa(id,
+        Endereco e = EnderecoDAO.retreaveByFornecedor(id);
+        ArrayList<Contato> todosOscontatos = ContatoDAO.retreaveByFornecedor(id);
+        return new Fornecedor(id,
                 rs.getString("cpf_cnpj"),
                 rs.getString("Nome"),
-                e, todosOscontatos, todosOsEmails);
+                e, todosOscontatos);
     }
 
     //Metodo RETREAVE esta OK, testado e funcionando

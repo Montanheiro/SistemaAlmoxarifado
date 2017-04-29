@@ -41,8 +41,26 @@ public class ContatoDAO {
         rs.next();
         return new Contato(id,
                 rs.getString("nome"),
-                rs.getString("telefone"));
+                rs.getString("telefone"),
+                rs.getInt("fornecedor_id"));
 
+    }
+
+    public static ArrayList<Contato> retreaveByFornecedor(int fornecedorId) throws SQLException {
+        Statement stm
+                = Database.createConnection().
+                        createStatement();
+        String sql = "SELECT * FROM contatos where fornecedor_id =" + fornecedorId;
+        ResultSet rs = stm.executeQuery(sql);
+        ArrayList<Contato> temp = new ArrayList<>();
+        while (rs.next()) {
+            temp.add(new Contato(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("Telefone"),
+                    rs.getInt("fornecedor_id")));
+        }
+        return temp;
     }
 
     public static ArrayList<Contato> retreaveAll() throws SQLException {
@@ -56,7 +74,8 @@ public class ContatoDAO {
             contato.add(new Contato(
                     rs.getInt("id"),
                     rs.getString("nome"),
-                    rs.getString("telefone")));
+                    rs.getString("telefone"),
+                    rs.getInt("id")));
         }
         rs.next();
         return contato;

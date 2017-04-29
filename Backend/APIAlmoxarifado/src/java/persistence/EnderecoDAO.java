@@ -49,8 +49,30 @@ public class EnderecoDAO {
                 rs.getString("cep"),
                 rs.getString("numero"),
                 rs.getString("complemento"),
-                rs.getString("logradouro"));
+                rs.getString("logradouro"),
+                rs.getInt("fornecedor_id"));
 
+    }
+
+    public static Endereco retreaveByFornecedor(int fornecedorId) throws SQLException {
+        Statement stm
+                = Database.createConnection().
+                        createStatement();
+        String sql = "SELECT * FROM enderecos WHERE fornecedor_id = " + fornecedorId;
+        ResultSet rs = stm.executeQuery(sql);
+        if (rs.next()) {
+
+            return new Endereco(
+                    rs.getInt("id"),
+                    rs.getString("logradouro"),
+                    rs.getString("logradouro"),
+                    rs.getString("bairro"),
+                    rs.getString("cidade"),
+                    rs.getString("estado"),
+                    rs.getString("cep"),
+                    rs.getInt("fornecedor_id"));
+        }
+        return null;
     }
 
     public static ArrayList<Endereco> retreaveAll() throws SQLException {
@@ -68,7 +90,8 @@ public class EnderecoDAO {
                     rs.getString("cep"),
                     rs.getString("numero"),
                     rs.getString("complemento"),
-                    rs.getString("logradouro")));
+                    rs.getString("logradouro"),
+                    rs.getInt("fornecedor_id")));
         }
         rs.next();
         return endereco;
