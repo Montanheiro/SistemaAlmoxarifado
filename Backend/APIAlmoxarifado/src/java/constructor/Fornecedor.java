@@ -1,5 +1,7 @@
 package constructor;
 
+import java.util.ArrayList;
+
 public class Fornecedor {
 
     private int id;
@@ -7,23 +9,21 @@ public class Fornecedor {
     private String nomeFantasia;
     private String cnpj;
     private Endereco endereco;
-    private Contato contato;
+    private ArrayList<Contato> contato = new ArrayList<>();//Associacao
 
-    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, Contato contato) {
+    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco) {
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+    }
+
+    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.endereco = endereco;
-        this.contato = contato;
-    }
-
-    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, Contato contato) {
-        this.razaoSocial = razaoSocial;
-        this.nomeFantasia = nomeFantasia;
-        this.cnpj = cnpj;
-        this.endereco = endereco;
-        this.contato = contato;
     }
 
     public int getId() {
@@ -66,11 +66,11 @@ public class Fornecedor {
         this.endereco = endereco;
     }
 
-    public Contato getContato() {
+    public ArrayList<Contato> getContato() {
         return contato;
     }
 
-    public void setContato(Contato contato) {
+    public void setContato(ArrayList<Contato> contato) {
         this.contato = contato;
     }
 

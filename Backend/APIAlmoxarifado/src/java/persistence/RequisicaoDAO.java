@@ -1,6 +1,6 @@
 package persistence;
 
-import constructor.Visitante;
+import constructor.Requisicao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,50 +10,51 @@ import java.util.ArrayList;
  *
  * @author Barbara
  */
-public class VisitanteDAO {
+public class RequisicaoDAO {
 
-    private VisitanteDAO() {
+    
+    private RequisicaoDAO() {
     }
 
-    public static int create(Visitante visitante) throws SQLException {
+    public static int create(Requisicao requisicao) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO visitantes (`quantidade`, `setor`) VALUES ('"
-                + visitante.getQtd() + "','"
-                + visitante.getSetor() + "')";
+                = "INSERT INTO requisicoes (`quantidade`, `setor`) VALUES ('"
+                + requisicao.getQtd() + "','"
+                + requisicao.getSetor() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
         int key = rs.getInt(1);
-        visitante.setId(key);
+        requisicao.setId(key);
         return key;
     }
 
-    public static Visitante retreave(int id) throws SQLException {
+    public static Requisicao retreave(int id) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM visitantes where id =" + id;
+        String sql = "SELECT * FROM requisicoes where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        return new Visitante(id,
-                rs.getInt("quantidade"),
+        return new Requisicao(id,
+                rs.getDouble("quantidade"),
                 rs.getInt("setor"));
 
     }
 
-    public static ArrayList<Visitante> retreaveAll() throws SQLException {
+    public static ArrayList<Requisicao> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM visitantes";
+        String sql = "SELECT * FROM requisicoes";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<Visitante> visitante = new ArrayList<>();
+        ArrayList<Requisicao> visitante = new ArrayList<>();
         while (rs.next()) {
-            visitante.add(new Visitante(
+            visitante.add(new Requisicao(
                     rs.getInt("id"),
                     rs.getInt("quantidade"),
                     rs.getString("setor")));
@@ -62,20 +63,20 @@ public class VisitanteDAO {
         return visitante;
     }
 
-    public static void delete(Visitante visitante) throws SQLException {
+    public static void delete(Requisicao visitante) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "DELETE FROM visitantes WHERE `id`="
+        String sql = "DELETE FROM requisicoes WHERE `id`="
                 + visitante.getId();
         stm.execute(sql);
     }
 
-    public static void update(Visitante visitante) throws SQLException {
+    public static void update(Requisicao visitante) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE visitantes SET "
+        String sql = "UPDATE requisicoes SET "
                 + "`quantidade`='" + visitante.getQtd()
                 + "', `setor`= '" + visitante.getSetor()
                 + "' WHERE `id`= "
