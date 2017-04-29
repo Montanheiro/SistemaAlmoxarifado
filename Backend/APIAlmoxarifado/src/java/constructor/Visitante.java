@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Visitante {
 
     private int id;
@@ -36,6 +32,11 @@ public class Visitante {
 
     public void setSetor(Setor setor) {
         this.setor = setor;
+    }
+
+    @Override
+    public String toString() {
+        return "Visitante{" + "id=" + id + ", qtd=" + qtd + ", setor=" + setor + '}';
     }
 
 }

@@ -46,4 +46,11 @@ public class Usuario {
         this.servidor = servidor;
     }
 
+    public Usuario(int id, String email, String senha, Servidor servidor) {
+        this.id = id;
+        this.email = email;
+        this.senha = senha;
+        this.servidor = servidor;
+    }
+
 }

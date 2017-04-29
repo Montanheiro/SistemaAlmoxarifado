@@ -2,10 +2,6 @@ package constructor;
 
 import java.sql.Date;
 
-/**
- *
- * @author Barbara
- */
 public class Empenho {
 
     private int id;

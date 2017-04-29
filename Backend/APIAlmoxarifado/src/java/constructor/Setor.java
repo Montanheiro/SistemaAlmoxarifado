@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Setor {
 
     private int id;
@@ -28,4 +24,9 @@ public class Setor {
         this.nome = nome;
     }
 
-}
+    @Override
+    public String toString() {
+        return "Setor{" + "id=" + id + ", nome=" + nome + '}';
+    }
+    
+ }

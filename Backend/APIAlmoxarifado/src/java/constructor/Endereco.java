@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Endereco {
 
     private int id;
@@ -73,4 +69,9 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
+    @Override
+    public String toString() {
+        return "Endereco{" + "id=" + id + ", cidade=" + cidade + ", bairro=" + bairro + ", cep=" + cep + ", numero=" + numero + ", complemento=" + complemento + ", logradouro=" + logradouro + '}';
+    }
+    
 }

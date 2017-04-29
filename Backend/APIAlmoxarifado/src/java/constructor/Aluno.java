@@ -37,4 +37,9 @@ public class Aluno {
         this.matricula = matricula;
     }
 
+    @Override
+    public String toString() {
+        return "Aluno{" + "id=" + id + ", nome=" + nome + ", matricula=" + matricula + '}';
+    }
+
 }

@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Estoque {
 
     private int id;
@@ -44,6 +40,11 @@ public class Estoque {
 
     public void setQtd(double qtd) {
         this.qtd = qtd;
+    }
+
+    @Override
+    public String toString() {
+        return "Estoque{" + "id=" + id + ", produto=" + produto + ", minimo=" + minimo + ", qtd=" + qtd + '}';
     }
 
 }

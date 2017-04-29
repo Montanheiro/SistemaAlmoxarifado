@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class NaturezaDespesa {
 
     private int id;

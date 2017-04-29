@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Servidor {
 
     private int id;
@@ -46,4 +42,9 @@ public class Servidor {
         this.funcao = funcao;
     }
 
+    @Override
+    public String toString() {
+        return "Servidor{" + "id=" + id + ", nome=" + nome + ", siape=" + siape + ", funcao=" + funcao + '}';
+    }
+    
 }

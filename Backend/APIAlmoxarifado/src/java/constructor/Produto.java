@@ -2,10 +2,6 @@ package constructor;
 
 import java.sql.Date;
 
-/**
- *
- * @author Barbara
- */
 public class Produto {
 
     private int id;
@@ -82,6 +78,11 @@ public class Produto {
 
     public void setDimensao(double dimensao) {
         this.dimensao = dimensao;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "id=" + id + ", descricao=" + descricao + ", validade=" + validade + ", valorUnitario=" + valorUnitario + ", marca=" + marca + ", lote=" + lote + ", peso=" + peso + ", dimensao=" + dimensao + '}';
     }
 
 }

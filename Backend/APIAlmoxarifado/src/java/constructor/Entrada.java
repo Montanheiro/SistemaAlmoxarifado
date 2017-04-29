@@ -2,10 +2,6 @@ package constructor;
 
 import java.sql.Date;
 
-/**
- *
- * @author Barbara
- */
 public class Entrada {
 
     private int id;
@@ -57,4 +53,8 @@ public class Entrada {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "Entrada{" + "id=" + id + ", qtd=" + qtd + ", precoUnitario=" + precoUnitario + ", produto=" + produto + ", data=" + data + '}';
+    }
 }

@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Saida {
 
     private int id;
@@ -45,6 +41,11 @@ public class Saida {
 
     public void setRequisicao(Requisicao requisicao) {
         this.requisicao = requisicao;
+    }
+
+    @Override
+    public String toString() {
+        return "Saida{" + "id=" + id + ", qtdGeral=" + qtdGeral + ", precoUnitario=" + precoUnitario + ", requisicao=" + requisicao + '}';
     }
 
 }

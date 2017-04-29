@@ -1,9 +1,5 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class Requisicao {
 
     private int id;
@@ -38,4 +34,9 @@ public class Requisicao {
         this.setor = setor;
     }
 
+    @Override
+    public String toString() {
+        return "Requisicao{" + "id=" + id + ", qtd=" + qtd + ", setor=" + setor + '}';
+    }
+    
 }
