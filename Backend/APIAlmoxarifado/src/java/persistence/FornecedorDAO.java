@@ -67,16 +67,14 @@ public class FornecedorDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Fornecedor> p = new ArrayList<>();
         ArrayList<Contato> todosOscontatos;
-        ArrayList<Email> todosOsEmails;
         while (rs.next()) {
-            todosOscontatos = ContatoDAO.retreaveByPessoa(rs.getInt("id"));
-            Endereco e = EnderecoDAO.retreaveByPessoa(rs.getInt("id"));
-            todosOsEmails = EmailDAO.retreaveByPessoa(rs.getInt("id"));
+            todosOscontatos = ContatoDAO.retreaveByFornecedor(rs.getInt("id"));
+            Endereco e = EnderecoDAO.retreaveByFornecedor(rs.getInt("id"));
             p.add(new Fornecedor(
                     rs.getInt("id"),
                     rs.getString("cpf_cnpj"),
                     rs.getString("Nome"),
-                    e, todosOscontatos, todosOsEmails));
+                    e, todosOscontatos));
         }
         rs.next();
         return p;
