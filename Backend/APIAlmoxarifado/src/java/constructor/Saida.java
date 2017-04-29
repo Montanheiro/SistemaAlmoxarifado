@@ -8,7 +8,17 @@ public class Saida {
 
     private Requisicao requisicao;
 
-    public Saida() {
+    public Saida(int id, double qtdGeral, double precoUnitario, Requisicao requisicao) {
+        this.id = id;
+        this.qtdGeral = qtdGeral;
+        this.precoUnitario = precoUnitario;
+        this.requisicao = requisicao;
+    }
+
+    public Saida(double qtdGeral, double precoUnitario, Requisicao requisicao) {
+        this.qtdGeral = qtdGeral;
+        this.precoUnitario = precoUnitario;
+        this.requisicao = requisicao;
     }
 
     public int getId() {

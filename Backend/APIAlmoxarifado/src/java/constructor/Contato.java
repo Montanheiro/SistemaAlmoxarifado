@@ -6,7 +6,15 @@ public class Contato {
     private String nome;
     private String telefone;
 
-    public Contato() {
+    public Contato(int id, String nome, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
+    public Contato(String nome, String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
     }
 
     public int getId() {

@@ -7,7 +7,15 @@ public class Visitante {
 
     private Setor setor;
 
-    public Visitante() {
+    public Visitante(int id, int qtd, Setor setor) {
+        this.id = id;
+        this.qtd = qtd;
+        this.setor = setor;
+    }
+
+    public Visitante(int qtd, Setor setor) {
+        this.qtd = qtd;
+        this.setor = setor;
     }
 
     public int getId() {

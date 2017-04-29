@@ -13,7 +13,25 @@ public class Produto {
     private double peso;
     private double dimensao;
 
-    public Produto() {
+    public Produto(int id, String descricao, Date validade, double valorUnitario, String marca, String lote, double peso, double dimensao) {
+        this.id = id;
+        this.descricao = descricao;
+        this.validade = validade;
+        this.valorUnitario = valorUnitario;
+        this.marca = marca;
+        this.lote = lote;
+        this.peso = peso;
+        this.dimensao = dimensao;
+    }
+
+    public Produto(String descricao, Date validade, double valorUnitario, String marca, String lote, double peso, double dimensao) {
+        this.descricao = descricao;
+        this.validade = validade;
+        this.valorUnitario = valorUnitario;
+        this.marca = marca;
+        this.lote = lote;
+        this.peso = peso;
+        this.dimensao = dimensao;
     }
 
     public int getId() {

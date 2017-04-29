@@ -10,7 +10,19 @@ public class Entrada {
     private Produto produto;
     private Date data;
 
-    public Entrada() {
+    public Entrada(int id, double qtd, double precoUnitario, Produto produto, Date data) {
+        this.id = id;
+        this.qtd = qtd;
+        this.precoUnitario = precoUnitario;
+        this.produto = produto;
+        this.data = data;
+    }
+
+    public Entrada(double qtd, double precoUnitario, Produto produto, Date data) {
+        this.qtd = qtd;
+        this.precoUnitario = precoUnitario;
+        this.produto = produto;
+        this.data = data;
     }
 
     public int getId() {

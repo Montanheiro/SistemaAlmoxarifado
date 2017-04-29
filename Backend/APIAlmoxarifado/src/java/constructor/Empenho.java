@@ -23,7 +23,45 @@ public class Empenho {
     private String marca;
     private String itemMaterial;
 
-    public Empenho() {
+    public Empenho(int id, Date emissao, String numero, String especie, Fornecedor fornecedor, Endereco endereco, String observacao, double valor, NaturezaDespesa naturezaDespesa, int sequencia, double qtd, double valorUnitario, double valorSequencia, String embalagem, String descricao, String itemProcesso, String marca, String itemMaterial) {
+        this.id = id;
+        this.emissao = emissao;
+        this.numero = numero;
+        this.especie = especie;
+        this.fornecedor = fornecedor;
+        this.endereco = endereco;
+        this.observacao = observacao;
+        this.valor = valor;
+        this.naturezaDespesa = naturezaDespesa;
+        this.sequencia = sequencia;
+        this.qtd = qtd;
+        this.valorUnitario = valorUnitario;
+        this.valorSequencia = valorSequencia;
+        this.embalagem = embalagem;
+        this.descricao = descricao;
+        this.itemProcesso = itemProcesso;
+        this.marca = marca;
+        this.itemMaterial = itemMaterial;
+    }
+
+    public Empenho(Date emissao, String numero, String especie, Fornecedor fornecedor, Endereco endereco, String observacao, double valor, NaturezaDespesa naturezaDespesa, int sequencia, double qtd, double valorUnitario, double valorSequencia, String embalagem, String descricao, String itemProcesso, String marca, String itemMaterial) {
+        this.emissao = emissao;
+        this.numero = numero;
+        this.especie = especie;
+        this.fornecedor = fornecedor;
+        this.endereco = endereco;
+        this.observacao = observacao;
+        this.valor = valor;
+        this.naturezaDespesa = naturezaDespesa;
+        this.sequencia = sequencia;
+        this.qtd = qtd;
+        this.valorUnitario = valorUnitario;
+        this.valorSequencia = valorSequencia;
+        this.embalagem = embalagem;
+        this.descricao = descricao;
+        this.itemProcesso = itemProcesso;
+        this.marca = marca;
+        this.itemMaterial = itemMaterial;
     }
 
     public int getId() {

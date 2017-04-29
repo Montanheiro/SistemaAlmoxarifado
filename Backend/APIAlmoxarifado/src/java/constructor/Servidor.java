@@ -7,7 +7,17 @@ public class Servidor {
     private String siape;
     private String funcao;
 
-    public Servidor() {
+    public Servidor(int id, String nome, String siape, String funcao) {
+        this.id = id;
+        this.nome = nome;
+        this.siape = siape;
+        this.funcao = funcao;
+    }
+
+    public Servidor(String nome, String siape, String funcao) {
+        this.nome = nome;
+        this.siape = siape;
+        this.funcao = funcao;
     }
 
     public int getId() {

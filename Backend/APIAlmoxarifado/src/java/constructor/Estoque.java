@@ -7,9 +7,19 @@ public class Estoque {
     private double minimo;
     private double qtd;
 
-    public Estoque() {
+    public Estoque(int id, Produto produto, double minimo, double qtd) {
+        this.id = id;
+        this.produto = produto;
+        this.minimo = minimo;
+        this.qtd = qtd;
     }
 
+    public Estoque(Produto produto, double minimo, double qtd) {
+        this.produto = produto;
+        this.minimo = minimo;
+        this.qtd = qtd;
+    }
+    
     public int getId() {
         return id;
     }

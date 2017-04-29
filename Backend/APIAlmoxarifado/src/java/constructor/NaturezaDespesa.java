@@ -7,7 +7,17 @@ public class NaturezaDespesa {
     private String subItem;
     private String descricao;
 
-    public NaturezaDespesa() {
+    public NaturezaDespesa(int id, String codigo, String subItem, String descricao) {
+        this.id = id;
+        this.codigo = codigo;
+        this.subItem = subItem;
+        this.descricao = descricao;
+    }
+
+    public NaturezaDespesa(String codigo, String subItem, String descricao) {
+        this.codigo = codigo;
+        this.subItem = subItem;
+        this.descricao = descricao;
     }
 
     public int getId() {

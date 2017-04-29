@@ -7,7 +7,15 @@ public class Requisicao {
 
     private Setor setor;
 
-    public Requisicao() {
+    public Requisicao(int id, double qtd, Setor setor) {
+        this.id = id;
+        this.qtd = qtd;
+        this.setor = setor;
+    }
+
+    public Requisicao(double qtd, Setor setor) {
+        this.qtd = qtd;
+        this.setor = setor;
     }
 
     public int getId() {

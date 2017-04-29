@@ -9,7 +9,21 @@ public class Fornecedor {
     private Endereco endereco;
     private Contato contato;
 
-    public Fornecedor() {
+    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, Contato contato) {
+        this.id = id;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.contato = contato;
+    }
+
+    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, Contato contato) {
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.contato = contato;
     }
 
     public int getId() {
