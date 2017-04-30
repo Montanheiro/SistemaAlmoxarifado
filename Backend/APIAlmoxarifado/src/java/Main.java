@@ -38,7 +38,7 @@ public class Main {
 //        String token = new Token().Gerate("client", String.valueOf(c.getId()), 2);
 //        System.out.println(token);
 //        System.out.println(new Token().Verify(token, "client"));  
-System.out.println("birll");
+//        System.out.println("birll");
         
     }
     
