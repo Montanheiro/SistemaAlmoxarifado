@@ -37,7 +37,8 @@ public class Main {
 //        Client c = ClientDAO.retreave(1);
 //        String token = new Token().Gerate("client", String.valueOf(c.getId()), 2);
 //        System.out.println(token);
-//        System.out.println(new Token().Verify(token, "client"));        
+//        System.out.println(new Token().Verify(token, "client"));  
+System.out.println("birll");
         
     }
     
