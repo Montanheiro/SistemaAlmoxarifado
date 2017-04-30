@@ -7,12 +7,9 @@ package resource;
 
 import business.Token;
 import com.google.gson.Gson;
-import constructor.Admin;
-import constructor.Aluno;
+import constructor.Contato;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -20,20 +17,22 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import persistence.AdminDAO;
-import persistence.AlunoDAO;
+import javax.ws.rs.core.UriInfo;
+import persistence.ContatoDAO;
 
 /**
  *
  * @author dione
  */
-@Path("alunos")
-public class AlunoResource {
+
+    @Path("contato")
+public class ContatoResource {
     @Context
     private UriInfo context;
     
-    public AlunoResource(){
+    public ContatoResource(){
     }
     
     @POST
@@ -46,8 +45,8 @@ public class AlunoResource {
         
         if(!new Token().Verify(token, "almoxarifado")) throw new Exception("Token invalido.");
         
-        Aluno a = gson.fromJson(body, Aluno.class);
-         AlunoDAO.create(a);
+        Contato c = gson.fromJson(body, Contato.class);
+         ContatoDAO.create(c);
         
         return "200";
     }
@@ -60,8 +59,8 @@ public class AlunoResource {
         if(!new Token().Verify(token, "almoxarifado")) 
             throw new Exception("Token invalido.");
         Gson gson = new Gson();
-        Aluno a = AlunoDAO.retreave(id);
-        return gson.toJson(a);
+        Contato c = ContatoDAO.retreave(id);
+        return gson.toJson(c);
     }
     
     @GET
@@ -74,8 +73,8 @@ public class AlunoResource {
             throw new Exception("Token invalido.");
         
         Gson gson = new Gson();
-        ArrayList<Aluno> aluno = AlunoDAO.retreaveAll();
-        return gson.toJson(aluno); 
+        ArrayList<Contato> contato = ContatoDAO.retreaveAll();
+        return gson.toJson(contato); 
     }
     
     @POST
@@ -88,8 +87,8 @@ public class AlunoResource {
         
         if(!new Token().Verify(token, "almoxarifado")) throw new Exception("Token invalido.");
         
-        Aluno a = gson.fromJson(body, Aluno.class);
-         AlunoDAO.delete(a);
+        Contato c = gson.fromJson(body, Contato.class);
+         ContatoDAO.delete(c);
          return "200";
     }
     
@@ -103,9 +102,10 @@ public class AlunoResource {
         
         if(!new Token().Verify(token, "almoxarifado")) throw new Exception("Token invalido.");
         
-        Aluno a = gson.fromJson(body, Aluno.class);
-         AlunoDAO.update(a);
+        Contato c = gson.fromJson(body, Contato.class);
+         ContatoDAO.update(c);
         
         return "200";
     }
+    
 }
