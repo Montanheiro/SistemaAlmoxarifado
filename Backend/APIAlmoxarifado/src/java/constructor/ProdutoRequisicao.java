@@ -4,24 +4,22 @@ package constructor;
  *
  * @author Barbara
  */
-public class RequisicaoProduto {
+public class ProdutoRequisicao {
 
     private int id;
     private int requisicaoId;
     private int produtoId;
+    private int qtd;
 
-    public RequisicaoProduto() {
+    public ProdutoRequisicao(int qtd) {
+        this.qtd = qtd;
     }
 
-    public RequisicaoProduto(int requisicaoId, int produtoId) {
-        this.requisicaoId = requisicaoId;
-        this.produtoId = produtoId;
-    }
-
-    public RequisicaoProduto(int id, int requisicaoId, int produtoId) {
+    public ProdutoRequisicao(int id, int requisicaoId, int produtoId, int qtd) {
         this.id = id;
         this.requisicaoId = requisicaoId;
         this.produtoId = produtoId;
+        this.qtd = qtd;
     }
 
     public int getId() {
@@ -48,9 +46,17 @@ public class RequisicaoProduto {
         this.produtoId = produtoId;
     }
 
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
+
     @Override
     public String toString() {
-        return "RequisicaoProduto{" + "id=" + id + ", requisicaoId=" + requisicaoId + ", produtoId=" + produtoId + '}';
+        return "ProdutoRequisicao{" + "id=" + id + ", requisicaoId=" + requisicaoId + ", produtoId=" + produtoId + ", qtd=" + qtd + '}';
     }
 
 }

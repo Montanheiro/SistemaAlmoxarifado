@@ -1,21 +1,25 @@
 package constructor;
 
+import java.sql.Date;
+
 public class Requisicao {
 
     private int id;
-    private double qtd;
+    private int servidorId;
 
-    private Setor setor;
+    private Date data;
+    private String observacao;
 
-    public Requisicao(int id, double qtd, Setor setor) {
-        this.id = id;
-        this.qtd = qtd;
-        this.setor = setor;
+    public Requisicao(Date data, String observacao) {
+        this.data = data;
+        this.observacao = observacao;
     }
 
-    public Requisicao(double qtd, Setor setor) {
-        this.qtd = qtd;
-        this.setor = setor;
+    public Requisicao(int id, int servidorId, Date data, String observacao) {
+        this.id = id;
+        this.servidorId = servidorId;
+        this.data = data;
+        this.observacao = observacao;
     }
 
     public int getId() {
@@ -26,25 +30,33 @@ public class Requisicao {
         this.id = id;
     }
 
-    public double getQtd() {
-        return qtd;
+    public int getServidorId() {
+        return servidorId;
     }
 
-    public void setQtd(double qtd) {
-        this.qtd = qtd;
+    public void setServidorId(int servidorId) {
+        this.servidorId = servidorId;
     }
 
-    public Setor getSetor() {
-        return setor;
+    public Date getData() {
+        return data;
     }
 
-    public void setSetor(Setor setor) {
-        this.setor = setor;
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     @Override
     public String toString() {
-        return "Requisicao{" + "id=" + id + ", qtd=" + qtd + ", setor=" + setor + '}';
+        return "Requisicao{" + "id=" + id + ", servidorId=" + servidorId + ", data=" + data + ", observacao=" + observacao + '}';
     }
-    
+
 }

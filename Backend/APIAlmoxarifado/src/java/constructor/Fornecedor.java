@@ -11,19 +11,21 @@ public class Fornecedor {
     private Endereco endereco;
     private ArrayList<Contato> contato = new ArrayList<>();//Associacao
 
-    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco) {
+    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, ArrayList<Contato> contato) {
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.endereco = endereco;
+        this.contato = contato;
     }
 
-    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco) {
+    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, ArrayList<Contato> contato) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.endereco = endereco;
+        this.contato = contato;
     }
 
     public int getId() {

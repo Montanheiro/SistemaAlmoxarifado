@@ -5,15 +5,15 @@ public class Visitante {
     private int id;
     private int qtd;
 
-    private Setor setor;
+    private int setor;
 
-    public Visitante(int id, int qtd, Setor setor) {
+    public Visitante(int id, int qtd, int setor) {
         this.id = id;
         this.qtd = qtd;
         this.setor = setor;
     }
 
-    public Visitante(int qtd, Setor setor) {
+    public Visitante(int qtd, int setor) {
         this.qtd = qtd;
         this.setor = setor;
     }
@@ -34,11 +34,11 @@ public class Visitante {
         this.qtd = qtd;
     }
 
-    public Setor getSetor() {
+    public int getSetor() {
         return setor;
     }
 
-    public void setSetor(Setor setor) {
+    public void setSetor(int setor) {
         this.setor = setor;
     }
 

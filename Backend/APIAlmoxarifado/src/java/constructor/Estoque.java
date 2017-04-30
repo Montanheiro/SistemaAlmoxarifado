@@ -3,23 +3,22 @@ package constructor;
 public class Estoque {
 
     private int id;
-    private Produto produto;
+    private int produtoId;
     private double minimo;
     private double qtd;
 
-    public Estoque(int id, Produto produto, double minimo, double qtd) {
-        this.id = id;
-        this.produto = produto;
+    public Estoque(double minimo, double qtd) {
         this.minimo = minimo;
         this.qtd = qtd;
     }
 
-    public Estoque(Produto produto, double minimo, double qtd) {
-        this.produto = produto;
+    public Estoque(int id, int produtoId, double minimo, double qtd) {
+        this.id = id;
+        this.produtoId = produtoId;
         this.minimo = minimo;
         this.qtd = qtd;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -28,12 +27,12 @@ public class Estoque {
         this.id = id;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public int getProdutoId() {
+        return produtoId;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutoId(int produtoId) {
+        this.produtoId = produtoId;
     }
 
     public double getMinimo() {
@@ -54,7 +53,7 @@ public class Estoque {
 
     @Override
     public String toString() {
-        return "Estoque{" + "id=" + id + ", produto=" + produto + ", minimo=" + minimo + ", qtd=" + qtd + '}';
+        return "Estoque{" + "id=" + id + ", produtoId=" + produtoId + ", minimo=" + minimo + ", qtd=" + qtd + '}';
     }
 
 }

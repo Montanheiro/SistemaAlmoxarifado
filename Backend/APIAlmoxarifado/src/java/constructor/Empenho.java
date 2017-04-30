@@ -8,60 +8,26 @@ public class Empenho {
     private Date emissao;
     private String numero;
     private String especie;
-    private Fornecedor fornecedor;
-    private Endereco endereco;
     private String observacao;
-    private double valor;
-    private NaturezaDespesa naturezaDespesa;
-    private int sequencia;
-    private double qtd;
-    private double valorUnitario;
-    private double valorSequencia;
-    private String embalagem;
-    private String descricao;
-    private String itemProcesso;
-    private String marca;
-    private String itemMaterial;
+    private double valorTotal;
+    private int fornecedorId;
 
-    public Empenho(int id, Date emissao, String numero, String especie, Fornecedor fornecedor, Endereco endereco, String observacao, double valor, NaturezaDespesa naturezaDespesa, int sequencia, double qtd, double valorUnitario, double valorSequencia, String embalagem, String descricao, String itemProcesso, String marca, String itemMaterial) {
+    public Empenho(Date emissao, String numero, String especie, String observacao, double valorTotal) {
+        this.emissao = emissao;
+        this.numero = numero;
+        this.especie = especie;
+        this.observacao = observacao;
+        this.valorTotal = valorTotal;
+    }
+
+    public Empenho(int id, Date emissao, String numero, String especie, String observacao, double valorTotal, int fornecedorId) {
         this.id = id;
         this.emissao = emissao;
         this.numero = numero;
         this.especie = especie;
-        this.fornecedor = fornecedor;
-        this.endereco = endereco;
         this.observacao = observacao;
-        this.valor = valor;
-        this.naturezaDespesa = naturezaDespesa;
-        this.sequencia = sequencia;
-        this.qtd = qtd;
-        this.valorUnitario = valorUnitario;
-        this.valorSequencia = valorSequencia;
-        this.embalagem = embalagem;
-        this.descricao = descricao;
-        this.itemProcesso = itemProcesso;
-        this.marca = marca;
-        this.itemMaterial = itemMaterial;
-    }
-
-    public Empenho(Date emissao, String numero, String especie, Fornecedor fornecedor, Endereco endereco, String observacao, double valor, NaturezaDespesa naturezaDespesa, int sequencia, double qtd, double valorUnitario, double valorSequencia, String embalagem, String descricao, String itemProcesso, String marca, String itemMaterial) {
-        this.emissao = emissao;
-        this.numero = numero;
-        this.especie = especie;
-        this.fornecedor = fornecedor;
-        this.endereco = endereco;
-        this.observacao = observacao;
-        this.valor = valor;
-        this.naturezaDespesa = naturezaDespesa;
-        this.sequencia = sequencia;
-        this.qtd = qtd;
-        this.valorUnitario = valorUnitario;
-        this.valorSequencia = valorSequencia;
-        this.embalagem = embalagem;
-        this.descricao = descricao;
-        this.itemProcesso = itemProcesso;
-        this.marca = marca;
-        this.itemMaterial = itemMaterial;
+        this.valorTotal = valorTotal;
+        this.fornecedorId = fornecedorId;
     }
 
     public int getId() {
@@ -96,22 +62,6 @@ public class Empenho {
         this.especie = especie;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
     public String getObservacao() {
         return observacao;
     }
@@ -120,97 +70,25 @@ public class Empenho {
         this.observacao = observacao;
     }
 
-    public double getValor() {
-        return valor;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public NaturezaDespesa getNaturezaDespesa() {
-        return naturezaDespesa;
+    public int getFornecedorId() {
+        return fornecedorId;
     }
 
-    public void setNaturezaDespesa(NaturezaDespesa naturezaDespesa) {
-        this.naturezaDespesa = naturezaDespesa;
-    }
-
-    public int getSequencia() {
-        return sequencia;
-    }
-
-    public void setSequencia(int sequencia) {
-        this.sequencia = sequencia;
-    }
-
-    public double getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(double qtd) {
-        this.qtd = qtd;
-    }
-
-    public double getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
-    public double getValorSequencia() {
-        return valorSequencia;
-    }
-
-    public void setValorSequencia(double valorSequencia) {
-        this.valorSequencia = valorSequencia;
-    }
-
-    public String getEmbalagem() {
-        return embalagem;
-    }
-
-    public void setEmbalagem(String embalagem) {
-        this.embalagem = embalagem;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getItemProcesso() {
-        return itemProcesso;
-    }
-
-    public void setItemProcesso(String itemProcesso) {
-        this.itemProcesso = itemProcesso;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getItemMaterial() {
-        return itemMaterial;
-    }
-
-    public void setItemMaterial(String itemMaterial) {
-        this.itemMaterial = itemMaterial;
+    public void setFornecedorId(int fornecedorId) {
+        this.fornecedorId = fornecedorId;
     }
 
     @Override
     public String toString() {
-        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", especie=" + especie + ", fornecedor=" + fornecedor + ", endereco=" + endereco + ", observacao=" + observacao + ", valor=" + valor + ", naturezaDespesa=" + naturezaDespesa + ", sequencia=" + sequencia + ", qtd=" + qtd + ", valorUnitario=" + valorUnitario + ", valorSequencia=" + valorSequencia + ", embalagem=" + embalagem + ", descricao=" + descricao + ", itemProcesso=" + itemProcesso + ", marca=" + marca + ", itemMaterial=" + itemMaterial + '}';
+        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", especie=" + especie + ", observacao=" + observacao + ", valorTotal=" + valorTotal + ", fornecedorId=" + fornecedorId + '}';
     }
 
 }

@@ -5,24 +5,30 @@ import java.sql.Date;
 public class Entrada {
 
     private int id;
+    private int produtoEmpenhoId;
+
     private double qtd;
     private double precoUnitario;
-    private Produto produto;
     private Date data;
+    private Date validade;
+    private String lote;
 
-    public Entrada(int id, double qtd, double precoUnitario, Produto produto, Date data) {
-        this.id = id;
+    public Entrada(double qtd, double precoUnitario, Date data, Date validade, String lote) {
         this.qtd = qtd;
         this.precoUnitario = precoUnitario;
-        this.produto = produto;
         this.data = data;
+        this.validade = validade;
+        this.lote = lote;
     }
 
-    public Entrada(double qtd, double precoUnitario, Produto produto, Date data) {
+    public Entrada(int id, int produtoEmpenhoId, double qtd, double precoUnitario, Date data, Date validade, String lote) {
+        this.id = id;
+        this.produtoEmpenhoId = produtoEmpenhoId;
         this.qtd = qtd;
         this.precoUnitario = precoUnitario;
-        this.produto = produto;
         this.data = data;
+        this.validade = validade;
+        this.lote = lote;
     }
 
     public int getId() {
@@ -31,6 +37,14 @@ public class Entrada {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getProdutoEmpenhoId() {
+        return produtoEmpenhoId;
+    }
+
+    public void setProdutoEmpenhoId(int produtoEmpenhoId) {
+        this.produtoEmpenhoId = produtoEmpenhoId;
     }
 
     public double getQtd() {
@@ -49,14 +63,6 @@ public class Entrada {
         this.precoUnitario = precoUnitario;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
     public Date getData() {
         return data;
     }
@@ -65,8 +71,25 @@ public class Entrada {
         this.data = data;
     }
 
+    public Date getValidade() {
+        return validade;
+    }
+
+    public void setValidade(Date validade) {
+        this.validade = validade;
+    }
+
+    public String getLote() {
+        return lote;
+    }
+
+    public void setLote(String lote) {
+        this.lote = lote;
+    }
+
     @Override
     public String toString() {
-        return "Entrada{" + "id=" + id + ", qtd=" + qtd + ", precoUnitario=" + precoUnitario + ", produto=" + produto + ", data=" + data + '}';
+        return "Entrada{" + "id=" + id + ", produtoEmpenhoId=" + produtoEmpenhoId + ", qtd=" + qtd + ", precoUnitario=" + precoUnitario + ", data=" + data + ", validade=" + validade + ", lote=" + lote + '}';
     }
+
 }

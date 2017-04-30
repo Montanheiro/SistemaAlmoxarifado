@@ -3,12 +3,14 @@ package constructor;
 public class Servidor {
 
     private int id;
+    private int setorId;
     private String nome;
     private String siape;
     private String funcao;
 
-    public Servidor(int id, String nome, String siape, String funcao) {
+    public Servidor(int id, int setorId, String nome, String siape, String funcao) {
         this.id = id;
+        this.setorId = setorId;
         this.nome = nome;
         this.siape = siape;
         this.funcao = funcao;
@@ -26,6 +28,14 @@ public class Servidor {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getSetorId() {
+        return setorId;
+    }
+
+    public void setSetorId(int setorId) {
+        this.setorId = setorId;
     }
 
     public String getNome() {
@@ -56,5 +66,5 @@ public class Servidor {
     public String toString() {
         return "Servidor{" + "id=" + id + ", nome=" + nome + ", siape=" + siape + ", funcao=" + funcao + '}';
     }
-    
+
 }

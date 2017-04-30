@@ -4,21 +4,21 @@ package constructor;
  *
  * @author Barbara
  */
-public class FornecedorProduto {
+public class ProdutoFornecedor {
 
     private int id;
     private int fornecedorId;
     private int produtoId;
 
-    public FornecedorProduto() {
+    public ProdutoFornecedor() {
     }
 
-    public FornecedorProduto(int fornecedorId, int produtoId) {
+    public ProdutoFornecedor(int fornecedorId, int produtoId) {
         this.fornecedorId = fornecedorId;
         this.produtoId = produtoId;
     }
 
-    public FornecedorProduto(int id, int fornecedorId, int produtoId) {
+    public ProdutoFornecedor(int id, int fornecedorId, int produtoId) {
         this.id = id;
         this.fornecedorId = fornecedorId;
         this.produtoId = produtoId;
@@ -50,7 +50,7 @@ public class FornecedorProduto {
 
     @Override
     public String toString() {
-        return "FornecedorProduto{" + "id=" + id + ", fornecedorId=" + fornecedorId + ", produtoId=" + produtoId + '}';
+        return "ProdutoFornecedor{" + "id=" + id + ", fornecedorId=" + fornecedorId + ", produtoId=" + produtoId + '}';
     }
 
 }
