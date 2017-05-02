@@ -20,10 +20,13 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO entradas (`quantidade`, `preco_unitario`, `data`) VALUES ('"
+                = "INSERT INTO entradas (`quantidade`, `preco_unitario`, `data`, `validade`, `lote`, `nf_numero`) VALUES ('"
                 + entrada.getQtd() + "','"
                 + entrada.getPrecoUnitario() + "','"
-                + entrada.getData() + "')";
+                + entrada.getData() + "','"
+                + entrada.getValidade() + "','"
+                + entrada.getLote() + "','"
+                + entrada.getNfNumero() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();

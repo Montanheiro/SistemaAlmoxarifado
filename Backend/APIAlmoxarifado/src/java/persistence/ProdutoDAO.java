@@ -20,12 +20,9 @@ public class ProdutoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO produtos (`descricao`, `validade`, `valor_unitario`, `marca`, `lote`, `peso`, `dimensao`) VALUES ('"
+                = "INSERT INTO produtos (`descricao`, `marca`, `peso`, `dimensao`) VALUES ('"
                 + produto.getDescricao() + "','"
-                + produto.getValidade() + "','"
-                + produto.getValorUnitario() + "','"
                 + produto.getMarca() + "','"
-                + produto.getLote() + "','"
                 + produto.getPeso() + "','"
                 + produto.getDimensao() + "')";
 
@@ -46,10 +43,7 @@ public class ProdutoDAO {
         rs.next();
         return new Produto(id,
                 rs.getString("descricao"),
-                rs.getDate("validade"),
-                rs.getDouble("valor_unitario"),
                 rs.getString("marca"),
-                rs.getString("lote"),
                 rs.getDouble("peso"),
                 rs.getDouble("dimensao"));
 
@@ -66,10 +60,7 @@ public class ProdutoDAO {
             produto.add(new Produto(
                     rs.getInt("id"),
                     rs.getString("descricao"),
-                    rs.getDate("validade"),
-                    rs.getDouble("valor_unitario"),
                     rs.getString("marca"),
-                    rs.getString("lote"),
                     rs.getDouble("peso"),
                     rs.getDouble("dimensao")));
         }
@@ -92,10 +83,7 @@ public class ProdutoDAO {
                         createStatement();
         String sql = "UPDATE produtos SET "
                 + "`descricao`='" + produto.getDescricao()
-                + "', `validade`= '" + produto.getValidade()
-                + "', `valor_unitario`= '" + produto.getValorUnitario()
                 + "', `marca`= '" + produto.getMarca()
-                + "', `lote`= '" + produto.getLote()
                 + "', `peso`= '" + produto.getPeso()
                 + "', `dimensao`= '" + produto.getDimensao()
                 + "' WHERE `id`= "

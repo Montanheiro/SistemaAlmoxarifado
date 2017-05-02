@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Barbara
  */
 public class FornecedorDAO {
-    
+
     private FornecedorDAO() {
     }
 
@@ -22,7 +22,7 @@ public class FornecedorDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO pessoa (`razao_social`, `Nome_fantasia`, `cnpj`) VALUES ('"
+                = "INSERT INTO fornecedores (`razao_social`, `nome_fantasia`, `cnpj`) VALUES ('"
                 + fornecedor.getRazaoSocial() + "','"
                 + fornecedor.getNomeFantasia() + "','"
                 + fornecedor.getCnpj() + "')";
@@ -31,96 +31,86 @@ public class FornecedorDAO {
         rs.next();
         int key = rs.getInt(1);
         fornecedor.setId(key);
-       
+
         EnderecoDAO.create(fornecedor.getEndereco());
-        
-        for (Contato c : fornecedor.getContato()) {
-            c.setFornecedorId(key);
-            ContatoDAO.create(c);
+
+        for (Contato contato : fornecedor.getContato()) {
+            contato.setFornecedorId(key);
+            ContatoDAO.create(contato);
         }
 
         return key;
     }
 
-    //Metodo RETREAVE esta OK, testado e funcionando
     public static Fornecedor retreave(int id) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM pessoa where id =" + id;
+        String sql = "SELECT * FROM fornecedores where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        Endereco e = EnderecoDAO.retreaveByFornecedor(id);
-        ArrayList<Contato> todosOscontatos = ContatoDAO.retreaveByFornecedor(id);
+        Endereco endereco = EnderecoDAO.retreaveByFornecedor(id);
+        ArrayList<Contato> contatos = ContatoDAO.retreaveByFornecedor(id);
         return new Fornecedor(id,
-                rs.getString("cpf_cnpj"),
-                rs.getString("Nome"),
-                e, todosOscontatos);
+                rs.getString("razao_social"),
+                rs.getString("nome_fantasia"),
+                rs.getString("cnpj"),
+                endereco, contatos);
     }
 
-    //Metodo RETREAVE esta OK, testado e funcionando
     public static ArrayList<Fornecedor> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM pessoa";
+        String sql = "SELECT * FROM fornecedores";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<Fornecedor> p = new ArrayList<>();
-        ArrayList<Contato> todosOscontatos;
+        ArrayList<Fornecedor> fornecedor = new ArrayList<>();
+        ArrayList<Contato> contatos;
         while (rs.next()) {
-            todosOscontatos = ContatoDAO.retreaveByFornecedor(rs.getInt("id"));
-            Endereco e = EnderecoDAO.retreaveByFornecedor(rs.getInt("id"));
-            p.add(new Fornecedor(
+            contatos = ContatoDAO.retreaveByFornecedor(rs.getInt("id"));
+            Endereco endereco = EnderecoDAO.retreaveByFornecedor(rs.getInt("id"));
+            fornecedor.add(new Fornecedor(
                     rs.getInt("id"),
-                    rs.getString("cpf_cnpj"),
-                    rs.getString("Nome"),
-                    e, todosOscontatos));
+                    rs.getString("razao_social"),
+                    rs.getString("nome_fantasia"),
+                    rs.getString("cnpj"),
+                    endereco, contatos));
         }
         rs.next();
-        return p;
+        return fornecedor;
     }
-    
-    //Metodo UPDATE esta OK, testado e funcionando
-    public static void update(Fornecedor c) throws SQLException {
+
+    public static void update(Fornecedor fornecedor) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE pessoa SET "
-                + "`cpf_cnpj`= '" + c.getCpf_cnpj()
-                + "', `Nome`= '" + c.getNome()
+        String sql = "UPDATE fornecedores SET "
+                + "`razao_social`= '" + fornecedor.getRazaoSocial()
+                + "', `nome_fantasia`= '" + fornecedor.getNomeFantasia()
+                + "', `cnpj`= '" + fornecedor.getCnpj()
                 + "' WHERE `id`= "
-                + c.getId();
+                + fornecedor.getId();
         stm.execute(sql);
 
-        EnderecoDAO.update(c.getEndereco());
+        EnderecoDAO.update(fornecedor.getEndereco());
 
-        for (Contato cs : c.getContato()) {
-            if (cs.getId() != 0) {
-                ContatoDAO.update(cs);
+        for (Contato contato : fornecedor.getContato()) {
+            if (contato.getId() != 0) {
+                ContatoDAO.update(contato);
             } else {
-                cs.setPessoaId(c.getId());
-                ContatoDAO.create(cs);
-            }
-        }
-
-        for (Email em : c.getEmail()) {
-            if (em.getId() != 0) {
-                EmailDAO.update(em);
-            } else {
-                em.setPessoaId(c.getId());
-                EmailDAO.create(em);
+                contato.setFornecedorId(fornecedor.getId());
+                ContatoDAO.create(contato);
             }
         }
 
     }
 
-    //Metodo DELETE esta OK, testado e funcionando
-    public static void delete(Fornecedor p) throws SQLException {
+    public static void delete(Fornecedor fornecedor) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "DELETE FROM pessoa WHERE `id`="
-                + p.getId();
+        String sql = "DELETE FROM fornecedores WHERE `id`="
+                + fornecedor.getId();
         stm.execute(sql);
     }
 

@@ -12,13 +12,15 @@ public class Entrada {
     private Date data;
     private Date validade;
     private String lote;
+    private String nfNumero;
 
-    public Entrada(double qtd, double precoUnitario, Date data, Date validade, String lote) {
+    public Entrada(double qtd, double precoUnitario, Date data, Date validade, String lote, String nfNumero) {
         this.qtd = qtd;
         this.precoUnitario = precoUnitario;
         this.data = data;
         this.validade = validade;
         this.lote = lote;
+        this.nfNumero = nfNumero;
     }
 
     public Entrada(int id, int produtoEmpenhoId, double qtd, double precoUnitario, Date data, Date validade, String lote) {
@@ -85,6 +87,14 @@ public class Entrada {
 
     public void setLote(String lote) {
         this.lote = lote;
+    }
+
+    public String getNfNumero() {
+        return nfNumero;
+    }
+
+    public void setNfNumero(String nfNumero) {
+        this.nfNumero = nfNumero;
     }
 
     @Override
