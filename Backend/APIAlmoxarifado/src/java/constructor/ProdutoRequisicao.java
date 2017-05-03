@@ -7,18 +7,20 @@ package constructor;
 public class ProdutoRequisicao {
 
     private int id;
-    private int requisicaoId;
-    private int produtoId;
-    private int qtd;
+    private Requisicao requisicao;
+    private Produto produto;
+    private double qtd;
 
-    public ProdutoRequisicao(int qtd) {
+    public ProdutoRequisicao(Requisicao requisicao, Produto produto, double qtd) {
+        this.requisicao = requisicao;
+        this.produto = produto;
         this.qtd = qtd;
     }
 
-    public ProdutoRequisicao(int id, int requisicaoId, int produtoId, int qtd) {
+    public ProdutoRequisicao(int id, Requisicao requisicao, Produto produto, double qtd) {
         this.id = id;
-        this.requisicaoId = requisicaoId;
-        this.produtoId = produtoId;
+        this.requisicao = requisicao;
+        this.produto = produto;
         this.qtd = qtd;
     }
 
@@ -30,33 +32,33 @@ public class ProdutoRequisicao {
         this.id = id;
     }
 
-    public int getRequisicaoId() {
-        return requisicaoId;
+    public Requisicao getRequisicao() {
+        return requisicao;
     }
 
-    public void setRequisicaoId(int requisicaoId) {
-        this.requisicaoId = requisicaoId;
+    public void setRequisicao(Requisicao requisicao) {
+        this.requisicao = requisicao;
     }
 
-    public int getProdutoId() {
-        return produtoId;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutoId(int produtoId) {
-        this.produtoId = produtoId;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public int getQtd() {
+    public double getQtd() {
         return qtd;
     }
 
-    public void setQtd(int qtd) {
+    public void setQtd(double qtd) {
         this.qtd = qtd;
     }
 
     @Override
     public String toString() {
-        return "ProdutoRequisicao{" + "id=" + id + ", requisicaoId=" + requisicaoId + ", produtoId=" + produtoId + ", qtd=" + qtd + '}';
+        return "ProdutoRequisicao{" + "id=" + id + ", requisicao=" + requisicao + ", produto=" + produto + ", qtd=" + qtd + '}';
     }
 
 }
