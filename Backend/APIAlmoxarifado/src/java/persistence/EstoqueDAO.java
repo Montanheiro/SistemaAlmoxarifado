@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Barbara
  */
 public class EstoqueDAO {
-    
+
     private EstoqueDAO() {
     }
 
@@ -21,7 +21,7 @@ public class EstoqueDAO {
                         createStatement();
         String sql
                 = "INSERT INTO Estoque (`produto`, `minimo`, `quantidade`) VALUES ('"
-                + estoque.getProduto() + "','"
+                + estoque.getProduto().getId() + "','"
                 + estoque.getMinimo() + "','"
                 + estoque.getQtd() + "')";
 
@@ -41,7 +41,7 @@ public class EstoqueDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Estoque(id,
-                rs.getInt("produto"),
+                ProdutoDAO.retreave(rs.getInt("produto")),
                 rs.getDouble("minimo"),
                 rs.getDouble("quantidade"));
 
@@ -57,9 +57,9 @@ public class EstoqueDAO {
         while (rs.next()) {
             estoque.add(new Estoque(
                     rs.getInt("id"),
-                rs.getInt("produto"),
-                rs.getDouble("minimo"),
-                rs.getDouble("quantidade")));
+                    ProdutoDAO.retreave(rs.getInt("produto")),
+                    rs.getDouble("minimo"),
+                    rs.getDouble("quantidade")));
         }
         rs.next();
         return estoque;
@@ -79,7 +79,7 @@ public class EstoqueDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE Estoque SET "
-                + "`produto`='" + estoque.getProduto()
+                + "`produto`='" + estoque.getProduto().getId()
                 + "', `minimo`= '" + estoque.getMinimo()
                 + "', `quantidade`= '" + estoque.getQtd()
                 + "' WHERE `id`= "
