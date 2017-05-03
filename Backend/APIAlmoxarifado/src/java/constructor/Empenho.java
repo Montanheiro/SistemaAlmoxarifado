@@ -10,24 +10,26 @@ public class Empenho {
     private String especie;
     private String observacao;
     private double valorTotal;
-    private int fornecedorId;
 
-    public Empenho(Date emissao, String numero, String especie, String observacao, double valorTotal) {
+    private Fornecedor fornecedor;
+
+    public Empenho(Date emissao, String numero, String especie, String observacao, double valorTotal, Fornecedor fornecedor) {
         this.emissao = emissao;
         this.numero = numero;
         this.especie = especie;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
+        this.fornecedor = fornecedor;
     }
 
-    public Empenho(int id, Date emissao, String numero, String especie, String observacao, double valorTotal, int fornecedorId) {
+    public Empenho(int id, Date emissao, String numero, String especie, String observacao, double valorTotal, Fornecedor fornecedor) {
         this.id = id;
         this.emissao = emissao;
         this.numero = numero;
         this.especie = especie;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
-        this.fornecedorId = fornecedorId;
+        this.fornecedor = fornecedor;
     }
 
     public int getId() {
@@ -78,17 +80,17 @@ public class Empenho {
         this.valorTotal = valorTotal;
     }
 
-    public int getFornecedorId() {
-        return fornecedorId;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setFornecedorId(int fornecedorId) {
-        this.fornecedorId = fornecedorId;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     @Override
     public String toString() {
-        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", especie=" + especie + ", observacao=" + observacao + ", valorTotal=" + valorTotal + ", fornecedorId=" + fornecedorId + '}';
+        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", especie=" + especie + ", observacao=" + observacao + ", valorTotal=" + valorTotal + ", fornecedor=" + fornecedor + '}';
     }
 
 }

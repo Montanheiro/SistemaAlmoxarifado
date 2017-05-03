@@ -11,8 +11,7 @@ import java.util.ArrayList;
  * @author Barbara
  */
 public class ProdutoEmpenhoDAO {
-    
-    
+
     private ProdutoEmpenhoDAO() {
     }
 
@@ -21,16 +20,16 @@ public class ProdutoEmpenhoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO produtos_empenho (`empenho`, `natureza_despesa`, `produto`, `sequencia`, `qtd`, `valor_unitario`, `valor_sequencia`, `item_processo`, `item_material`) VALUES ('"
+                = "INSERT INTO produtos_empenho (`empenho`, `natureza_despesa`, `produto`, `sequencia`, `quantidade`, `valor_unitario`, `valor_sequencia`, `item_processo`, `item_material`) VALUES ('"
                 + pe.getEmpenho().getId() + "','"
-                + pe.getNaturezaDespesa().getId()+ "','"
-                + pe.getProduto().getId()+ "','"
-                + pe.getSequencia()+ "','"
-                + pe.getQtd()+ "','"
-                + pe.getValorUnitario()+ "','"
-                + pe.getValorSequencia()+ "','"
-                + pe.getItemProcesso()+ "','"
-                + pe.getItemMaterial()+ "')";
+                + pe.getNaturezaDespesa().getId() + "','"
+                + pe.getProduto().getId() + "','"
+                + pe.getSequencia() + "','"
+                + pe.getQtd() + "','"
+                + pe.getValorUnitario() + "','"
+                + pe.getValorSequencia() + "','"
+                + pe.getItemProcesso() + "','"
+                + pe.getItemMaterial() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -49,10 +48,14 @@ public class ProdutoEmpenhoDAO {
         rs.next();
         return new ProdutoEmpenho(id,
                 EmpenhoDAO.retreave(rs.getInt("empenho")),
+                NaturezaDespesaDAO.retreave(rs.getInt("natureza_despesa")),
+                ProdutoDAO.retreave(rs.getInt("produto")),
+                rs.getInt("sequencia"),
                 rs.getDouble("quantidade"),
-                rs.getDouble("preco_unitario"),
-                rs.getDate("data"),
-                rs.getInt("produto"));
+                rs.getDouble("valor_unitario"),
+                rs.getDouble("valor_sequencia"),
+                rs.getString("item_processo"),
+                rs.getString("item_material"));
 
     }
 
@@ -66,11 +69,15 @@ public class ProdutoEmpenhoDAO {
         while (rs.next()) {
             pe.add(new ProdutoEmpenho(
                     rs.getInt("id"),
-                    ProdutoEmpenhoDAO.retreave(rs.getInt("produto_empenho")),
+                    EmpenhoDAO.retreave(rs.getInt("empenho")),
+                    NaturezaDespesaDAO.retreave(rs.getInt("natureza_despesa")),
+                    ProdutoDAO.retreave(rs.getInt("produto")),
+                    rs.getInt("sequencia"),
                     rs.getDouble("quantidade"),
-                    rs.getDouble("preco_unitario"),
-                    rs.getDate("data"),
-                    rs.getInt("produto")));
+                    rs.getDouble("valor_unitario"),
+                    rs.getDouble("valor_sequencia"),
+                    rs.getString("item_processo"),
+                    rs.getString("item_material")));
         }
         rs.next();
         return pe;
@@ -90,13 +97,15 @@ public class ProdutoEmpenhoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE produtos_empenho SET "
-                + "`produto_empenho` = '" + pe.getProdutoEmpenho().getId()
+                + "`empenho` = '" + pe.getEmpenho().getId()
+                + "', `natureza_despesa` = '" + pe.getNaturezaDespesa().getId()
+                + "', `produto` = '" + pe.getProduto().getId()
+                + "', `sequencia` = '" + pe.getSequencia()
                 + "', `quantidade` = '" + pe.getQtd()
-                + "', `preco_unitario` = '" + pe.getPrecoUnitario()
-                + "', `data` = '" + pe.getData()
-                + "', `validade` = '" + pe.getValidade()
-                + "', `lote` = '" + pe.getLote()
-                + "', `nf_numero` = '" + pe.getNfNumero()
+                + "', `valor_unitario` = '" + pe.getValorUnitario()
+                + "', `valor_sequencia` = '" + pe.getValorSequencia()
+                + "', `item_processo` = '" + pe.getItemProcesso()
+                + "', `item_material` = '" + pe.getItemMaterial()
                 + "' WHERE `id` = "
                 + pe.getId();
         stm.execute(sql);
