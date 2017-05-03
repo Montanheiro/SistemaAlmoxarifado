@@ -5,12 +5,17 @@ public class Visitante {
     private int id;
     private int qtd;
 
-    private int setorId;
+    private Setor setor;
 
-    public Visitante(int id, int qtd, int setorId) {
+    public Visitante(int qtd, Setor setor) {
+        this.qtd = qtd;
+        this.setor = setor;
+    }
+
+    public Visitante(int id, int qtd, Setor setor) {
         this.id = id;
         this.qtd = qtd;
-        this.setorId = setorId;
+        this.setor = setor;
     }
 
     public Visitante(int qtd) {
@@ -33,17 +38,17 @@ public class Visitante {
         this.qtd = qtd;
     }
 
-    public int getSetorId() {
-        return setorId;
+    public Setor getSetor() {
+        return setor;
     }
 
-    public void setSetorId(int setorId) {
-        this.setorId = setorId;
+    public void setSetor(Setor setor) {
+        this.setor = setor;
     }
 
     @Override
     public String toString() {
-        return "Visitante{" + "id=" + id + ", qtd=" + qtd + ", setorId=" + setorId + '}';
+        return "Visitante{" + "id=" + id + ", qtd=" + qtd + ", setor=" + setor + '}';
     }
 
 }

@@ -1,4 +1,3 @@
-
 package constructor;
 
 import business.Token;
@@ -18,14 +17,10 @@ public class Usuario {
     private String senha;
     private Servidor servidor;
 
-    public Usuario(int id, String email, Servidor servidor) {
+    public Usuario(int id, String email, String senha, Servidor servidor) {
         this.id = id;
         this.email = email;
-        this.servidor = servidor;
-    }
-
-    public Usuario(String email, Servidor servidor) {
-        this.email = email;
+        this.senha = senha;
         this.servidor = servidor;
     }
 
@@ -37,7 +32,7 @@ public class Usuario {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.servidor = servidor;
-    } 
+    }
 
     public int getId() {
         return id;
@@ -74,7 +69,6 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", servidor=" + servidor + '}';
-    }  
-    
+    }
 
 }

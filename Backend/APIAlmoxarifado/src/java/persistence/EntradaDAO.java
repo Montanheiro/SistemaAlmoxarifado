@@ -20,13 +20,14 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO entradas (`quantidade`, `preco_unitario`, `data`, `validade`, `lote`, `nf_numero`) VALUES ('"
+                = "INSERT INTO entradas (`quantidade`, `preco_unitario`, `data`, `validade`, `lote`, `nf_numero`, `produto_empenho`) VALUES ('"
                 + entrada.getQtd() + "','"
                 + entrada.getPrecoUnitario() + "','"
                 + entrada.getData() + "','"
                 + entrada.getValidade() + "','"
                 + entrada.getLote() + "','"
-                + entrada.getNfNumero() + "')";
+                + entrada.getNfNumero() + "','"
+                + entrada.getProdutoEmpenho().getId() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -44,10 +45,13 @@ public class EntradaDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Entrada(id,
+                ProdutoEmpenhoDAO.retreave(rs.getInt("produto_empenho")),
                 rs.getDouble("quantidade"),
                 rs.getDouble("preco_unitario"),
                 rs.getDate("data"),
-                rs.getInt("produto"));
+                rs.getDate("validade"),
+                rs.getString("lote"),
+                rs.getString("nf_numero"));
 
     }
 
@@ -61,10 +65,13 @@ public class EntradaDAO {
         while (rs.next()) {
             entrada.add(new Entrada(
                     rs.getInt("id"),
+                    ProdutoEmpenhoDAO.retreave(rs.getInt("produto_empenho")),
                     rs.getDouble("quantidade"),
                     rs.getDouble("preco_unitario"),
-                    rs.getInt("produto"),
-                    rs.getDate("data")));
+                    rs.getDate("data"),
+                    rs.getDate("validade"),
+                    rs.getString("lote"),
+                    rs.getString("nf_numero")));
         }
         rs.next();
         return entrada;
@@ -84,11 +91,14 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE entradas SET "
-                + "`quantidade`='" + entrada.getQtd()
-                + "', `preco_unitario`= '" + entrada.getPrecoUnitario()
-                + "', `produto`= '" + entrada.getProduto()
-                + "', `data`= '" + entrada.getData()
-                + "' WHERE `id`= "
+                + "`produto_empenho` = '" + entrada.getProdutoEmpenho().getId()
+                + "', `quantidade` = '" + entrada.getQtd()
+                + "', `preco_unitario` = '" + entrada.getPrecoUnitario()
+                + "', `data` = '" + entrada.getData()
+                + "', `validade` = '" + entrada.getValidade()
+                + "', `lote` = '" + entrada.getLote()
+                + "', `nf_numero` = '" + entrada.getNfNumero()
+                + "' WHERE `id` = "
                 + entrada.getId();
         stm.execute(sql);
     }

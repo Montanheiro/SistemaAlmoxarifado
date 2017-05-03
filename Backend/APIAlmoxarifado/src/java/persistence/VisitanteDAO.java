@@ -20,8 +20,9 @@ public class VisitanteDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO visitantes (`quantidade`) VALUES ('"
-                + visitante.getQtd() + "')";
+                = "INSERT INTO visitantes (`quantidade`, `setor`) VALUES ('"
+                + visitante.getQtd() + "','"
+                + visitante.getSetor().getId() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -40,7 +41,7 @@ public class VisitanteDAO {
         rs.next();
         return new Visitante(id,
                 rs.getInt("quantidade"),
-                rs.getInt("setor"));
+                SetorDAO.retreave(rs.getInt("setor")));
 
     }
 
@@ -55,7 +56,7 @@ public class VisitanteDAO {
             visitante.add(new Visitante(
                     rs.getInt("id"),
                     rs.getInt("quantidade"),
-                    rs.getInt("setor")));
+                    SetorDAO.retreave(rs.getInt("setor"))));
         }
         rs.next();
         return visitante;
@@ -76,6 +77,7 @@ public class VisitanteDAO {
                         createStatement();
         String sql = "UPDATE visitantes SET "
                 + "`quantidade`= '" + visitante.getQtd()
+                + "', `setor`= '" + visitante.getSetor().getId()
                 + " ' WHERE `id`= "
                 + visitante.getId();
         stm.execute(sql);

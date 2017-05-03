@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Entrada {
 
     private int id;
-    private int produtoEmpenhoId;
+    private ProdutoEmpenho produtoEmpenho;
 
     private double qtd;
     private double precoUnitario;
@@ -14,7 +14,8 @@ public class Entrada {
     private String lote;
     private String nfNumero;
 
-    public Entrada(double qtd, double precoUnitario, Date data, Date validade, String lote, String nfNumero) {
+    public Entrada(ProdutoEmpenho produtoEmpenho, double qtd, double precoUnitario, Date data, Date validade, String lote, String nfNumero) {
+        this.produtoEmpenho = produtoEmpenho;
         this.qtd = qtd;
         this.precoUnitario = precoUnitario;
         this.data = data;
@@ -23,14 +24,15 @@ public class Entrada {
         this.nfNumero = nfNumero;
     }
 
-    public Entrada(int id, int produtoEmpenhoId, double qtd, double precoUnitario, Date data, Date validade, String lote) {
+    public Entrada(int id, ProdutoEmpenho produtoEmpenho, double qtd, double precoUnitario, Date data, Date validade, String lote, String nfNumero) {
         this.id = id;
-        this.produtoEmpenhoId = produtoEmpenhoId;
+        this.produtoEmpenho = produtoEmpenho;
         this.qtd = qtd;
         this.precoUnitario = precoUnitario;
         this.data = data;
         this.validade = validade;
         this.lote = lote;
+        this.nfNumero = nfNumero;
     }
 
     public int getId() {
@@ -41,12 +43,12 @@ public class Entrada {
         this.id = id;
     }
 
-    public int getProdutoEmpenhoId() {
-        return produtoEmpenhoId;
+    public ProdutoEmpenho getProdutoEmpenho() {
+        return produtoEmpenho;
     }
 
-    public void setProdutoEmpenhoId(int produtoEmpenhoId) {
-        this.produtoEmpenhoId = produtoEmpenhoId;
+    public void setProdutoEmpenho(ProdutoEmpenho produtoEmpenho) {
+        this.produtoEmpenho = produtoEmpenho;
     }
 
     public double getQtd() {
@@ -99,7 +101,7 @@ public class Entrada {
 
     @Override
     public String toString() {
-        return "Entrada{" + "id=" + id + ", produtoEmpenhoId=" + produtoEmpenhoId + ", qtd=" + qtd + ", precoUnitario=" + precoUnitario + ", data=" + data + ", validade=" + validade + ", lote=" + lote + '}';
+        return "Entrada{" + "id=" + id + ", produtoEmpenho=" + produtoEmpenho + ", qtd=" + qtd + ", precoUnitario=" + precoUnitario + ", data=" + data + ", validade=" + validade + ", lote=" + lote + ", nfNumero=" + nfNumero + '}';
     }
 
 }

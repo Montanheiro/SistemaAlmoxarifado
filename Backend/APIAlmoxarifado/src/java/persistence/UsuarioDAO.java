@@ -23,7 +23,7 @@ public class UsuarioDAO {
                 = "INSERT INTO usuarios (`email`, `senha`, `servidor`) VALUES ('"
                 + usuario.getEmail() + "','"
                 + usuario.getSenha() + "','"
-                + usuario.getServidor() + "')";
+                + usuario.getServidor().getId() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -37,13 +37,13 @@ public class UsuarioDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM usuarios where id = " + id;
+        String sql = "SELECT * FROM usuarios where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Usuario(id,
                 rs.getString("email"),
                 rs.getString("senha"),
-                rs.getInt("servidor"));
+                ServidorDAO.retreave(rs.getInt("servidor")));
 
     }
 
@@ -59,7 +59,7 @@ public class UsuarioDAO {
                     rs.getInt("id"),
                     rs.getString("email"),
                     rs.getString("senha"),
-                    rs.getInt("servidor")));
+                    ServidorDAO.retreave(rs.getInt("servidor"))));
         }
         rs.next();
         return usuario;
@@ -69,7 +69,7 @@ public class UsuarioDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "DELETE FROM usuario WHERE `id`="
+        String sql = "DELETE FROM usuarios WHERE `id`="
                 + usuario.getId();
         stm.execute(sql);
     }
@@ -78,11 +78,11 @@ public class UsuarioDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE usuario SET "
-                + "`email`='" + usuario.getEmail()
+        String sql = "UPDATE usuarios SET "
+                + "`email`= '" + usuario.getEmail()
                 + "', `senha`= '" + usuario.getSenha()
-                + "', `servidor`= '" + usuario.getServidor()
-                + "' WHERE `id`= "
+                + "', `servidor`= '" + usuario.getServidor().getId()
+                + " ' WHERE `id`= "
                 + usuario.getId();
         stm.execute(sql);
     }
