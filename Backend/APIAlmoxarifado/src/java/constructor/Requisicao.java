@@ -5,19 +5,20 @@ import java.sql.Date;
 public class Requisicao {
 
     private int id;
-    private int servidorId;
+    private Servidor servidor;
 
     private Date data;
     private String observacao;
 
-    public Requisicao(Date data, String observacao) {
+    public Requisicao(Servidor servidor, Date data, String observacao) {
+        this.servidor = servidor;
         this.data = data;
         this.observacao = observacao;
     }
 
-    public Requisicao(int id, int servidorId, Date data, String observacao) {
+    public Requisicao(int id, Servidor servidor, Date data, String observacao) {
         this.id = id;
-        this.servidorId = servidorId;
+        this.servidor = servidor;
         this.data = data;
         this.observacao = observacao;
     }
@@ -30,12 +31,12 @@ public class Requisicao {
         this.id = id;
     }
 
-    public int getServidorId() {
-        return servidorId;
+    public Servidor getServidor() {
+        return servidor;
     }
 
-    public void setServidorId(int servidorId) {
-        this.servidorId = servidorId;
+    public void setServidor(Servidor servidor) {
+        this.servidor = servidor;
     }
 
     public Date getData() {
@@ -56,7 +57,7 @@ public class Requisicao {
 
     @Override
     public String toString() {
-        return "Requisicao{" + "id=" + id + ", servidorId=" + servidorId + ", data=" + data + ", observacao=" + observacao + '}';
+        return "Requisicao{" + "id=" + id + ", servidor=" + servidor + ", data=" + data + ", observacao=" + observacao + '}';
     }
 
 }

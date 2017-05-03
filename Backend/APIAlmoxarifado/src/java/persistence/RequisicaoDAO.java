@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 public class RequisicaoDAO {
 
-    
     private RequisicaoDAO() {
     }
 
@@ -21,9 +20,10 @@ public class RequisicaoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO requisicoes (`quantidade`, `setor`) VALUES ('"
-                + requisicao.getQtd() + "','"
-                + requisicao.getSetor() + "')";
+                = "INSERT INTO requisicoes (`servidor`, `data`, `observacao`) VALUES ('"
+                + requisicao.getServidor().getId() + "','"
+                + requisicao.getData() + "','"
+                + requisicao.getObservacao() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -41,8 +41,9 @@ public class RequisicaoDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Requisicao(id,
-                rs.getDouble("quantidade"),
-                rs.getInt("setor"));
+                ServidorDAO.retreave(rs.getInt("servidor")),
+                rs.getDate("data"),
+                rs.getString("observacao"));
 
     }
 
@@ -52,35 +53,37 @@ public class RequisicaoDAO {
                         createStatement();
         String sql = "SELECT * FROM requisicoes";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<Requisicao> visitante = new ArrayList<>();
+        ArrayList<Requisicao> requisicao = new ArrayList<>();
         while (rs.next()) {
-            visitante.add(new Requisicao(
+            requisicao.add(new Requisicao(
                     rs.getInt("id"),
-                    rs.getInt("quantidade"),
-                    rs.getString("setor")));
+                    ServidorDAO.retreave(rs.getInt("servidor")),
+                    rs.getDate("data"),
+                    rs.getString("observacao")));
         }
         rs.next();
-        return visitante;
+        return requisicao;
     }
 
-    public static void delete(Requisicao visitante) throws SQLException {
+    public static void delete(Requisicao requisicao) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "DELETE FROM requisicoes WHERE `id`="
-                + visitante.getId();
+                + requisicao.getId();
         stm.execute(sql);
     }
 
-    public static void update(Requisicao visitante) throws SQLException {
+    public static void update(Requisicao requisicao) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE requisicoes SET "
-                + "`quantidade`='" + visitante.getQtd()
-                + "', `setor`= '" + visitante.getSetor()
+                + "`servidor`='" + requisicao.getServidor().getId()
+                + "', `data`= '" + requisicao.getData()
+                + "', `observacao`= '" + requisicao.getObservacao()
                 + "' WHERE `id`= "
-                + visitante.getId();
+                + requisicao.getId();
         stm.execute(sql);
     }
 
