@@ -20,10 +20,11 @@ public class ServidorDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO servidores (`nome`, `siape`, `funcao`) VALUES ('"
+                = "INSERT INTO servidores (`nome`, `siape`, `funcao`, `setor`) VALUES ('"
                 + servidor.getNome() + "','"
                 + servidor.getSiape() + "','"
-                + servidor.getFuncao() + "')";
+                + servidor.getFuncao() + "','"
+                + servidor.getSetor().getId() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -41,6 +42,7 @@ public class ServidorDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Servidor(id,
+                SetorDAO.retreave(rs.getInt("setor")),
                 rs.getString("nome"),
                 rs.getString("siape"),
                 rs.getString("funcao"));
@@ -57,6 +59,7 @@ public class ServidorDAO {
         while (rs.next()) {
             servidor.add(new Servidor(
                     rs.getInt("id"),
+                    SetorDAO.retreave(rs.getInt("setor")),
                     rs.getString("nome"),
                     rs.getString("siape"),
                     rs.getString("funcao")));
@@ -79,9 +82,10 @@ public class ServidorDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE servidores SET "
-                + "`nome`='" + servidor.getNome()
+                + "`setor`='" + servidor.getSetor().getId()
+                + "', `nome`= '" + servidor.getNome()
                 + "', `siape`= '" + servidor.getSiape()
-                + "', `matricula`= '" + servidor.getFuncao()
+                + "', `funcao`= '" + servidor.getFuncao()
                 + "' WHERE `id`= "
                 + servidor.getId();
         stm.execute(sql);
