@@ -3,19 +3,20 @@ package constructor;
 public class Saida {
 
     private int id;
-    private int requisicaoId;
+    private Requisicao requisicao;
 
     private double qtdGeral;
     private double precoUnitario;
 
-    public Saida(double qtdGeral, double precoUnitario) {
+    public Saida(Requisicao requisicao, double qtdGeral, double precoUnitario) {
+        this.requisicao = requisicao;
         this.qtdGeral = qtdGeral;
         this.precoUnitario = precoUnitario;
     }
 
-    public Saida(int id, int requisicaoId, double qtdGeral, double precoUnitario) {
+    public Saida(int id, Requisicao requisicao, double qtdGeral, double precoUnitario) {
         this.id = id;
-        this.requisicaoId = requisicaoId;
+        this.requisicao = requisicao;
         this.qtdGeral = qtdGeral;
         this.precoUnitario = precoUnitario;
     }
@@ -28,12 +29,12 @@ public class Saida {
         this.id = id;
     }
 
-    public int getRequisicaoId() {
-        return requisicaoId;
+    public Requisicao getRequisicao() {
+        return requisicao;
     }
 
-    public void setRequisicaoId(int requisicaoId) {
-        this.requisicaoId = requisicaoId;
+    public void setRequisicao(Requisicao requisicao) {
+        this.requisicao = requisicao;
     }
 
     public double getQtdGeral() {
@@ -54,7 +55,7 @@ public class Saida {
 
     @Override
     public String toString() {
-        return "Saida{" + "id=" + id + ", requisicaoId=" + requisicaoId + ", qtdGeral=" + qtdGeral + ", precoUnitario=" + precoUnitario + '}';
+        return "Saida{" + "id=" + id + ", requisicao=" + requisicao + ", qtdGeral=" + qtdGeral + ", precoUnitario=" + precoUnitario + '}';
     }
 
 }

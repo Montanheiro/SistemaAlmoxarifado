@@ -20,10 +20,10 @@ public class SaidaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO saidas (`quantidade_geral`, `preco_unitario`, `requisicao`) VALUES ('"
+                = "INSERT INTO saidas (`requisicao`, `quantidade_geral`, `preco_unitario`) VALUES ('"
+                + saida.getRequisicao().getId() + "','"
                 + saida.getQtdGeral() + "','"
-                + saida.getPrecoUnitario() + "','"
-                + saida.getRequisicao() + "')";
+                + saida.getPrecoUnitario() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -41,10 +41,9 @@ public class SaidaDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Saida(id,
+                RequisicaoDAO.retreave(rs.getInt("requisicao")),
                 rs.getDouble("quantidade_geral"),
-                rs.getDouble("preco_unitario"),
-                rs.getInt("requisicao"));
-
+                rs.getDouble("preco_unitario"));
     }
 
     public static ArrayList<Saida> retreaveAll() throws SQLException {
@@ -57,9 +56,9 @@ public class SaidaDAO {
         while (rs.next()) {
             saida.add(new Saida(
                     rs.getInt("id"),
+                    RequisicaoDAO.retreave(rs.getInt("requisicao")),
                     rs.getDouble("quantidade_geral"),
-                    rs.getDouble("preco_unitario"),
-                    rs.getInt("requisicao")));
+                    rs.getDouble("preco_unitario")));
         }
         rs.next();
         return saida;
@@ -79,9 +78,9 @@ public class SaidaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE saidas SET "
-                + "`quantidade_geral`='" + saida.getQtdGeral()
+                + "`requisicao`='" + saida.getRequisicao().getId()
+                + "', `quantidade_geral`= '" + saida.getQtdGeral()
                 + "', `preco_unitario`= '" + saida.getPrecoUnitario()
-                + "', `requisicao`= '" + saida.getRequisicao()
                 + "' WHERE `id`= "
                 + saida.getId();
         stm.execute(sql);
