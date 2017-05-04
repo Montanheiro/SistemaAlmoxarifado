@@ -20,10 +20,9 @@ public class EmpenhoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO empenhos (`emissao`, `numero`, `especie`, `observacao`, `valor_total`, `fornecedor`) VALUES ('"
+                = "INSERT INTO empenhos (`emissao`, `numero`, `observacao`, `valor_total`, `fornecedor`) VALUES ('"
                 + empenho.getEmissao() + "','"
                 + empenho.getNumero() + "','"
-                + empenho.getEspecie() + "','"
                 + empenho.getObservacao() + "','"
                 + empenho.getValorTotal() + "','"
                 + empenho.getFornecedor().getId() + "')";
@@ -46,7 +45,6 @@ public class EmpenhoDAO {
         return new Empenho(id,
                 rs.getDate("emissao"),
                 rs.getString("numero"),
-                rs.getString("especie"),
                 rs.getString("observacao"),
                 rs.getDouble("valor_total"),
                 FornecedorDAO.retreave(rs.getInt("fornecedor")));
@@ -65,7 +63,6 @@ public class EmpenhoDAO {
                     rs.getInt("id"),
                     rs.getDate("emissao"),
                     rs.getString("numero"),
-                    rs.getString("especie"),
                     rs.getString("observacao"),
                     rs.getDouble("valor_total"),
                     FornecedorDAO.retreave(rs.getInt("fornecedor"))));
@@ -90,7 +87,6 @@ public class EmpenhoDAO {
         String sql = "UPDATE empenhos SET "
                 + "`emissao` = '" + empenho.getEmissao()
                 + "', `numero` = '" + empenho.getNumero()
-                + "', `especie` = '" + empenho.getEspecie()
                 + "', `observacao` = '" + empenho.getObservacao()
                 + "', `valor_total` = '" + empenho.getValorTotal()
                 + "', `fornecedor` = '" + empenho.getFornecedor().getId()

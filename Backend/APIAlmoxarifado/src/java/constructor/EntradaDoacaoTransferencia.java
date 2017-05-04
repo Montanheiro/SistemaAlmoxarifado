@@ -4,21 +4,21 @@ package constructor;
  *
  * @author lucas
  */
-public class EntradaDocaoTransferencia {
+public class EntradaDoacaoTransferencia {
     
     private int id;
-    private int entradaId;
-    private int doacaoTransferenciaId;
+    private Entrada entrada;
+    private DoacaoOuTransferencia doacaoTransferencia;
 
-    public EntradaDocaoTransferencia(int id, int entradaId, int doacaoTransferenciaId) {
-        this.id = id;
-        this.entradaId = entradaId;
-        this.doacaoTransferenciaId = doacaoTransferenciaId;
+    public EntradaDoacaoTransferencia(Entrada entrada, DoacaoOuTransferencia doacaoTransferencia) {
+        this.entrada = entrada;
+        this.doacaoTransferencia = doacaoTransferencia;
     }
 
-    public EntradaDocaoTransferencia(int entradaId, int doacaoTransferenciaId) {
-        this.entradaId = entradaId;
-        this.doacaoTransferenciaId = doacaoTransferenciaId;
+    public EntradaDoacaoTransferencia(int id, Entrada entrada, DoacaoOuTransferencia doacaoTransferencia) {
+        this.id = id;
+        this.entrada = entrada;
+        this.doacaoTransferencia = doacaoTransferencia;
     }
 
     public int getId() {
@@ -29,25 +29,25 @@ public class EntradaDocaoTransferencia {
         this.id = id;
     }
 
-    public int getEntradaId() {
-        return entradaId;
+    public Entrada getEntrada() {
+        return entrada;
     }
 
-    public void setEntradaId(int entradaId) {
-        this.entradaId = entradaId;
+    public void setEntrada(Entrada entrada) {
+        this.entrada = entrada;
     }
 
-    public int getDoacaoTransferenciaId() {
-        return doacaoTransferenciaId;
+    public DoacaoOuTransferencia getDoacaoTransferencia() {
+        return doacaoTransferencia;
     }
 
-    public void setDoacaoTransferenciaId(int doacaoTransferenciaId) {
-        this.doacaoTransferenciaId = doacaoTransferenciaId;
+    public void setDoacaoTransferencia(DoacaoOuTransferencia doacaoTransferencia) {
+        this.doacaoTransferencia = doacaoTransferencia;
     }
 
     @Override
     public String toString() {
-        return "EntradaDocaoTransferencia{" + "id=" + id + ", entradaId=" + entradaId + ", doacaoTransferenciaId=" + doacaoTransferenciaId + '}';
+        return "EntradaDoacaoTransferencia{" + "id=" + id + ", entrada=" + entrada + ", doacaoTransferencia=" + doacaoTransferencia + '}';
     }
-    
+
 }
