@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package constructor;
 
 /**
@@ -10,17 +5,20 @@ package constructor;
  * @author lucas
  */
 public class Unidade {
-    
+
     private int id;
     private String nome;
+    private String abreviacao;
 
-    public Unidade(int id, String nome) {
-        this.id = id;
+    public Unidade(String nome, String abreviacao) {
         this.nome = nome;
+        this.abreviacao = abreviacao;
     }
 
-    public Unidade(String nome) {
+    public Unidade(int id, String nome, String abreviacao) {
+        this.id = id;
         this.nome = nome;
+        this.abreviacao = abreviacao;
     }
 
     public int getId() {
@@ -39,9 +37,17 @@ public class Unidade {
         this.nome = nome;
     }
 
+    public String getAbreviacao() {
+        return abreviacao;
+    }
+
+    public void setAbreviacao(String abreviacao) {
+        this.abreviacao = abreviacao;
+    }
+
     @Override
     public String toString() {
-        return "Unidade{" + "id=" + id + ", nome=" + nome + '}';
+        return "Unidade{" + "id=" + id + ", nome=" + nome + ", abreviacao=" + abreviacao + '}';
     }
-    
+
 }

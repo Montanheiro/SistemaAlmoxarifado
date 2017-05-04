@@ -1,4 +1,8 @@
 package constructor;
+/**
+ *
+ * @author Barbara
+ */
 
 import java.util.ArrayList;
 
