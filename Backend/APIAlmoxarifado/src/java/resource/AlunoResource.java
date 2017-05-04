@@ -7,7 +7,6 @@ package resource;
 
 import business.Token;
 import com.google.gson.Gson;
-import constructor.Admin;
 import constructor.Aluno;
 import java.sql.SQLException;
 import java.util.ArrayList;
