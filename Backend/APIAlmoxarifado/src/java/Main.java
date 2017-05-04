@@ -1,5 +1,11 @@
 
+import constructor.Servidor;
+import constructor.Setor;
+import constructor.Usuario;
 import java.sql.SQLException;
+import persistence.ServidorDAO;
+import persistence.SetorDAO;
+import persistence.UsuarioDAO;
 
 public class Main {
 
@@ -39,8 +45,36 @@ public class Main {
 //        System.out.println(token);
 //        System.out.println(new Token().Verify(token, "client"));  
 //        System.out.println("birll");
-System.out.println("birlll");
+
+
+
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+
+        // TESTES ALMOXARIFADO
         
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+        
+//        Setor setor = new Setor("Alunos Morrinhos", "AMHOS");
+//        System.out.println(SetorDAO.create(setor));
+//        Setor setor = SetorDAO.retreave(1);
+//        System.out.println(setor);
+//        
+//        Servidor servidor = new Servidor(setor, "Lucas", "27425825", "Aluno");
+//        System.out.println(ServidorDAO.create(servidor));
+//        Servidor servidor = ServidorDAO.retreave(1);
+//        System.out.println(servidor);
+//        
+//        Usuario usuario = new Usuario("lucas@if.br", "123", servidor, 1, 0);
+//        System.out.println(UsuarioDAO.create(usuario));
+//        usuario = UsuarioDAO.retreave(1);
+//        System.out.println(usuario);
+        
+        Usuario usuario = UsuarioDAO.retreaveLogin("lucas@if.br", "123");
+        System.out.println(usuario);
     }
     
 }

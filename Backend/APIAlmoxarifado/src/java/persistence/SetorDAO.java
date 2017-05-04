@@ -21,8 +21,9 @@ public class SetorDAO {
                     = Database.createConnection().
                             createStatement();
             String sql
-                    = "INSERT INTO setores (`nome`) VALUES ('"
-                    + setor.getNome() + "')";
+                    = "INSERT INTO setores (`nome`, `sigla`) VALUES ('"
+                    + setor.getNome() + "','"
+                    + setor.getSigla() + "')";
 
             stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stm.getGeneratedKeys();
@@ -41,7 +42,8 @@ public class SetorDAO {
             ResultSet rs = stm.executeQuery(sql);
             rs.next();
             return new Setor(id,
-                    rs.getString("nome"));
+                    rs.getString("nome"),
+                    rs.getString("sigla"));
 
     }
 
@@ -56,7 +58,8 @@ public class SetorDAO {
             while (rs.next()) {
                 setor.add(new Setor(
                         rs.getInt("id"),
-                        rs.getString("nome")));
+                        rs.getString("nome"),
+                        rs.getString("sigla")));
             }
             rs.next();
             return setor;
@@ -78,7 +81,8 @@ public class SetorDAO {
                     = Database.createConnection().
                             createStatement();
             String sql = "UPDATE setores SET "
-                    + "`nome`='" + setor.getNome()
+                    + "`nome`='" + setor.getNome() + "'"
+                    + "`sigla`='" + setor.getSigla() + "'"
                     + "' WHERE `id`= "
                     + setor.getId();
             stm.execute(sql);

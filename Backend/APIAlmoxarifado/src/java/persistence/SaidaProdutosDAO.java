@@ -1,6 +1,6 @@
 package persistence;
 
-import constructor.Saida;
+import constructor.SaidaProdutos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author Barbara
  */
-public class SaidaDAO {
+public class SaidaProdutosDAO {
 
-    private SaidaDAO() {
+    private SaidaProdutosDAO() {
     }
 
-    public static int create(Saida saida) throws SQLException {
+    public static int create(SaidaProdutos saida) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -33,28 +33,28 @@ public class SaidaDAO {
         return key;
     }
 
-    public static Saida retreave(int id) throws SQLException {
+    public static SaidaProdutos retreave(int id) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM saidas where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        return new Saida(id,
+        return new SaidaProdutos(id,
                 RequisicaoDAO.retreave(rs.getInt("requisicao")),
                 rs.getDouble("quantidade_geral"),
                 rs.getDouble("preco_unitario"));
     }
 
-    public static ArrayList<Saida> retreaveAll() throws SQLException {
+    public static ArrayList<SaidaProdutos> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM saidas";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<Saida> saida = new ArrayList<>();
+        ArrayList<SaidaProdutos> saida = new ArrayList<>();
         while (rs.next()) {
-            saida.add(new Saida(
+            saida.add(new SaidaProdutos(
                     rs.getInt("id"),
                     RequisicaoDAO.retreave(rs.getInt("requisicao")),
                     rs.getDouble("quantidade_geral"),
@@ -64,7 +64,7 @@ public class SaidaDAO {
         return saida;
     }
 
-    public static void delete(Saida saida) throws SQLException {
+    public static void delete(SaidaProdutos saida) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -73,7 +73,7 @@ public class SaidaDAO {
         stm.execute(sql);
     }
 
-    public static void update(Saida saida) throws SQLException {
+    public static void update(SaidaProdutos saida) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();

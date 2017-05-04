@@ -7,26 +7,23 @@ public class Empenho {
     private int id;
     private Date emissao;
     private String numero;
-    private String especie;
     private String observacao;
     private double valorTotal;
 
     private Fornecedor fornecedor;
 
-    public Empenho(Date emissao, String numero, String especie, String observacao, double valorTotal, Fornecedor fornecedor) {
+    public Empenho(Date emissao, String numero, String observacao, double valorTotal, Fornecedor fornecedor) {
         this.emissao = emissao;
         this.numero = numero;
-        this.especie = especie;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
         this.fornecedor = fornecedor;
     }
 
-    public Empenho(int id, Date emissao, String numero, String especie, String observacao, double valorTotal, Fornecedor fornecedor) {
+    public Empenho(int id, Date emissao, String numero, String observacao, double valorTotal, Fornecedor fornecedor) {
         this.id = id;
         this.emissao = emissao;
         this.numero = numero;
-        this.especie = especie;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
         this.fornecedor = fornecedor;
@@ -56,14 +53,6 @@ public class Empenho {
         this.numero = numero;
     }
 
-    public String getEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
-
     public String getObservacao() {
         return observacao;
     }
@@ -90,7 +79,7 @@ public class Empenho {
 
     @Override
     public String toString() {
-        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", especie=" + especie + ", observacao=" + observacao + ", valorTotal=" + valorTotal + ", fornecedor=" + fornecedor + '}';
+        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", observacao=" + observacao + ", valorTotal=" + valorTotal + ", fornecedor=" + fornecedor + '}';
     }
 
 }

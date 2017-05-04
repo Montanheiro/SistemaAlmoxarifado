@@ -2,7 +2,7 @@ package resource;
 
 import business.Token;
 import com.google.gson.Gson;
-import constructor.Admin;
+import constructor.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.ws.rs.core.Context;
@@ -13,17 +13,23 @@ import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import persistence.AdminDAO;
+import persistence.UsuarioDAO;
 
-@Path("admin")
-public class AdminResource {
+/**
+ * REST Web Service
+ *
+ * @author lucas
+ */
+@Path("generic")
+public class UsuarioResource {
 
     @Context
     private UriInfo context;
 
-    public AdminResource() {
+    public UsuarioResource() {
     }
 
     @POST
@@ -33,12 +39,12 @@ public class AdminResource {
         
         Gson gson = new Gson();
         
-        Admin a = gson.fromJson(body, Admin.class);
-        a = AdminDAO.retreave(a.getUser(), a.getPassword());
+        Usuario u = gson.fromJson(body, Usuario.class);
+        u = UsuarioDAO.retreaveLogin(u.getEmail(), u.getSenha());
 
         String token;
-        if(a.getType() == 1) token = new Token().Gerate("superadmin", a.getId(), 8);
-        else token = new Token().Gerate("admin", a.getId(), 8);
+        if(u.isAdmin() == 1) token = new Token().Gerate("admin", u.getId(), 8);
+        else token = new Token().Gerate("user", u.getId(), 8);
         
         return token;
     }
@@ -48,7 +54,7 @@ public class AdminResource {
     @Path("/verify")
     public String verify(@HeaderParam("token") String token) throws Exception {
         
-        if(!new Token().Verify(token, "admin") && !new Token().Verify(token, "superadmin")) 
+        if(!new Token().Verify(token, "admin") && !new Token().Verify(token, "user")) 
             throw new Exception("Token invalido.");
         
         return "200";
@@ -62,10 +68,10 @@ public class AdminResource {
         
         Gson gson = new Gson();
         
-        if(!new Token().Verify(token, "superadmin")) throw new Exception("Token invalido.");
+        if(!new Token().Verify(token, "admin")) throw new Exception("Token invalido.");
         
-        Admin a = gson.fromJson(body, Admin.class);
-        AdminDAO.create(a);
+        Usuario c = gson.fromJson(body, Usuario.class);
+        UsuarioDAO.create(c);
         
         return "200";
     }
@@ -77,15 +83,15 @@ public class AdminResource {
         
         String type;
         
-        if(new Token().Verify(token, "superadmin")) type = "superadmin";
-        else if(new Token().Verify(token, "admin")) type = "admin";
+        if(new Token().Verify(token, "admin")) type = "admin";
+        else if(new Token().Verify(token, "user")) type = "user";
         else throw new Exception("Token invalido.");
         
         int id = new Token().getSubject(token, type);
-        Admin a = AdminDAO.retreave(id);
+        Usuario c = UsuarioDAO.retreave(id);
         
         Gson gson = new Gson();
-        return gson.toJson(a);
+        return gson.toJson(c);
     }
     
     @GET
@@ -94,11 +100,11 @@ public class AdminResource {
     public String  getId(@HeaderParam("token") String token, 
             @QueryParam("id") int id) throws SQLException, Exception {
         
-        if(!new Token().Verify(token, "superadmin")) 
+        if(!new Token().Verify(token, "admin")) 
             throw new Exception("Token invalido.");
         
         Gson gson = new Gson();
-        Admin a = AdminDAO.retreave(id);
+        Usuario a = UsuarioDAO.retreave(id);
         
         return gson.toJson(a);
     }
@@ -109,11 +115,11 @@ public class AdminResource {
     public String getAll(@HeaderParam("token") String token) 
             throws SQLException, Exception{
         
-        if(!new Token().Verify(token, "superadmin")) 
+        if(!new Token().Verify(token, "admin")) 
             throw new Exception("Token invalido.");
         
         Gson gson = new Gson();
-        ArrayList<Admin> admin = AdminDAO.retreaveAll();
+        ArrayList<Usuario> admin = UsuarioDAO.retreaveAll();
         return gson.toJson(admin);  
     }
     
@@ -124,16 +130,16 @@ public class AdminResource {
             throws SQLException, Exception{
         
         Gson gson = new Gson();
-        Admin a = gson.fromJson(body, Admin.class);  
+        Usuario u = gson.fromJson(body, Usuario.class);  
         
         String type;
-        if(new Token().Verify(token, "superadmin")) type = "superadmin";
-        else if(new Token().Verify(token, "admin")) type = "admin";
+        if(new Token().Verify(token, "admin")) type = "admin";
+        else if(new Token().Verify(token, "user")) type = "user";
         else throw new Exception("Token invalido.");
         
         int id = new Token().getSubject(token, type);    
-        a.setId(id);
-        AdminDAO.updatePassword(a);
+        u.setId(id);
+        UsuarioDAO.updatePassword(u);
 
         return "200";  
     }

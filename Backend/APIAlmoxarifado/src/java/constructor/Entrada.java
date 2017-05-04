@@ -5,34 +5,31 @@ import java.sql.Date;
 public class Entrada {
 
     private int id;
-    private ProdutoEmpenho produtoEmpenho;
 
     private double qtd;
-    private double precoUnitario;
     private Date data;
     private Date validade;
     private String lote;
     private String nfNumero;
+    private int considerarValorSequencia;
 
-    public Entrada(ProdutoEmpenho produtoEmpenho, double qtd, double precoUnitario, Date data, Date validade, String lote, String nfNumero) {
-        this.produtoEmpenho = produtoEmpenho;
+    public Entrada(int id, double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
+        this.id = id;
         this.qtd = qtd;
-        this.precoUnitario = precoUnitario;
         this.data = data;
         this.validade = validade;
         this.lote = lote;
         this.nfNumero = nfNumero;
+        this.considerarValorSequencia = considerarValorSequencia;
     }
 
-    public Entrada(int id, ProdutoEmpenho produtoEmpenho, double qtd, double precoUnitario, Date data, Date validade, String lote, String nfNumero) {
-        this.id = id;
-        this.produtoEmpenho = produtoEmpenho;
+    public Entrada(double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
         this.qtd = qtd;
-        this.precoUnitario = precoUnitario;
         this.data = data;
         this.validade = validade;
         this.lote = lote;
         this.nfNumero = nfNumero;
+        this.considerarValorSequencia = considerarValorSequencia;
     }
 
     public int getId() {
@@ -43,28 +40,12 @@ public class Entrada {
         this.id = id;
     }
 
-    public ProdutoEmpenho getProdutoEmpenho() {
-        return produtoEmpenho;
-    }
-
-    public void setProdutoEmpenho(ProdutoEmpenho produtoEmpenho) {
-        this.produtoEmpenho = produtoEmpenho;
-    }
-
     public double getQtd() {
         return qtd;
     }
 
     public void setQtd(double qtd) {
         this.qtd = qtd;
-    }
-
-    public double getPrecoUnitario() {
-        return precoUnitario;
-    }
-
-    public void setPrecoUnitario(double precoUnitario) {
-        this.precoUnitario = precoUnitario;
     }
 
     public Date getData() {
@@ -99,9 +80,17 @@ public class Entrada {
         this.nfNumero = nfNumero;
     }
 
+    public int isConsiderarValorSequencia() {
+        return considerarValorSequencia;
+    }
+
+    public void setConsiderarValorSequencia(int considerarValorSequencia) {
+        this.considerarValorSequencia = considerarValorSequencia;
+    }
+
     @Override
     public String toString() {
-        return "Entrada{" + "id=" + id + ", produtoEmpenho=" + produtoEmpenho + ", qtd=" + qtd + ", precoUnitario=" + precoUnitario + ", data=" + data + ", validade=" + validade + ", lote=" + lote + ", nfNumero=" + nfNumero + '}';
+        return "Entrada{" + "id=" + id + ", qtd=" + qtd + ", data=" + data + ", validade=" + validade + ", lote=" + lote + ", nfNumero=" + nfNumero + ", considerarValorSequencia=" + considerarValorSequencia + '}';
     }
 
 }

@@ -15,16 +15,19 @@ public class Usuario {
     private int id;
     private String email;
     private String senha;
+    private int ativo;
+    private int admin;
     private Servidor servidor;
 
-    public Usuario(int id, String email, String senha, Servidor servidor) {
+    public Usuario(int id, String email, int ativo, int admin, Servidor servidor) {
         this.id = id;
         this.email = email;
-        this.senha = senha;
+        this.ativo = ativo;
+        this.admin = admin;
         this.servidor = servidor;
     }
 
-    public Usuario(String email, String senha, Servidor servidor) {
+    public Usuario(String email, String senha, Servidor servidor, int ativo, int admin) {
         this.email = email;
         try {
             this.senha = new Token().Password(senha);
@@ -32,6 +35,12 @@ public class Usuario {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.servidor = servidor;
+        this.ativo = ativo;
+        this.admin = admin;
+    }
+
+    public Usuario(String lucasifbr, String string, Servidor servidor, String string0, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {
@@ -66,9 +75,25 @@ public class Usuario {
         this.servidor = servidor;
     }
 
+    public int isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
+    public int isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", servidor=" + servidor + '}';
+        return "Usuario{" + "id=" + id + ", email=" + email + ", ativo=" + ativo + ", admin=" + admin + ", servidor=" + servidor + '}';
     }
 
 }

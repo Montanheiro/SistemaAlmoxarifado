@@ -1,21 +1,26 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package constructor;
 
-public class Setor {
-
+/**
+ *
+ * @author lucas
+ */
+public class Unidade {
+    
     private int id;
     private String nome;
-    private String sigla;
 
-    public Setor(int id, String nome, String sigla) {
+    public Unidade(int id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.sigla = sigla;
     }
 
-    public Setor(String nome, String sigla) {
+    public Unidade(String nome) {
         this.nome = nome;
-        this.sigla = sigla;
     }
 
     public int getId() {
@@ -34,17 +39,9 @@ public class Setor {
         this.nome = nome;
     }
 
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
     @Override
     public String toString() {
-        return "Setor{" + "id=" + id + ", nome=" + nome + ", sigla=" + sigla + '}';
+        return "Unidade{" + "id=" + id + ", nome=" + nome + '}';
     }
     
- }
+}
