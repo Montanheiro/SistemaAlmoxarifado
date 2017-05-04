@@ -6,7 +6,7 @@ package constructor;
 
 import java.sql.Date;
 
-public class SaidaProdutos {
+public class SaidaProduto {
 
     private int id;
     private ProdutoRequisicao produtoRequisicao;
@@ -14,14 +14,14 @@ public class SaidaProdutos {
     private double qtd;
     private Date data;
 
-    public SaidaProdutos(int id, ProdutoRequisicao produtoRequisicao, double qtd, Date data) {
+    public SaidaProduto(int id, ProdutoRequisicao produtoRequisicao, double qtd, Date data) {
         this.id = id;
         this.produtoRequisicao = produtoRequisicao;
         this.qtd = qtd;
         this.data = data;
     }
 
-    public SaidaProdutos(ProdutoRequisicao produtoRequisicao, double qtd, Date data) {
+    public SaidaProduto(ProdutoRequisicao produtoRequisicao, double qtd, Date data) {
         this.produtoRequisicao = produtoRequisicao;
         this.qtd = qtd;
         this.data = data;
