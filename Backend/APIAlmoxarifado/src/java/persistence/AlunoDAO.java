@@ -15,7 +15,7 @@ public class AlunoDAO {
     private AlunoDAO() {
     }
 
-    public static int create(Aluno aluno) throws SQLException {
+    public static Aluno create(Aluno aluno) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -29,7 +29,7 @@ public class AlunoDAO {
         rs.next();
         int key = rs.getInt(1);
         aluno.setId(key);
-        return key;
+        return aluno;
     }
 
     public static Aluno retreave(int id) throws SQLException {
