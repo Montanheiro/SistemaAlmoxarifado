@@ -60,7 +60,7 @@ public class UsuarioResource {
         if(!new Token().Verify(token, "admin") && !new Token().Verify(token, "user")) 
             //throw new Exception("Token invalido.");
             
-            //return Response.status(Response.Status.UNAUTHORIZED).entity(erro).build();
+            return Response.status(Response.Status.UNAUTHORIZED).entity(erro).build();
         return Response.status(Response.Status.OK).entity(new String("Deu RUIM")).build();
     }
     
