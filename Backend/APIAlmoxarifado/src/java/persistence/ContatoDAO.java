@@ -15,7 +15,7 @@ public class ContatoDAO {
     private ContatoDAO() {
     }
 
-    public static int create(Contato contato) throws SQLException {
+    public static Contato create(Contato contato) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -29,7 +29,7 @@ public class ContatoDAO {
         rs.next();
         int key = rs.getInt(1);
         contato.setId(key);
-        return key;
+        return contato;
     }
 
     public static Contato retreave(int id) throws SQLException {
