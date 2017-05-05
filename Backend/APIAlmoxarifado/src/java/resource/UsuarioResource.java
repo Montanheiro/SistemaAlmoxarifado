@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import persistence.UsuarioDAO;
 
 /**
@@ -35,7 +36,7 @@ public class UsuarioResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
-    public String login(String body) throws SQLException, Exception {
+    public Response login(String body) throws SQLException, Exception {
         
         Gson gson = new Gson();
         
@@ -46,18 +47,21 @@ public class UsuarioResource {
         if(u.isAdmin() == 1) token = new Token().Gerate("admin", u.getId(), 8);
         else token = new Token().Gerate("user", u.getId(), 8);
         
-        return token;
+        return Response.status(Response.Status.FOUND).entity(token).build();
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/verify")
-    public String verify(@HeaderParam("token") String token) throws Exception {
+    public Response verify(@HeaderParam("token") String token) throws Exception {
+        
+        String erro = "Deu ruim hard!";
         
         if(!new Token().Verify(token, "admin") && !new Token().Verify(token, "user")) 
-            throw new Exception("Token invalido.");
-        
-        return "200";
+            //throw new Exception("Token invalido.");
+            
+            //return Response.status(Response.Status.UNAUTHORIZED).entity(erro).build();
+        return Response.status(Response.Status.OK).entity(new String("Deu RUIM")).build();
     }
     
     @POST
