@@ -15,12 +15,13 @@ public class EnderecoDAO {
     private EnderecoDAO() {
     }
 
-    public static int create(Endereco endereco) throws SQLException {
+    public static Endereco create(Endereco endereco) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO enderecos (`cidade`, `bairro`, `cep`, `numero`, `complemento`, `logradouro`) VALUES ('"
+                = "INSERT INTO enderecos (`fornecedor`, `cidade`, `bairro`, `cep`, `numero`, `complemento`, `logradouro`) VALUES ('"
+                + endereco.getFornecedor().getId() + "','"
                 + endereco.getCidade() + "','"
                 + endereco.getBairro() + "','"
                 + endereco.getCep() + "','"
@@ -33,7 +34,7 @@ public class EnderecoDAO {
         rs.next();
         int key = rs.getInt(1);
         endereco.setId(key);
-        return key;
+        return endereco;
     }
 
     public static Endereco retreave(int id) throws SQLException {
@@ -44,33 +45,32 @@ public class EnderecoDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Endereco(id,
+                FornecedorDAO.retreave(rs.getInt("fornecedor")),
                 rs.getString("cidade"),
                 rs.getString("bairro"),
                 rs.getString("cep"),
                 rs.getString("numero"),
                 rs.getString("complemento"),
-                rs.getString("logradouro"),
-                rs.getInt("fornecedor_id"));
-
+                rs.getString("logradouro"));
     }
 
     public static Endereco retreaveByFornecedor(int fornecedorId) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM enderecos WHERE fornecedor_id = " + fornecedorId;
+        String sql = "SELECT * FROM enderecos WHERE fornecedor = " + fornecedorId;
         ResultSet rs = stm.executeQuery(sql);
         if (rs.next()) {
 
             return new Endereco(
                     rs.getInt("id"),
+                    FornecedorDAO.retreave(rs.getInt("fornecedor")),
                     rs.getString("logradouro"),
                     rs.getString("logradouro"),
                     rs.getString("bairro"),
                     rs.getString("cidade"),
                     rs.getString("estado"),
-                    rs.getString("cep"),
-                    rs.getInt("fornecedor_id"));
+                    rs.getString("cep"));
         }
         return null;
     }
@@ -85,13 +85,13 @@ public class EnderecoDAO {
         while (rs.next()) {
             endereco.add(new Endereco(
                     rs.getInt("id"),
+                    FornecedorDAO.retreave(rs.getInt("fornecedor")),
                     rs.getString("cidade"),
                     rs.getString("bairro"),
                     rs.getString("cep"),
                     rs.getString("numero"),
                     rs.getString("complemento"),
-                    rs.getString("logradouro"),
-                    rs.getInt("fornecedor_id")));
+                    rs.getString("logradouro")));
         }
         rs.next();
         return endereco;
