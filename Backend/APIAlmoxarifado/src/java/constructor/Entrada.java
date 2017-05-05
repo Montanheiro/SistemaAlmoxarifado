@@ -10,6 +10,7 @@ public class Entrada {
 
     private int id;
 
+    private Produto produto;
     private double qtd;
     private Date data;
     private Date validade;
@@ -17,8 +18,8 @@ public class Entrada {
     private String nfNumero;
     private int considerarValorSequencia;
 
-    public Entrada(int id, double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
-        this.id = id;
+    public Entrada(Produto produto, double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
+        this.produto = produto;
         this.qtd = qtd;
         this.data = data;
         this.validade = validade;
@@ -27,7 +28,9 @@ public class Entrada {
         this.considerarValorSequencia = considerarValorSequencia;
     }
 
-    public Entrada(double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
+    public Entrada(int id, Produto produto, double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
+        this.id = id;
+        this.produto = produto;
         this.qtd = qtd;
         this.data = data;
         this.validade = validade;
@@ -42,6 +45,14 @@ public class Entrada {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public double getQtd() {
@@ -84,7 +95,7 @@ public class Entrada {
         this.nfNumero = nfNumero;
     }
 
-    public int isConsiderarValorSequencia() {
+    public int getConsiderarValorSequencia() {
         return considerarValorSequencia;
     }
 
@@ -94,7 +105,7 @@ public class Entrada {
 
     @Override
     public String toString() {
-        return "Entrada{" + "id=" + id + ", qtd=" + qtd + ", data=" + data + ", validade=" + validade + ", lote=" + lote + ", nfNumero=" + nfNumero + ", considerarValorSequencia=" + considerarValorSequencia + '}';
+        return "Entrada{" + "id=" + id + ", produto=" + produto + ", qtd=" + qtd + ", data=" + data + ", validade=" + validade + ", lote=" + lote + ", nfNumero=" + nfNumero + ", considerarValorSequencia=" + considerarValorSequencia + '}';
     }
 
 }

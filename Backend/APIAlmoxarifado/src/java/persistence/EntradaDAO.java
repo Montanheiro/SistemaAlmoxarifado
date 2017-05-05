@@ -15,26 +15,26 @@ public class EntradaDAO {
     private EntradaDAO() {
     }
 
-    public static int create(Entrada entrada) throws SQLException {
+    public static Entrada create(Entrada entrada) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO entradas (`quantidade`, `preco_unitario`, `data`, `validade`, `lote`, `nf_numero`, `produto_empenho`) VALUES ('"
+                = "INSERT INTO entradas (`produto`, `quantidade`, `data`, `validade`, `lote`, `nf_numero`, `considerar_valorsequencia`) VALUES ('"
+                + entrada.getProduto().getId() + "','"
                 + entrada.getQtd() + "','"
-                + entrada.getPrecoUnitario() + "','"
                 + entrada.getData() + "','"
                 + entrada.getValidade() + "','"
                 + entrada.getLote() + "','"
                 + entrada.getNfNumero() + "','"
-                + entrada.getProdutoEmpenho().getId() + "')";
+                + entrada.getConsiderarValorSequencia() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
         int key = rs.getInt(1);
         entrada.setId(key);
-        return key;
+        return entrada;
     }
 
     public static Entrada retreave(int id) throws SQLException {
@@ -45,14 +45,13 @@ public class EntradaDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Entrada(id,
-                ProdutoEmpenhoDAO.retreave(rs.getInt("produto_empenho")),
+                ProdutoDAO.retreave(rs.getInt("produto_empenho")),
                 rs.getDouble("quantidade"),
-                rs.getDouble("preco_unitario"),
                 rs.getDate("data"),
                 rs.getDate("validade"),
                 rs.getString("lote"),
-                rs.getString("nf_numero"));
-
+                rs.getString("nf_numero"),
+                rs.getInt("considerar_valorsequencia"));
     }
 
     public static ArrayList<Entrada> retreaveAll() throws SQLException {
@@ -65,13 +64,13 @@ public class EntradaDAO {
         while (rs.next()) {
             entrada.add(new Entrada(
                     rs.getInt("id"),
-                    ProdutoEmpenhoDAO.retreave(rs.getInt("produto_empenho")),
+                    ProdutoDAO.retreave(rs.getInt("produto_empenho")),
                     rs.getDouble("quantidade"),
-                    rs.getDouble("preco_unitario"),
                     rs.getDate("data"),
                     rs.getDate("validade"),
                     rs.getString("lote"),
-                    rs.getString("nf_numero")));
+                    rs.getString("nf_numero"),
+                    rs.getInt("considerar_valorsequencia")));
         }
         rs.next();
         return entrada;
@@ -91,13 +90,13 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE entradas SET "
-                + "`produto_empenho` = '" + entrada.getProdutoEmpenho().getId()
+                + "`produto` = '" + entrada.getProduto().getId()
                 + "', `quantidade` = '" + entrada.getQtd()
-                + "', `preco_unitario` = '" + entrada.getPrecoUnitario()
                 + "', `data` = '" + entrada.getData()
                 + "', `validade` = '" + entrada.getValidade()
                 + "', `lote` = '" + entrada.getLote()
                 + "', `nf_numero` = '" + entrada.getNfNumero()
+                + "', `considerar_valorsequencia` = '" + entrada.getConsiderarValorSequencia()
                 + "' WHERE `id` = "
                 + entrada.getId();
         stm.execute(sql);
