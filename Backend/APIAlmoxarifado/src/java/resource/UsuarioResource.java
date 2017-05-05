@@ -3,17 +3,19 @@ package resource;
 import business.Token;
 import com.google.gson.Gson;
 import constructor.Usuario;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,7 +26,7 @@ import persistence.UsuarioDAO;
  *
  * @author lucas
  */
-@Path("generic")
+@Path("usuario")
 public class UsuarioResource {
 
     @Context
@@ -36,52 +38,71 @@ public class UsuarioResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
-    public Response login(String body) throws SQLException, Exception {
+    public Response login(String body){
+                
+        try {
+            Gson gson = new Gson();
         
-        Gson gson = new Gson();
-        
-        Usuario u = gson.fromJson(body, Usuario.class);
-        u = UsuarioDAO.retreaveLogin(u.getEmail(), u.getSenha());
+            Usuario u = gson.fromJson(body, Usuario.class);
+            u = UsuarioDAO.retreaveLogin(u.getEmail(), u.getSenha());
+            String token;
+            if(u.isAdmin() == 1) token = new Token().Gerate("admin", u.getId(), 8);
+            else token = new Token().Gerate("user", u.getId(), 8);
 
-        String token;
-        if(u.isAdmin() == 1) token = new Token().Gerate("admin", u.getId(), 8);
-        else token = new Token().Gerate("user", u.getId(), 8);
-        
-        return Response.status(Response.Status.FOUND).entity(token).build();
+            return Response.status(Response.Status.OK).entity(token).build();
+            
+        } catch (SQLException | NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            return Response.status(Response.Status.UNAUTHORIZED).entity(ex.getMessage()).build();
+        } 
     }
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/verify")
-    public Response verify(@HeaderParam("token") String token) throws Exception {
-        
-        String erro = "Deu ruim hard!";
-        
-        if(!new Token().Verify(token, "admin") && !new Token().Verify(token, "user")) 
-            //throw new Exception("Token invalido.");
-            
-            return Response.status(Response.Status.UNAUTHORIZED).entity(erro).build();
-        return Response.status(Response.Status.OK).entity(new String("Deu RUIM")).build();
+    public Response verify(@HeaderParam("token") String token){
+              
+        try {
+            if(!new Token().Verify(token, "admin") && !new Token().Verify(token, "user"))
+                return Response.status(Response.Status.UNAUTHORIZED)
+                        .entity("Token invalido").build();
+        } catch (Exception ex) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(ex.getMessage()).build();
+        }
+    
+        return Response.status(Response.Status.OK).build();
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
-    public String create(@HeaderParam("token") String token, String body) 
-            throws SQLException, Exception {
+    public Response create(@HeaderParam("token") String token, String body) 
+           {
         
         Gson gson = new Gson();
         
-        if(!new Token().Verify(token, "admin")) throw new Exception("Token invalido.");
+        try {
+            if(!new Token().Verify(token, "admin"))
+                return Response.status(Response.Status.UNAUTHORIZED)
+                        .entity("Token invalido").build();
+        } catch (Exception ex) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(ex.getMessage()).build();
+        }
         
-        Usuario c = gson.fromJson(body, Usuario.class);
-        UsuarioDAO.create(c);
+        try {
+            Usuario c = gson.fromJson(body, Usuario.class);
+            UsuarioDAO.create(c);
+        } catch (SQLException ex) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(ex.getMessage()).build();
+        }
         
-        return "200";
+        return Response.status(Response.Status.CREATED).build();
     }
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/get")
     public String get(@HeaderParam("token") String token) throws Exception {
         
@@ -99,7 +120,7 @@ public class UsuarioResource {
     }
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getid")
     public String  getId(@HeaderParam("token") String token, 
             @QueryParam("id") int id) throws SQLException, Exception {
@@ -114,7 +135,7 @@ public class UsuarioResource {
     }
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/getall")
     public String getAll(@HeaderParam("token") String token) 
             throws SQLException, Exception{
