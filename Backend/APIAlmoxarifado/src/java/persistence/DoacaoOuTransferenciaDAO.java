@@ -15,7 +15,7 @@ public class DoacaoOuTransferenciaDAO {
     private DoacaoOuTransferenciaDAO() {
     }
 
-    public static int create(DoacaoOuTransferencia dot) throws SQLException {
+    public static DoacaoOuTransferencia create(DoacaoOuTransferencia dot) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -29,7 +29,7 @@ public class DoacaoOuTransferenciaDAO {
         rs.next();
         int key = rs.getInt(1);
         dot.setId(key);
-        return key;
+        return dot;
     }
 
     public static DoacaoOuTransferencia retreave(int id) throws SQLException {
