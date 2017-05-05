@@ -1,4 +1,5 @@
 package constructor;
+
 /**
  *
  * @author Barbara
@@ -9,28 +10,27 @@ import java.sql.Date;
 public class Empenho {
 
     private int id;
+    private Fornecedor fornecedor;
     private Date emissao;
     private String numero;
     private String observacao;
     private double valorTotal;
 
-    private Fornecedor fornecedor;
-
-    public Empenho(Date emissao, String numero, String observacao, double valorTotal, Fornecedor fornecedor) {
+    public Empenho(Fornecedor fornecedor, Date emissao, String numero, String observacao, double valorTotal) {
+        this.fornecedor = fornecedor;
         this.emissao = emissao;
         this.numero = numero;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
-        this.fornecedor = fornecedor;
     }
 
-    public Empenho(int id, Date emissao, String numero, String observacao, double valorTotal, Fornecedor fornecedor) {
+    public Empenho(int id, Fornecedor fornecedor, Date emissao, String numero, String observacao, double valorTotal) {
         this.id = id;
+        this.fornecedor = fornecedor;
         this.emissao = emissao;
         this.numero = numero;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
-        this.fornecedor = fornecedor;
     }
 
     public int getId() {
@@ -39,6 +39,14 @@ public class Empenho {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     public Date getEmissao() {
@@ -73,17 +81,9 @@ public class Empenho {
         this.valorTotal = valorTotal;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-
     @Override
     public String toString() {
-        return "Empenho{" + "id=" + id + ", emissao=" + emissao + ", numero=" + numero + ", observacao=" + observacao + ", valorTotal=" + valorTotal + ", fornecedor=" + fornecedor + '}';
+        return "Empenho{" + "id=" + id + ", fornecedor=" + fornecedor + ", emissao=" + emissao + ", numero=" + numero + ", observacao=" + observacao + ", valorTotal=" + valorTotal + '}';
     }
 
 }
