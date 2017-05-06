@@ -23,8 +23,7 @@ public class UsuarioDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO usuarios (`email`, `senha`, `ativo`, `admin`, "
-                + "`servidor`) VALUES ('"
+                = "INSERT INTO usuarios (`email`, `senha`, `status`, `admin`, `servidor`) VALUES ('"
                 + usuario.getEmail() + "','"
                 + usuario.getSenha() + "','"
                 + usuario.isAtivo() + "','"

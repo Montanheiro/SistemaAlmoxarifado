@@ -17,7 +17,7 @@ public class FornecedorDAO {
     private FornecedorDAO() {
     }
 
-    public static int create(Fornecedor fornecedor) throws SQLException {
+    public static Fornecedor create(Fornecedor fornecedor) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -39,7 +39,7 @@ public class FornecedorDAO {
             ContatoDAO.create(contato);
         }
 
-        return key;
+        return fornecedor;
     }
 
     public static Fornecedor retreave(int id) throws SQLException {

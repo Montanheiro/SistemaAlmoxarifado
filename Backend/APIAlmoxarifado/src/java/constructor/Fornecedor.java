@@ -4,7 +4,6 @@ package constructor;
  *
  * @author Barbara
  */
-
 import java.util.ArrayList;
 
 public class Fornecedor {
@@ -13,25 +12,24 @@ public class Fornecedor {
     private String razaoSocial;
     private String nomeFantasia;
     private String cnpj;
-    private boolean status;
     private Endereco endereco;
     private ArrayList<Contato> contato = new ArrayList<>();//Associacao
 
-    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, boolean status, Endereco endereco) {
+    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, ArrayList<Contato> contato) {
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
-        this.status = status;
         this.endereco = endereco;
+        this.contato = contato;
     }
 
-    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, boolean status, Endereco endereco) {
+    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, ArrayList<Contato> contato) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
-        this.status = status;
         this.endereco = endereco;
+        this.contato = contato;
     }
 
     public int getId() {
@@ -66,14 +64,6 @@ public class Fornecedor {
         this.cnpj = cnpj;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }
@@ -92,7 +82,7 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "id=" + id + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", cnpj=" + cnpj + ", status=" + status + ", endereco=" + endereco + ", contato=" + contato + '}';
+        return "Fornecedor{" + "id=" + id + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", cnpj=" + cnpj + ", endereco=" + endereco + ", contato=" + contato + '}';
     }
 
 }
