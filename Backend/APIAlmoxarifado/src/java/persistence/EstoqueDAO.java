@@ -15,7 +15,7 @@ public class EstoqueDAO {
     private EstoqueDAO() {
     }
 
-    public static int create(Estoque estoque) throws SQLException {
+    public static Estoque create(Estoque estoque) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -30,7 +30,7 @@ public class EstoqueDAO {
         rs.next();
         int key = rs.getInt(1);
         estoque.setId(key);
-        return key;
+        return estoque;
     }
 
     public static Estoque retreave(int id) throws SQLException {
