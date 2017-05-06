@@ -1,7 +1,7 @@
 package resource;
 
 import business.Resposta;
-import business.Token;
+import static business.Token.*;
 import com.google.gson.Gson;
 import constructor.Usuario;
 import java.io.UnsupportedEncodingException;
@@ -46,8 +46,8 @@ public class UsuarioResource {
             u = UsuarioDAO.retreaveLogin(u.getEmail(), u.getSenha());
             String token;
             
-            if(u.isAdmin() == 1) token = Token.Gerate("admin", u.getId(), 8);
-            else token = Token.Gerate("user", u.getId(), 8);
+            if(u.isAdmin() == 1) token = Gerate("admin", u.getId(), 8);
+            else token = Gerate("user", u.getId(), 8);
 
             return Response.ok().entity(token).build();
             
@@ -63,7 +63,7 @@ public class UsuarioResource {
     public Response verify(@HeaderParam("token") String token){
               
         try {
-            if(!Token.Verify(token, "admin") && !Token.Verify(token, "user"))
+            if(!Verify(token, "admin") && !Verify(token, "user"))
                 return Response.status(Response.Status.UNAUTHORIZED)
                         .entity("Usuário ou senha incorretos").build();
         } catch (Exception ex) {
@@ -84,7 +84,7 @@ public class UsuarioResource {
         Gson gson = new Gson();
         
         try {
-            if(!Token.Verify(token, "admin"))
+            if(!Verify(token, "admin"))
                 return Response.status(Response.Status.UNAUTHORIZED)
                         .entity("Usuário ou senha incorretos").build();
         } catch (Exception ex) {
@@ -107,11 +107,11 @@ public class UsuarioResource {
     public Response get(@HeaderParam("token") String token) throws Exception {
         
      
-        if (!Token.Verify(token, "admin") || !Token.Verify(token, "user"))
+        if (!Verify(token, "admin") || !Verify(token, "user"))
             return Response.status(Response.Status.UNAUTHORIZED)
                     .entity("Usuário ou senha incorretos").build();
         
-        int id = Token.getSubject(token);
+        int id = getSubject(token);
         Usuario u = UsuarioDAO.retreave(id);
         
         Gson gson = new Gson();
@@ -125,7 +125,7 @@ public class UsuarioResource {
     public Response  getId(@HeaderParam("token") String token, 
             @QueryParam("id") int id) throws SQLException, Exception {
         
-        if(!Token.Verify(token, "admin")) 
+        if(!Verify(token, "admin")) 
             return Response.status(Response.Status.UNAUTHORIZED).build();
         
         Gson gson = new Gson();
@@ -141,7 +141,7 @@ public class UsuarioResource {
     public Response getAll(@HeaderParam("token") String token) 
             throws SQLException, Exception{
         
-        if(!Token.Verify(token, "admin")) 
+        if(!Verify(token, "admin")) 
             return Response.status(Response.Status.UNAUTHORIZED)
                     .entity("Usuário ou senha incorretos").build();
         
@@ -161,14 +161,14 @@ public class UsuarioResource {
         Usuario u = gson.fromJson(body, Usuario.class);  
         
         try {
-            if(!Token.Verify(token, "admin") && !Token.Verify(token, "user"))
+            if(!Verify(token, "admin") && !Verify(token, "user"))
                 return Response.status(Response.Status.UNAUTHORIZED)
                         .entity("Usuário ou senha incorretos").build();
         } catch (Exception ex) {
             return Resposta.retornar(400, ex.toString(), token);
         }
         
-        int id = Token.getSubject(token);    
+        int id = getSubject(token);    
         u.setId(id);
         UsuarioDAO.updatePassword(u);
 
