@@ -20,9 +20,9 @@ public class SetorDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO setores (`nome`, `sigla`) VALUES ('"
+                = "INSERT INTO setores (`nome`, `sigla`, `status`) VALUES ('"
                 + setor.getNome() + "','"
-                + setor.getSigla() + "')";
+                + setor.getSigla() + "', 1)";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
