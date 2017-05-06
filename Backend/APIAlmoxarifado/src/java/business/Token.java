@@ -22,7 +22,7 @@ import javax.xml.bind.DatatypeConverter;
  */
 public class Token {
     
-    public String Gerate(String issuer, int idSubject, int hours) {
+    public static String Gerate(String issuer, int idSubject, int hours) {
 
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -56,7 +56,7 @@ public class Token {
     }
     
     //Sample method to validate and read the JWT
-    public boolean Verify(String jwt, String type) throws Exception {
+    public static boolean Verify(String jwt, String type) throws Exception {
         
         try{
             Claims claims = Jwts.parser()
@@ -73,7 +73,7 @@ public class Token {
         }
     }
     
-    public String Password(String passOrigin) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String Password(String passOrigin) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         
         MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
         byte messageDigest[] = algorithm.digest(passOrigin.getBytes("UTF-8"));
@@ -85,23 +85,14 @@ public class Token {
         return hexString.toString();
     }
     
-    public int getSubject(String jwt, String type) throws Exception{
+    public static int getSubject(String jwt) throws Exception{
         
-        try{
             Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(Parameters.TOKENKEY))
                 .parseClaimsJws(jwt).getBody();
             
-            //se o suject nao for do tipo esperado lança erro
-            if(!claims.getIssuer().equals(type)) throw new Exception("Token invalido.");
-            
             //retorna o sujeito do token
             return Integer.parseInt(claims.getSubject());
-            
-        } catch (ExpiredJwtException | MalformedJwtException | SignatureException 
-                | UnsupportedJwtException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return 0;
-        }
+
     }
 }
