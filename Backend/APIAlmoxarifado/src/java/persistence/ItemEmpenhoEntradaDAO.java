@@ -9,7 +9,7 @@ package persistence;
  *
  * @author lucas
  */
-public class ProdutoEmpenhoEntradaDAO {
+public class ItemEmpenhoEntradaDAO {
  
     
     criar

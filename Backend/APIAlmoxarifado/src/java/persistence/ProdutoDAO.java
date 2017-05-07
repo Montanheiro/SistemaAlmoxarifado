@@ -1,6 +1,7 @@
 package persistence;
 
 import constructor.Produto;
+import constructor.Unidade;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,23 +16,21 @@ public class ProdutoDAO {
     private ProdutoDAO() {
     }
 
-    public static int create(Produto produto) throws SQLException {
+    public static Produto create(Produto produto) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO produtos (`descricao`, `marca`, `peso`, `dimensao`) VALUES ('"
+                = "INSERT INTO produtos (`descricao`, `unidade`) VALUES ('"
                 + produto.getDescricao() + "','"
-                + produto.getMarca() + "','"
-                + produto.getPeso() + "','"
-                + produto.getDimensao() + "')";
+                + produto.getUnidade().getId() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
         int key = rs.getInt(1);
         produto.setId(key);
-        return key;
+        return produto;
     }
 
     public static Produto retreave(int id) throws SQLException {
@@ -41,11 +40,10 @@ public class ProdutoDAO {
         String sql = "SELECT * FROM produtos where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
+        Unidade un = UnidadeDAO.retreave(rs.getInt("unidade"));
         return new Produto(id,
                 rs.getString("descricao"),
-                rs.getString("marca"),
-                rs.getDouble("peso"),
-                rs.getDouble("dimensao"));
+                un);
 
     }
 
@@ -57,12 +55,11 @@ public class ProdutoDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Produto> produto = new ArrayList<>();
         while (rs.next()) {
+            Unidade un = UnidadeDAO.retreave(rs.getInt("unidade"));
             produto.add(new Produto(
                     rs.getInt("id"),
                     rs.getString("descricao"),
-                    rs.getString("marca"),
-                    rs.getDouble("peso"),
-                    rs.getDouble("dimensao")));
+                    un));
         }
         rs.next();
         return produto;
@@ -83,9 +80,7 @@ public class ProdutoDAO {
                         createStatement();
         String sql = "UPDATE produtos SET "
                 + "`descricao`='" + produto.getDescricao()
-                + "', `marca`= '" + produto.getMarca()
-                + "', `peso`= '" + produto.getPeso()
-                + "', `dimensao`= '" + produto.getDimensao()
+                + "', `unidade`= '" + produto.getUnidade().getId()
                 + "' WHERE `id`= "
                 + produto.getId();
         stm.execute(sql);

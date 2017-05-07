@@ -1,36 +1,31 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
-public class ProdutoEmpenho {
+public class ItemEmpenho {
 
     private int id;
     private Empenho empenho;
     private NaturezaDespesa naturezaDespesa;
-    private Produto produto;
 
     private int sequencia;
     private double qtd;
     private double valorSequencia;
     private String itemProcesso;
 
-    public ProdutoEmpenho(int id, Empenho empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorSequencia, String itemProcesso) {
+    public ItemEmpenho(int id, Empenho empenho, NaturezaDespesa naturezaDespesa,
+            int sequencia, double qtd, double valorSequencia, String itemProcesso) {
         this.id = id;
         this.empenho = empenho;
         this.naturezaDespesa = naturezaDespesa;
-        this.produto = produto;
         this.sequencia = sequencia;
         this.qtd = qtd;
         this.valorSequencia = valorSequencia;
         this.itemProcesso = itemProcesso;
     }
 
-    public ProdutoEmpenho(Empenho empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorSequencia, String itemProcesso) {
+    public ItemEmpenho(Empenho empenho, NaturezaDespesa naturezaDespesa,
+            int sequencia, double qtd, double valorSequencia, String itemProcesso) {
         this.empenho = empenho;
         this.naturezaDespesa = naturezaDespesa;
-        this.produto = produto;
         this.sequencia = sequencia;
         this.qtd = qtd;
         this.valorSequencia = valorSequencia;
@@ -59,14 +54,6 @@ public class ProdutoEmpenho {
 
     public void setNaturezaDespesa(NaturezaDespesa naturezaDespesa) {
         this.naturezaDespesa = naturezaDespesa;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
     }
 
     public int getSequencia() {
@@ -103,7 +90,9 @@ public class ProdutoEmpenho {
 
     @Override
     public String toString() {
-        return "ProdutoEmpenho{" + "id=" + id + ", empenho=" + empenho + ", naturezaDespesa=" + naturezaDespesa + ", produto=" + produto + ", sequencia=" + sequencia + ", qtd=" + qtd + ", valorSequencia=" + valorSequencia + ", itemProcesso=" + itemProcesso + '}';
+        return "ItemEmpenho{" + "id=" + id + ", empenho=" + empenho + ", naturezaDespesa=" 
+                + naturezaDespesa + ", sequencia=" + sequencia + ", qtd=" + qtd 
+                + ", valorSequencia=" + valorSequencia + ", itemProcesso=" + itemProcesso + '}';
     }
 
 }
