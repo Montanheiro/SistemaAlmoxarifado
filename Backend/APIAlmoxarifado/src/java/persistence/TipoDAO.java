@@ -15,7 +15,7 @@ public class TipoDAO {
     private TipoDAO() {
     }
 
-    public static int create(Tipo tipo) throws SQLException {
+    public static Tipo create(Tipo tipo) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -26,9 +26,8 @@ public class TipoDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        tipo.setId(key);
-        return key;
+        tipo.setId(rs.getInt(1));
+        return tipo;
     }
 
     public static Tipo retreave(int id) throws SQLException {

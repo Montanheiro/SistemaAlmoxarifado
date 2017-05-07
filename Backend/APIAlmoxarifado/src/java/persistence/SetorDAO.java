@@ -15,7 +15,7 @@ public class SetorDAO {
     private SetorDAO() {
     }
 
-    public static int create(Setor setor) throws SQLException {
+    public static Setor create(Setor setor) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -27,9 +27,8 @@ public class SetorDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        setor.setId(key);
-        return key;
+        setor.setId(rs.getInt(1));
+        return setor;
     }
 
     public static Setor retreave(int id) throws SQLException {

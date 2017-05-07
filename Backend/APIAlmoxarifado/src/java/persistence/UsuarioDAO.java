@@ -18,7 +18,7 @@ public class UsuarioDAO {
     private UsuarioDAO() {
     }
 
-    public static int create(Usuario usuario) throws SQLException {
+    public static Usuario create(Usuario usuario) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -33,9 +33,8 @@ public class UsuarioDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        usuario.setId(key);
-        return key;
+        usuario.setId(rs.getInt(1));
+        return usuario;
     }
 
     public static Usuario retreave(int id) throws SQLException {

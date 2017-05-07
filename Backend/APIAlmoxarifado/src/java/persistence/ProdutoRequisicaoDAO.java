@@ -15,7 +15,7 @@ public class ProdutoRequisicaoDAO {
     private ProdutoRequisicaoDAO() {
     }
 
-    public static int create(ProdutoRequisicao pr) throws SQLException {
+    public static ProdutoRequisicao create(ProdutoRequisicao pr) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -28,9 +28,8 @@ public class ProdutoRequisicaoDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        pr.setId(key);
-        return key;
+        pr.setId(rs.getInt(1));
+        return pr;
     }
 
     public static ProdutoRequisicao retreave(int id) throws SQLException {

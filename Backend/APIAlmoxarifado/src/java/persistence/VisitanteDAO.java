@@ -15,7 +15,7 @@ public class VisitanteDAO {
     private VisitanteDAO() {
     }
 
-    public static int create(Visitante visitante) throws SQLException {
+    public static Visitante create(Visitante visitante) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -27,9 +27,8 @@ public class VisitanteDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        visitante.setId(key);
-        return key;
+        visitante.setId(rs.getInt(1));
+        return visitante;
     }
 
     public static Visitante retreave(int id) throws SQLException {

@@ -15,7 +15,7 @@ public class NaturezaDespesaDAO {
     private NaturezaDespesaDAO() {
     }
 
-    public static int create(NaturezaDespesa natureza) throws SQLException {
+    public static NaturezaDespesa create(NaturezaDespesa natureza) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -28,9 +28,8 @@ public class NaturezaDespesaDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        natureza.setId(key);
-        return key;
+        natureza.setId(rs.getInt(1));
+        return natureza;
     }
 
     public static NaturezaDespesa retreave(int id) throws SQLException {

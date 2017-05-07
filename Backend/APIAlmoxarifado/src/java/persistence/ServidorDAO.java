@@ -15,7 +15,7 @@ public class ServidorDAO {
     private ServidorDAO() {
     }
 
-    public static int create(Servidor servidor) throws SQLException {
+    public static Servidor create(Servidor servidor) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -29,9 +29,8 @@ public class ServidorDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        servidor.setId(key);
-        return key;
+        servidor.setId(rs.getInt(1));
+        return servidor;
     }
 
     public static Servidor retreave(int id) throws SQLException {

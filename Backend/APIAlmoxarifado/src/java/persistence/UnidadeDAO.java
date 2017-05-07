@@ -15,7 +15,7 @@ public class UnidadeDAO {
     private UnidadeDAO() {
     }
 
-    public static int create(Unidade unidade) throws SQLException {
+    public static Unidade create(Unidade unidade) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -27,9 +27,8 @@ public class UnidadeDAO {
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
-        int key = rs.getInt(1);
-        unidade.setId(key);
-        return key;
+        unidade.setId(rs.getInt(1));
+        return unidade;
     }
 
     public static Unidade retreave(int id) throws SQLException {
