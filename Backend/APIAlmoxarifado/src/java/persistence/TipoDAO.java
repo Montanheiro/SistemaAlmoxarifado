@@ -72,9 +72,8 @@ public class TipoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE tipos SET "
-                + "`tipo`= '" + tipo.getTipo() + "'"
-                + "' WHERE `id`= "
-                + tipo.getId();
+                + "`tipo`= '" + tipo.getTipo()
+                + "' WHERE `id`= " + tipo.getId();
         stm.execute(sql);
     }
 
