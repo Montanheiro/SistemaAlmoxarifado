@@ -1,22 +1,18 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
+import java.sql.Timestamp;
 
-import java.sql.Date;
 
 public class Empenho {
 
     private int id;
     private Fornecedor fornecedor;
-    private Date emissao;
+    private Timestamp emissao;
     private String numero;
     private String observacao;
     private double valorTotal;
 
-    public Empenho(Fornecedor fornecedor, Date emissao, String numero, String observacao, double valorTotal) {
+    public Empenho(Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal) {
         this.fornecedor = fornecedor;
         this.emissao = emissao;
         this.numero = numero;
@@ -24,7 +20,7 @@ public class Empenho {
         this.valorTotal = valorTotal;
     }
 
-    public Empenho(int id, Fornecedor fornecedor, Date emissao, String numero, String observacao, double valorTotal) {
+    public Empenho(int id, Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal) {
         this.id = id;
         this.fornecedor = fornecedor;
         this.emissao = emissao;
@@ -49,11 +45,11 @@ public class Empenho {
         this.fornecedor = fornecedor;
     }
 
-    public Date getEmissao() {
+    public Timestamp getEmissao() {
         return emissao;
     }
 
-    public void setEmissao(Date emissao) {
+    public void setEmissao(Timestamp emissao) {
         this.emissao = emissao;
     }
 

@@ -4,23 +4,23 @@ package constructor;
  * @author Barbara
  */
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Requisicao {
 
     private int id;
     private Servidor servidor;
 
-    private Date data;
+    private Timestamp data;
     private String observacao;
 
-    public Requisicao(Servidor servidor, Date data, String observacao) {
+    public Requisicao(Servidor servidor, Timestamp data, String observacao) {
         this.servidor = servidor;
         this.data = data;
         this.observacao = observacao;
     }
 
-    public Requisicao(int id, Servidor servidor, Date data, String observacao) {
+    public Requisicao(int id, Servidor servidor, Timestamp data, String observacao) {
         this.id = id;
         this.servidor = servidor;
         this.data = data;
@@ -43,11 +43,11 @@ public class Requisicao {
         this.servidor = servidor;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 

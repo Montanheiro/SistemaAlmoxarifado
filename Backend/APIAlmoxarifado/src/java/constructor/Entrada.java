@@ -4,7 +4,7 @@ package constructor;
  * @author Barbara
  */
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Entrada {
 
@@ -12,13 +12,13 @@ public class Entrada {
 
     private Produto produto;
     private double qtd;
-    private Date data;
-    private Date validade;
+    private Timestamp data;
+    private Timestamp validade;
     private String lote;
     private String nfNumero;
     private int considerarValorSequencia;
 
-    public Entrada(Produto produto, double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
+    public Entrada(Produto produto, double qtd, Timestamp data, Timestamp validade, String lote, String nfNumero, int considerarValorSequencia) {
         this.produto = produto;
         this.qtd = qtd;
         this.data = data;
@@ -28,7 +28,7 @@ public class Entrada {
         this.considerarValorSequencia = considerarValorSequencia;
     }
 
-    public Entrada(int id, Produto produto, double qtd, Date data, Date validade, String lote, String nfNumero, int considerarValorSequencia) {
+    public Entrada(int id, Produto produto, double qtd, Timestamp data, Timestamp validade, String lote, String nfNumero, int considerarValorSequencia) {
         this.id = id;
         this.produto = produto;
         this.qtd = qtd;
@@ -63,19 +63,19 @@ public class Entrada {
         this.qtd = qtd;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 
-    public Date getValidade() {
+    public Timestamp getValidade() {
         return validade;
     }
 
-    public void setValidade(Date validade) {
+    public void setValidade(Timestamp validade) {
         this.validade = validade;
     }
 

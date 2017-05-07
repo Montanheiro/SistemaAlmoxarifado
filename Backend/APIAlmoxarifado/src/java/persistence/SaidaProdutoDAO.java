@@ -43,7 +43,7 @@ public class SaidaProdutoDAO {
         return new SaidaProduto(id,
                 ProdutoRequisicaoDAO.retreave(rs.getInt("produto_requisicao")),
                 rs.getDouble("quantidade"),
-                rs.getDate("data"));
+                rs.getTimestamp("data"));
     }
 
     public static ArrayList<SaidaProduto> retreaveAll() throws SQLException {
@@ -58,7 +58,7 @@ public class SaidaProdutoDAO {
                     rs.getInt("id"),
                 ProdutoRequisicaoDAO.retreave(rs.getInt("produto_requisicao")),
                 rs.getDouble("quantidade"),
-                rs.getDate("data")));
+                rs.getTimestamp("data")));
         }
         rs.next();
         return saidaProduto;

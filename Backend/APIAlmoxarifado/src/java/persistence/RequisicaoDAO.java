@@ -42,7 +42,7 @@ public class RequisicaoDAO {
         rs.next();
         return new Requisicao(id,
                 ServidorDAO.retreave(rs.getInt("servidor")),
-                rs.getDate("data"),
+                rs.getTimestamp("data"),
                 rs.getString("observacao"));
 
     }
@@ -58,7 +58,7 @@ public class RequisicaoDAO {
             requisicao.add(new Requisicao(
                     rs.getInt("id"),
                     ServidorDAO.retreave(rs.getInt("servidor")),
-                    rs.getDate("data"),
+                    rs.getTimestamp("data"),
                     rs.getString("observacao")));
         }
         rs.next();

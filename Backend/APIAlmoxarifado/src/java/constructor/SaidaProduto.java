@@ -4,7 +4,7 @@ package constructor;
  * @author Barbara
  */
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class SaidaProduto {
 
@@ -12,16 +12,16 @@ public class SaidaProduto {
     private ProdutoRequisicao produtoRequisicao;
 
     private double qtd;
-    private Date data;
+    private Timestamp data;
 
-    public SaidaProduto(int id, ProdutoRequisicao produtoRequisicao, double qtd, Date data) {
+    public SaidaProduto(int id, ProdutoRequisicao produtoRequisicao, double qtd, Timestamp data) {
         this.id = id;
         this.produtoRequisicao = produtoRequisicao;
         this.qtd = qtd;
         this.data = data;
     }
 
-    public SaidaProduto(ProdutoRequisicao produtoRequisicao, double qtd, Date data) {
+    public SaidaProduto(ProdutoRequisicao produtoRequisicao, double qtd, Timestamp data) {
         this.produtoRequisicao = produtoRequisicao;
         this.qtd = qtd;
         this.data = data;
@@ -51,11 +51,11 @@ public class SaidaProduto {
         this.produtoRequisicao = produtoRequisicao;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 

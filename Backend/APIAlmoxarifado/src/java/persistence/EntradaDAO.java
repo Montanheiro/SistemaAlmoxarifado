@@ -47,8 +47,8 @@ public class EntradaDAO {
         return new Entrada(id,
                 ProdutoDAO.retreave(rs.getInt("produto_empenho")),
                 rs.getDouble("quantidade"),
-                rs.getDate("data"),
-                rs.getDate("validade"),
+                rs.getTimestamp("data"),
+                rs.getTimestamp("validade"),
                 rs.getString("lote"),
                 rs.getString("nf_numero"),
                 rs.getInt("considerar_valorsequencia"));
@@ -66,8 +66,8 @@ public class EntradaDAO {
                     rs.getInt("id"),
                     ProdutoDAO.retreave(rs.getInt("produto_empenho")),
                     rs.getDouble("quantidade"),
-                    rs.getDate("data"),
-                    rs.getDate("validade"),
+                    rs.getTimestamp("data"),
+                    rs.getTimestamp("validade"),
                     rs.getString("lote"),
                     rs.getString("nf_numero"),
                     rs.getInt("considerar_valorsequencia")));

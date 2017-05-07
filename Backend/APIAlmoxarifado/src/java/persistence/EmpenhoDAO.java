@@ -44,7 +44,7 @@ public class EmpenhoDAO {
         rs.next();
         return new Empenho(id,
                 FornecedorDAO.retreave(rs.getInt("fornecedor")),
-                rs.getDate("emissao"),
+                rs.getTimestamp("emissao"),
                 rs.getString("numero"),
                 rs.getString("observacao"),
                 rs.getDouble("valor_total"));
@@ -62,7 +62,7 @@ public class EmpenhoDAO {
             empenho.add(new Empenho(
                     rs.getInt("id"),
                     FornecedorDAO.retreave(rs.getInt("fornecedor")),
-                    rs.getDate("emissao"),
+                    rs.getTimestamp("emissao"),
                     rs.getString("numero"),
                     rs.getString("observacao"),
                     rs.getDouble("valor_total")));
