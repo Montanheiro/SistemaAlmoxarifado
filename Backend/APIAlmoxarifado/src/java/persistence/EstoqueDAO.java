@@ -20,7 +20,7 @@ public class EstoqueDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO Estoque (`produto`, `minimo`, `quantidade`) VALUES ('"
+                = "INSERT INTO estoque (`produto`, `minimo`, `quantidade`) VALUES ('"
                 + estoque.getProduto().getId() + "','"
                 + estoque.getMinimo() + "','"
                 + estoque.getQtd() + "')";
@@ -37,7 +37,7 @@ public class EstoqueDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM Estoque where id = " + id;
+        String sql = "SELECT * FROM estoque where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Estoque(id,
@@ -51,7 +51,7 @@ public class EstoqueDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM Estoque";
+        String sql = "SELECT * FROM estoque";
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Estoque> estoque = new ArrayList<>();
         while (rs.next()) {
@@ -69,7 +69,7 @@ public class EstoqueDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "DELETE FROM Estoque WHERE `id`="
+        String sql = "DELETE FROM estoque WHERE `id`="
                 + estoque.getId();
         stm.execute(sql);
     }
@@ -78,7 +78,7 @@ public class EstoqueDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE Estoque SET "
+        String sql = "UPDATE estoque SET "
                 + "`produto`='" + estoque.getProduto().getId()
                 + "', `minimo`= '" + estoque.getMinimo()
                 + "', `quantidade`= '" + estoque.getQtd()
