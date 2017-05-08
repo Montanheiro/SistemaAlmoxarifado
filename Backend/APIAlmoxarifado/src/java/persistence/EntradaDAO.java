@@ -45,7 +45,7 @@ public class EntradaDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Entrada(id,
-                ProdutoDAO.retreave(rs.getInt("produto_empenho")),
+                ProdutoDAO.retreave(rs.getInt("produto")),
                 rs.getDouble("quantidade"),
                 rs.getTimestamp("data"),
                 rs.getTimestamp("validade"),
@@ -64,7 +64,7 @@ public class EntradaDAO {
         while (rs.next()) {
             entrada.add(new Entrada(
                     rs.getInt("id"),
-                    ProdutoDAO.retreave(rs.getInt("produto_empenho")),
+                    ProdutoDAO.retreave(rs.getInt("produto")),
                     rs.getDouble("quantidade"),
                     rs.getTimestamp("data"),
                     rs.getTimestamp("validade"),
