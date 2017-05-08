@@ -20,7 +20,7 @@ public class ProdutoRequisicaoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO produtos_requisicao (`requisicao`, `produto`, `quantidade`) VALUES ('"
+                = "INSERT INTO produtos_requisicoes (`requisicao`, `produto`, `quantidade`) VALUES ('"
                 + pr.getRequisicao().getId() + "','"
                 + pr.getProduto().getId() + "','"
                 + pr.getQtd() + "')";
@@ -36,20 +36,20 @@ public class ProdutoRequisicaoDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM produtos_requisicao where id = " + id;
+        String sql = "SELECT * FROM produtos_requisicoes where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new ProdutoRequisicao(id,
                 RequisicaoDAO.retreave(rs.getInt("requisicao")),
                 ProdutoDAO.retreave(rs.getInt("produto")),
-                rs.getDouble("preco_unitario"));
+                rs.getDouble("quantidade"));
     }
 
     public static ArrayList<ProdutoRequisicao> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM produtos_requisicao";
+        String sql = "SELECT * FROM produtos_requisicoes";
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<ProdutoRequisicao> pr = new ArrayList<>();
         while (rs.next()) {
@@ -67,7 +67,7 @@ public class ProdutoRequisicaoDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "DELETE FROM produtos_requisicao WHERE `id`="
+        String sql = "DELETE FROM produtos_requisicoes WHERE `id`="
                 + pr.getId();
         stm.execute(sql);
     }
@@ -76,7 +76,7 @@ public class ProdutoRequisicaoDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE produtos_requisicao SET "
+        String sql = "UPDATE produtos_requisicoes SET "
                 + "`requisicao`='" + pr.getRequisicao().getId()
                 + "', `produto`= '" + pr.getProduto().getId()
                 + "', `quantidade`= '" + pr.getQtd()
