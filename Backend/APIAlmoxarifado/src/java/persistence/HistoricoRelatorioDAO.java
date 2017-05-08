@@ -22,8 +22,8 @@ public class HistoricoRelatorioDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO historico_relatorio (`produto`, `mes`, "
-                + "`quantidade`, `valototal`) VALUES ('"
+                = "INSERT INTO historico_relatorios (`produto`, `mes`, "
+                + "`quantidade`, `valortotal`) VALUES ('"
                 + historico.getProduto().getId() + "','"
                 + historico.getMes() + "','"
                 + historico.getQtd() + "','"
@@ -40,7 +40,7 @@ public class HistoricoRelatorioDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM historico_relatorio where id = " + id;
+        String sql = "SELECT * FROM historico_relatorios where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new HistoricoRelatorio(
@@ -55,7 +55,7 @@ public class HistoricoRelatorioDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM historico_relatorio";
+        String sql = "SELECT * FROM historico_relatorios";
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<HistoricoRelatorio> historico = new ArrayList<>();
         while (rs.next()) {
@@ -74,7 +74,7 @@ public class HistoricoRelatorioDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE historico_relatorio SET "
+        String sql = "UPDATE historico_relatorios SET "
                 + "`produto`='" + estoque.getProduto().getId()
                 + "', `mes`= '" + estoque.getMes()
                 + "', `quantidade`= '" + estoque.getQtd()
