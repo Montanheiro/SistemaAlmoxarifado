@@ -20,7 +20,7 @@ public class NaturezaDespesaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO Naturezas_Despesas (`codigo`, `subitem`, `descricao`) VALUES ('"
+                = "INSERT INTO naturezas_despesas (`codigo`, `subitem`, `descricao`) VALUES ('"
                 + natureza.getCodigo() + "','"
                 + natureza.getSubItem() + "','"
                 + natureza.getDescricao() + "')";
@@ -36,7 +36,7 @@ public class NaturezaDespesaDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM Naturezas_Despesas where id = " + id;
+        String sql = "SELECT * FROM naturezas_despesas where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new NaturezaDespesa(id,
@@ -50,7 +50,7 @@ public class NaturezaDespesaDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM Naturezas_Despesas";
+        String sql = "SELECT * FROM naturezas_despesas";
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<NaturezaDespesa> natureza = new ArrayList<>();
         while (rs.next()) {
@@ -68,7 +68,7 @@ public class NaturezaDespesaDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "DELETE FROM Naturezas_Despesas WHERE `id`="
+        String sql = "DELETE FROM naturezas_despesas WHERE `id`="
                 + natureza.getId();
         stm.execute(sql);
     }
@@ -77,7 +77,7 @@ public class NaturezaDespesaDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE Naturezas_Despesas SET "
+        String sql = "UPDATE naturezas_despesas SET "
                 + "`codigo`='" + natureza.getCodigo()
                 + "', `subitem`= '" + natureza.getSubItem()
                 + "', `descricao`= '" + natureza.getDescricao()
