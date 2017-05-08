@@ -11,11 +11,14 @@ import constructor.Unidade;
 import java.sql.Timestamp;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author lucas
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EntradaDAOTest {
     
     public EntradaDAOTest() {
