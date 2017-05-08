@@ -26,7 +26,7 @@ public class LogErroDAO {
         String sql
                 = "INSERT INTO logs_erros (`usuario`, `data`, `erro`) VALUES ('"
                 + logErro.getUsuario().getId() + "','"
-                + new Timestamp((System.currentTimeMillis()/1000)*1000) + "','"
+                + new Timestamp((System.currentTimeMillis())) + "','"
                 + logErro.getErro() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
