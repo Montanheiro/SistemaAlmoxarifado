@@ -46,7 +46,7 @@ public class UsuarioDAO {
         rs.next();
         return new Usuario(id,
                 rs.getString("email"),
-                rs.getInt("ativo"),
+                rs.getInt("status"),
                 rs.getInt("admin"),
                 ServidorDAO.retreave(rs.getInt("servidor")));
     }
@@ -57,13 +57,13 @@ public class UsuarioDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM usuarios where email = '" + email
-                + "' AND senha = '" + new Token().Password(senha) + "' AND ativo = 1";
+                + "' AND senha = '" + Token.Password(senha) + "' AND status = 1";
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Usuario(
                 rs.getInt("id"),
                 rs.getString("email"),
-                rs.getInt("ativo"),
+                rs.getInt("status"),
                 rs.getInt("admin"),
                 ServidorDAO.retreave(rs.getInt("servidor")));
     }
@@ -79,7 +79,7 @@ public class UsuarioDAO {
             usuario.add(new Usuario(
                     rs.getInt("id"),
                     rs.getString("email"),
-                    rs.getInt("ativo"),
+                    rs.getInt("status"),
                     rs.getInt("admin"),
                     ServidorDAO.retreave(rs.getInt("servidor"))));
         }
@@ -103,7 +103,7 @@ public class UsuarioDAO {
                         createStatement();
         String sql = "UPDATE usuarios SET "
                 + "`email`= '" + usuario.getEmail()
-                + "', `ativo`= '" + usuario.isAtivo()
+                + "', `status`= '" + usuario.isAtivo()
                 + "', `admin`= '" + usuario.isAdmin()
                 + "', `servidor`= '" + usuario.getServidor().getId()
                 + " ' WHERE `id`= "
@@ -117,7 +117,7 @@ public class UsuarioDAO {
                     = Database.createConnection().
                             createStatement();
             String sql = "UPDATE usuarios SET "
-                    + "`senha`='" + new Token().Password(u.getSenha()) + "'"
+                    + "`senha`='" + Token.Password(u.getSenha()) + "'"
                     + " WHERE `id`= " + u.getId();
             stm.execute(sql);
     }
