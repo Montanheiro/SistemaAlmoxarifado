@@ -8,6 +8,7 @@ package persistence;
 import constructor.Estoque;
 import constructor.Produto;
 import constructor.Unidade;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
