@@ -20,8 +20,9 @@ public class LogErro {
         this.erro = erro;
     }
 
-    public LogErro(Usuario usuario, String erro) {
+    public LogErro(Usuario usuario, Timestamp data, String erro) {
         this.usuario = usuario;
+        this.data = data;
         this.erro = erro;
     }
 

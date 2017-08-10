@@ -13,13 +13,9 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-/**
- *
- * @author lucas
- */
 public class LogErroDAO {
     
-    public static int create(LogErro logErro) throws SQLException {
+    public static LogErro create(LogErro logErro) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -33,7 +29,8 @@ public class LogErroDAO {
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
         int key = rs.getInt(1);
-        return key;
+        logErro.setId(key);
+        return logErro;
     }
     
     public static LogErro retreave(int id) throws SQLException {

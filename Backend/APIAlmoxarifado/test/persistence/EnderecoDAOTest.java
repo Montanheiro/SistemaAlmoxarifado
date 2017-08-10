@@ -9,11 +9,14 @@ import constructor.Endereco;
 import constructor.Fornecedor;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author lucas
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EnderecoDAOTest {
     
     public EnderecoDAOTest() {
