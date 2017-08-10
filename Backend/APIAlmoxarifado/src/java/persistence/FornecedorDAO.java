@@ -8,10 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Barbara
- */
+
 public class FornecedorDAO {
 
     private FornecedorDAO() {
@@ -31,8 +28,11 @@ public class FornecedorDAO {
         rs.next();
         int key = rs.getInt(1);
         fornecedor.setId(key);
-
-        EnderecoDAO.create(fornecedor.getEndereco());
+        
+        for (Endereco end : fornecedor.getEndereco()) {
+            end.setFornecedorId(key);
+            EnderecoDAO.create(end);
+        }
 
         for (Contato contato : fornecedor.getContato()) {
             contato.setFornecedorId(key);
@@ -49,13 +49,13 @@ public class FornecedorDAO {
         String sql = "SELECT * FROM fornecedores where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        Endereco endereco = EnderecoDAO.retreaveByFornecedor(id);
+        ArrayList<Endereco> enderecos = EnderecoDAO.retreaveByFornecedor(id);
         ArrayList<Contato> contatos = ContatoDAO.retreaveByFornecedor(id);
         return new Fornecedor(id,
                 rs.getString("razao_social"),
                 rs.getString("nome_fantasia"),
                 rs.getString("cnpj"),
-                endereco, contatos);
+                enderecos, contatos);
     }
 
     public static ArrayList<Fornecedor> retreaveAll() throws SQLException {
@@ -66,15 +66,16 @@ public class FornecedorDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Fornecedor> fornecedor = new ArrayList<>();
         ArrayList<Contato> contatos;
+        ArrayList<Endereco> enderecos;
         while (rs.next()) {
             contatos = ContatoDAO.retreaveByFornecedor(rs.getInt("id"));
-            Endereco endereco = EnderecoDAO.retreaveByFornecedor(rs.getInt("id"));
+            enderecos = EnderecoDAO.retreaveByFornecedor(rs.getInt("id"));
             fornecedor.add(new Fornecedor(
                     rs.getInt("id"),
                     rs.getString("razao_social"),
                     rs.getString("nome_fantasia"),
                     rs.getString("cnpj"),
-                    endereco, contatos));
+                    enderecos, contatos));
         }
         rs.next();
         return fornecedor;
@@ -92,7 +93,16 @@ public class FornecedorDAO {
                 + fornecedor.getId();
         stm.execute(sql);
 
-        EnderecoDAO.update(fornecedor.getEndereco());
+        for (Endereco end : fornecedor.getEndereco()) {
+            if (end.getId() != 0) {
+                EnderecoDAO.update(end);
+            } else {
+                end.setFornecedorId(fornecedor.getId());
+                EnderecoDAO.create(end);
+            }
+        }
+        
+        //EnderecoDAO.update(fornecedor.getEndereco());
 
         for (Contato contato : fornecedor.getContato()) {
             if (contato.getId() != 0) {

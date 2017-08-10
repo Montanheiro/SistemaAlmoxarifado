@@ -5,11 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+ 
 
-/**
- *
- * @author Barbara
- */
 public class ContatoDAO {
 
     private ContatoDAO() {
@@ -20,7 +17,8 @@ public class ContatoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO contatos (`nome`, `telefone`) VALUES ('"
+                = "INSERT INTO contatos (`fornecedor`, `nome`, `telefone`) VALUES ('"
+                + contato.getFornecedorId() + "','"
                 + contato.getNome() + "','"
                 + contato.getTelefone() + "')";
 
@@ -42,7 +40,7 @@ public class ContatoDAO {
         return new Contato(id,
                 rs.getString("nome"),
                 rs.getString("telefone"),
-                rs.getInt("fornecedor_id"));
+                rs.getInt("fornecedor"));
 
     }
 
@@ -50,7 +48,7 @@ public class ContatoDAO {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM contatos where fornecedor_id =" + fornecedorId;
+        String sql = "SELECT * FROM contatos where fornecedor =" + fornecedorId;
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Contato> temp = new ArrayList<>();
         while (rs.next()) {
@@ -58,7 +56,7 @@ public class ContatoDAO {
                     rs.getInt("id"),
                     rs.getString("nome"),
                     rs.getString("Telefone"),
-                    rs.getInt("fornecedor_id")));
+                    rs.getInt("fornecedor")));
         }
         return temp;
     }

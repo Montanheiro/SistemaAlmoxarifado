@@ -25,6 +25,18 @@ public class Contato {
         this.telefone = telefone;
     }
 
+    public Contato(String nome, String telefone, int fornecedorId) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.fornecedorId = fornecedorId;
+    }
+
+    public Contato(int id, String nome, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
     public int getId() {
         return id;
     }

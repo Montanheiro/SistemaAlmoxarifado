@@ -12,10 +12,10 @@ public class Fornecedor {
     private String razaoSocial;
     private String nomeFantasia;
     private String cnpj;
-    private Endereco endereco;
+    private ArrayList<Endereco> endereco = new ArrayList<>();//Associacao
     private ArrayList<Contato> contato = new ArrayList<>();//Associacao
 
-    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, ArrayList<Contato> contato) {
+    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj, ArrayList<Endereco> endereco, ArrayList<Contato> contato) {
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
@@ -23,7 +23,7 @@ public class Fornecedor {
         this.contato = contato;
     }
 
-    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, Endereco endereco, ArrayList<Contato> contato) {
+    public Fornecedor(int id, String razaoSocial, String nomeFantasia, String cnpj, ArrayList<Endereco> endereco, ArrayList<Contato> contato) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
@@ -31,6 +31,13 @@ public class Fornecedor {
         this.endereco = endereco;
         this.contato = contato;
     }
+
+    public Fornecedor(String razaoSocial, String nomeFantasia, String cnpj) {
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+    }
+    
 
     public int getId() {
         return id;
@@ -64,11 +71,11 @@ public class Fornecedor {
         this.cnpj = cnpj;
     }
 
-    public Endereco getEndereco() {
+    public ArrayList<Endereco> getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(ArrayList<Endereco> endereco) {
         this.endereco = endereco;
     }
 
