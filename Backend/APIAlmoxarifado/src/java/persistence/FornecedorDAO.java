@@ -29,15 +29,20 @@ public class FornecedorDAO {
         int key = rs.getInt(1);
         fornecedor.setId(key);
         
-        for (Endereco end : fornecedor.getEndereco()) {
-            end.setFornecedorId(key);
-            EnderecoDAO.create(end);
+        if(fornecedor.getEndereco() != null){
+            for (Endereco end : fornecedor.getEndereco()) {
+                end.setFornecedorId(key);
+                EnderecoDAO.create(end);
+            }
         }
-
-        for (Contato contato : fornecedor.getContato()) {
-            contato.setFornecedorId(key);
-            ContatoDAO.create(contato);
+        
+        if(fornecedor.getContato() != null){
+            for (Contato contato : fornecedor.getContato()) {
+                contato.setFornecedorId(key);
+                ContatoDAO.create(contato);
+            }
         }
+        
 
         return fornecedor;
     }

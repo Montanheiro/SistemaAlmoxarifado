@@ -28,7 +28,6 @@ public class FornecedorDAOTest {
     public void testCreate() throws Exception {
         System.out.println("create");
         
-        
         Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
         Contato contato = new Contato("nome", "telefone");
               

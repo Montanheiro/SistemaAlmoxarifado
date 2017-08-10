@@ -26,6 +26,9 @@ public class ContatoDAOTest {
     @Test
     public void testCreate() throws Exception {
        
+        Fornecedor fornecedor = new Fornecedor("razao", "fanatsia", "cnpj", null, null);
+        FornecedorDAO.create(fornecedor);
+        
         System.out.println("create");
         Contato contato = new Contato("José Martins", "2848592585385", 1);
         Contato expResult = contato;
@@ -48,9 +51,6 @@ public class ContatoDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-            
-//        Fornecedor fornecedor = new Fornecedor("razao", "fanatsia", "cnpj", null, null);
-//        FornecedorDAO.create(fornecedor);
         
         Contato contato = new Contato(1, "José Osmar", "535392842824");
         ContatoDAO.update(contato);
