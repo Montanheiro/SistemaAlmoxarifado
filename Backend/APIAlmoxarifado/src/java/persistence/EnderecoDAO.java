@@ -6,10 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Barbara
- */
 public class EnderecoDAO {
 
     private EnderecoDAO() {
@@ -20,15 +16,16 @@ public class EnderecoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO enderecos (`fornecedor`, `cidade`, `bairro`, `cep`, `numero`, `complemento`, `logradouro`) VALUES ('"
-                + endereco.getFornecedor().getId() + "','"
+                = "INSERT INTO enderecos (`fornecedor`, `cidade`, `bairro`, `cep`, `numero`, `complemento`, `logradouro`, estado) VALUES ('"
+                + endereco.getFornecedorId() + "','"
                 + endereco.getCidade() + "','"
                 + endereco.getBairro() + "','"
                 + endereco.getCep() + "','"
                 + endereco.getNumero() + "','"
                 + endereco.getComplemento() + "','"
+                + endereco.getEstado() + "','"
                 + endereco.getLogradouro() + "')";
-
+        
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
@@ -45,34 +42,36 @@ public class EnderecoDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new Endereco(id,
-                FornecedorDAO.retreave(rs.getInt("fornecedor")),
                 rs.getString("cidade"),
                 rs.getString("bairro"),
                 rs.getString("cep"),
                 rs.getString("numero"),
                 rs.getString("complemento"),
-                rs.getString("logradouro"));
+                rs.getString("logradouro"),
+                rs.getString("estado"),
+                rs.getInt("fornecedor"));
     }
 
-    public static Endereco retreaveByFornecedor(int fornecedorId) throws SQLException {
+    public static ArrayList<Endereco> retreaveByFornecedor(int fornecedorId) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM enderecos WHERE fornecedor = " + fornecedorId;
         ResultSet rs = stm.executeQuery(sql);
-        if (rs.next()) {
-
-            return new Endereco(
+        ArrayList<Endereco> temp = new ArrayList<>();
+        while (rs.next()) {
+            temp.add(new Endereco(
                     rs.getInt("id"),
-                    FornecedorDAO.retreave(rs.getInt("fornecedor")),
-                    rs.getString("logradouro"),
-                    rs.getString("logradouro"),
-                    rs.getString("bairro"),
                     rs.getString("cidade"),
+                    rs.getString("bairro"),
+                    rs.getString("cep"),
+                    rs.getString("numero"),
+                    rs.getString("complemento"),
+                    rs.getString("logradouro"),
                     rs.getString("estado"),
-                    rs.getString("cep"));
+                    rs.getInt("fornecedor")));
         }
-        return null;
+        return temp;
     }
 
     public static ArrayList<Endereco> retreaveAll() throws SQLException {
@@ -85,13 +84,14 @@ public class EnderecoDAO {
         while (rs.next()) {
             endereco.add(new Endereco(
                     rs.getInt("id"),
-                    FornecedorDAO.retreave(rs.getInt("fornecedor")),
                     rs.getString("cidade"),
                     rs.getString("bairro"),
                     rs.getString("cep"),
                     rs.getString("numero"),
                     rs.getString("complemento"),
-                    rs.getString("logradouro")));
+                    rs.getString("logradouro"),
+                    rs.getString("estado"),
+                    rs.getInt("fornecedor")));
         }
         rs.next();
         return endereco;

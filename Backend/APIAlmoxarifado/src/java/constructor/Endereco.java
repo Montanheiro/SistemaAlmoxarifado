@@ -8,33 +8,63 @@ package constructor;
 public class Endereco {
 
     private int id;
-    private Fornecedor fornecedor;
     private String cidade;
     private String bairro;
     private String cep;
     private String numero;
     private String complemento;
     private String logradouro;
+    private String estado;
+    
+    private int fornecedorId;
 
-    public Endereco(Fornecedor fornecedor, String cidade, String bairro, String cep, String numero, String complemento, String logradouro) {
-        this.fornecedor = fornecedor;
+    public Endereco(int id, String cidade, String bairro, String cep, String numero, String complemento, String logradouro, String estado, int fornecedorId) {
+        this.id = id;
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
         this.numero = numero;
         this.complemento = complemento;
         this.logradouro = logradouro;
+        this.estado = estado;
+        this.fornecedorId = fornecedorId;
     }
 
-    public Endereco(int id, Fornecedor fornecedor, String cidade, String bairro, String cep, String numero, String complemento, String logradouro) {
-        this.id = id;
-        this.fornecedor = fornecedor;
+    public Endereco(String cidade, String bairro, String cep, String numero, String complemento, String logradouro, String estado) {
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
         this.numero = numero;
         this.complemento = complemento;
         this.logradouro = logradouro;
+        this.estado = estado;
+    }
+
+    public Endereco(String cidade, String bairro, String cep, String numero, String complemento, String logradouro, String estado, int fornecedorId) {
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.logradouro = logradouro;
+        this.estado = estado;
+        this.fornecedorId = fornecedorId;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getFornecedorId() {
+        return fornecedorId;
+    }
+
+    public void setFornecedorId(int fornecedorId) {
+        this.fornecedorId = fornecedorId;
     }
 
     public int getId() {
@@ -43,14 +73,6 @@ public class Endereco {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
     }
 
     public String getCidade() {
@@ -103,7 +125,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", fornecedor=" + fornecedor + ", cidade=" + cidade + ", bairro=" + bairro + ", cep=" + cep + ", numero=" + numero + ", complemento=" + complemento + ", logradouro=" + logradouro + '}';
+        return "Endereco{" + "id=" + id + ", cidade=" + cidade + ", bairro=" + bairro + ", cep=" + cep + ", numero=" + numero + ", complemento=" + complemento + ", logradouro=" + logradouro + ", estado=" + estado + ", fornecedorId=" + fornecedorId + '}';
     }
-    
+
 }
