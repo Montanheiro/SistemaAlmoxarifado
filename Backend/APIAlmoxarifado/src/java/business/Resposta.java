@@ -8,6 +8,7 @@ package business;
 import constructor.LogErro;
 import constructor.Usuario;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.core.Response;
@@ -24,13 +25,13 @@ public class Resposta {
         
         Usuario usuario = verificaUsuario(token);
         
-        LogErro log = new LogErro(usuario, erro);
+        LogErro log = new LogErro(usuario, new Timestamp(System.currentTimeMillis()), erro);
         
         try {
-            int idErro = LogErroDAO.create(log);
+            LogErro logErro = LogErroDAO.create(log);
             
             String frase = "Um erro insperado foi encontrado, código: " + 
-                    idErro + ". Anote esse código e entre em contato com " +
+                    logErro.getId() + ". Anote esse código e entre em contato com " +
                     "o suporte para resolver.";
             
             switch (status) {
