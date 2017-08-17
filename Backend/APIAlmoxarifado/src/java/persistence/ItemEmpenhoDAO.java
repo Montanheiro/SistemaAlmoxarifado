@@ -6,10 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Barbara
- */
 public class ItemEmpenhoDAO {
 
     private ItemEmpenhoDAO() {
@@ -18,7 +14,7 @@ public class ItemEmpenhoDAO {
     public static ItemEmpenho create(ItemEmpenho item) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql
-                = "INSERT INTO produtos_empenho (`empenho`, `natureza_despesa`,"
+                = "INSERT INTO itens_empenho (`empenho`, `natureza_despesa`,"
                 + "`sequencia`, `quantidade`, `valor_sequencia`, `item_processo`) VALUES ('"
                 + item.getEmpenho().getId() + "','"
                 + item.getNaturezaDespesa().getId() + "','"
@@ -36,7 +32,7 @@ public class ItemEmpenhoDAO {
 
     public static ItemEmpenho retreave(int id) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
-        String sql = "SELECT * FROM produtos_empenho where id = " + id;
+        String sql = "SELECT * FROM itens_empenho where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new ItemEmpenho(id,
@@ -51,7 +47,7 @@ public class ItemEmpenhoDAO {
 
     public static ArrayList<ItemEmpenho> retreaveAll() throws SQLException {
         Statement stm = Database.createConnection().createStatement();
-        String sql = "SELECT * FROM produtos_empenho";
+        String sql = "SELECT * FROM itens_empenho";
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<ItemEmpenho> pe = new ArrayList<>();
         while (rs.next()) {
@@ -70,13 +66,13 @@ public class ItemEmpenhoDAO {
  
     public static void delete(ItemEmpenho pe) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
-        String sql = "DELETE FROM produtos_empenho WHERE `id`= " + pe.getId();
+        String sql = "DELETE FROM itens_empenho WHERE `id`= " + pe.getId();
         stm.execute(sql);
     }
 
     public static void update(ItemEmpenho pe) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
-        String sql = "UPDATE produtos_empenho SET "
+        String sql = "UPDATE itens_empenho SET "
                 + "`empenho` = '" + pe.getEmpenho().getId()
                 + "', `natureza_despesa` = '" + pe.getNaturezaDespesa().getId()
                 + "', `sequencia` = '" + pe.getSequencia()

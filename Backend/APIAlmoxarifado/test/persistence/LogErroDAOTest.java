@@ -48,6 +48,12 @@ public class LogErroDAOTest {
 
     @Test
     public void testRetreaveAll() throws Exception {
+//        Setor setor = SetorDAO.create(new Setor("Direção de Ensino", "DIREN"));
+//        Servidor servidor = ServidorDAO.create(new Servidor(setor, "Jucelino", "2858935", "Presidente")); 
+//        Usuario user = UsuarioDAO.create(new Usuario("teste1@unitario.com", "senhaSegura", servidor, 1, 1));
+//        LogErro log = new LogErro(user, new Timestamp(System.currentTimeMillis()), "buguei");
+//        LogErroDAO.create(log);
+        
         System.out.println("retreaveAll");
         LogErroDAO.retreaveAll();
     }
