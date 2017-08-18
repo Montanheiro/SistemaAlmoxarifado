@@ -28,7 +28,7 @@ public class HistoricoRelatorioDAOTest {
     public void testCreate() throws Exception {
         System.out.println("create");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         HistoricoRelatorio obj = new HistoricoRelatorio(produto,
                 new Timestamp((System.currentTimeMillis())), 20, 1394.09);
         HistoricoRelatorio expResult = obj;
@@ -52,7 +52,7 @@ public class HistoricoRelatorioDAOTest {
     public void testUpdate() throws Exception {
         System.out.println("update");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         HistoricoRelatorio obj1 = new HistoricoRelatorio(produto, 
                 new Timestamp((System.currentTimeMillis())), 434, 3857353.10);
         HistoricoRelatorioDAO.update(obj1);

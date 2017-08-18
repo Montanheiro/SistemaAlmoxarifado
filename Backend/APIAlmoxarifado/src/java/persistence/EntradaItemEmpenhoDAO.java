@@ -34,7 +34,7 @@ public class EntradaItemEmpenhoDAO {
         rs.next();
         return new EntradaItemEmpenho(id,
                 ItemEmpenhoDAO.retreave(rs.getInt("itens_empenho")),
-                EntradaDAO.retreave(rs.getInt("entrada")));
+                EntradaItemDAO.retreave(rs.getInt("entrada")));
 
     }
 
@@ -49,7 +49,7 @@ public class EntradaItemEmpenhoDAO {
             eie.add(new EntradaItemEmpenho(
                     rs.getInt("id"),
                     ItemEmpenhoDAO.retreave(rs.getInt("itens_empenho")),
-                    EntradaDAO.retreave(rs.getInt("entrada"))));
+                    EntradaItemDAO.retreave(rs.getInt("entrada"))));
         }
         rs.next();
         return eie;

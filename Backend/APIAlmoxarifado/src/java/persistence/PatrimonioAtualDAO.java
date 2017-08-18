@@ -5,7 +5,7 @@
  */
 package persistence;
 
-import constructor.EstoqueBruto;
+import constructor.PatrimonioAtual;
 import constructor.Produto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,14 +16,14 @@ import java.util.ArrayList;
  *
  * @author lucas
  */
-public class EstoqueBrutoDAO {
+public class PatrimonioAtualDAO {
     
-    public static EstoqueBruto create(EstoqueBruto estoqueBruto) throws SQLException {
+    public static PatrimonioAtual create(PatrimonioAtual estoqueBruto) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO estoque_bruto (`produto`, `quantidade`, "
+                = "INSERT INTO patrimonio_atual (`produto`, `quantidade`, "
                 + "`valortotal`) VALUES ('"
                 + estoqueBruto.getProduto().getId() + "','"
                 + estoqueBruto.getQtd() + "','"
@@ -36,31 +36,31 @@ public class EstoqueBrutoDAO {
         return estoqueBruto;
     }
     
-    public static EstoqueBruto retreave(int id) throws SQLException {
+    public static PatrimonioAtual retreave(int id) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM estoque_bruto where id = " + id;
+        String sql = "SELECT * FROM patrimonio_atual where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         Produto p = ProdutoDAO.retreave(rs.getInt("produto"));
-        return new EstoqueBruto(
+        return new PatrimonioAtual(
                 id,
                 p,
                 rs.getDouble("quantidade"),
                 rs.getDouble("valortotal"));
     }
     
-    public static ArrayList<EstoqueBruto> retreaveAll() throws SQLException {
+    public static ArrayList<PatrimonioAtual> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "SELECT * FROM estoque_bruto";
+        String sql = "SELECT * FROM patrimonio_atual";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<EstoqueBruto> estoque = new ArrayList<>();
+        ArrayList<PatrimonioAtual> estoque = new ArrayList<>();
         while (rs.next()) {
             Produto p = ProdutoDAO.retreave(rs.getInt("produto"));
-            estoque.add(new EstoqueBruto(
+            estoque.add(new PatrimonioAtual(
                     rs.getInt("id"),
                     p,
                     rs.getDouble("quantidade"),
@@ -70,11 +70,11 @@ public class EstoqueBrutoDAO {
         return estoque;
     }
     
-    public static void update(EstoqueBruto estoque) throws SQLException {
+    public static void update(PatrimonioAtual estoque) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
-        String sql = "UPDATE estoque_bruto SET "
+        String sql = "UPDATE patrimonio_atual SET "
                 + "`produto`='" + estoque.getProduto().getId()
                 + "', `quantidade`= '" + estoque.getQtd()
                 + "', `valortotal`= '" + estoque.getValorTotal()

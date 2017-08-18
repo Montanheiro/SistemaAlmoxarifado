@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException{
         
-      
+             
             // TESTES ADMIN
 
 //        Admin a = new Admin("lucas","lucas123", new Timestamp(System.currentTimeMillis()), 1, 1);

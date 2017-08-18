@@ -4,7 +4,7 @@ import constructor.Contato;
 import constructor.DoacaoOuTransferencia;
 import constructor.Empenho;
 import constructor.Endereco;
-import constructor.Entrada;
+import constructor.EntradaItem;
 import constructor.EntradaItemEmpenho;
 import constructor.Fornecedor;
 import constructor.ItemEmpenho;
@@ -34,10 +34,10 @@ public class EntradaItemEmpenhoDAOTest {
         System.out.println("create");
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada entrada = new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        EntradaItem entrada = new EntradaItem(produto, 23, new Timestamp((System.currentTimeMillis())), 
                 new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0);
-        entrada = EntradaDAO.create(entrada);
+        entrada = EntradaItemDAO.create(entrada);
         
         Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
         Contato contato = new Contato("nome", "telefone");        
@@ -80,10 +80,10 @@ public class EntradaItemEmpenhoDAOTest {
     public void testUpdate() throws Exception {
         System.out.println("update");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada entrada = new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        EntradaItem entrada = new EntradaItem(produto, 23, new Timestamp((System.currentTimeMillis())), 
                 new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0);
-        entrada = EntradaDAO.create(entrada);
+        entrada = EntradaItemDAO.create(entrada);
         
         Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
         Contato contato = new Contato("nome", "telefone");        
@@ -115,10 +115,10 @@ public class EntradaItemEmpenhoDAOTest {
     public void testDelete() throws Exception {
         System.out.println("delete");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada entrada = new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        EntradaItem entrada = new EntradaItem(produto, 23, new Timestamp((System.currentTimeMillis())), 
                 new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0);
-        entrada = EntradaDAO.create(entrada);
+        entrada = EntradaItemDAO.create(entrada);
         
         Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
         Contato contato = new Contato("nome", "telefone");        

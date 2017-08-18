@@ -40,7 +40,7 @@ public class EntradaDoacaoTransferenciaDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new EntradaDoacaoTransferencia(id,
-                EntradaDAO.retreave(rs.getInt("entrada")),
+                EntradaItemDAO.retreave(rs.getInt("entrada")),
                 DoacaoOuTransferenciaDAO.retreave(rs.getInt("doacao_ou_transferencia")));
 
     }
@@ -55,7 +55,7 @@ public class EntradaDoacaoTransferenciaDAO {
         while (rs.next()) {
             edot.add(new EntradaDoacaoTransferencia(
                     rs.getInt("id"),
-                    EntradaDAO.retreave(rs.getInt("entrada")),
+                    EntradaItemDAO.retreave(rs.getInt("entrada")),
                     DoacaoOuTransferenciaDAO.retreave(rs.getInt("doacao_ou_transferencia"))));
         }
         rs.next();

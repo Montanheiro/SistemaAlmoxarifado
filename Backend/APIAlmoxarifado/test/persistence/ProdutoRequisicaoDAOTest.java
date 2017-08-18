@@ -35,7 +35,7 @@ public class ProdutoRequisicaoDAOTest {
         Requisicao requisicao = RequisicaoDAO.create(new Requisicao(servidor, 
                 new Timestamp((System.currentTimeMillis())), null));
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         
         ProdutoRequisicao obj = new ProdutoRequisicao(requisicao, produto, 35);
         ProdutoRequisicao expResult = obj;
@@ -63,7 +63,7 @@ public class ProdutoRequisicaoDAOTest {
         Requisicao requisicao = RequisicaoDAO.create(new Requisicao(servidor, 
                 new Timestamp((System.currentTimeMillis())), null));
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         
         ProdutoRequisicao obj1 = new ProdutoRequisicao(requisicao, produto, 22.5);
         ProdutoRequisicaoDAO.update(obj1);
@@ -80,7 +80,7 @@ public class ProdutoRequisicaoDAOTest {
         Requisicao requisicao = RequisicaoDAO.create(new Requisicao(servidor, 
                 new Timestamp((System.currentTimeMillis())), null));
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         
         ProdutoRequisicao obj = new ProdutoRequisicao(requisicao, produto, 53.24);
         ProdutoRequisicaoDAO.create(obj);

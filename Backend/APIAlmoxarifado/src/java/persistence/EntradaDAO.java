@@ -1,17 +1,14 @@
 package persistence;
 
 import constructor.Entrada;
+import constructor.EntradaItem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Barbara
- */
 public class EntradaDAO {
-
+    
     private EntradaDAO() {
     }
 
@@ -20,20 +17,26 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO entradas (`produto`, `quantidade`, `data`, `validade`, `lote`, `nf_numero`, `considerar_valorsequencia`) VALUES ('"
-                + entrada.getProduto().getId() + "','"
-                + entrada.getQtd() + "','"
+                = "INSERT INTO entradas (`data`, `nf_numero`, `origem`,"
+                + "`observacao`) VALUES ('"
                 + entrada.getData() + "','"
-                + entrada.getValidade() + "','"
-                + entrada.getLote() + "','"
                 + entrada.getNfNumero() + "','"
-                + entrada.getConsiderarValorSequencia() + "')";
+                + entrada.getOrigem() + "','"
+                + entrada.getObservacao() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
         int key = rs.getInt(1);
         entrada.setId(key);
+        
+        if(entrada.getItens() != null){
+            for (EntradaItem item : entrada.getItens()) {
+                item.setEntradaId(key);
+                EntradaItemDAO.create(item);
+            }
+        }
+        
         return entrada;
     }
 
@@ -44,14 +47,13 @@ public class EntradaDAO {
         String sql = "SELECT * FROM entradas where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
+        ArrayList<EntradaItem> itens = EntradaItemDAO.retreaveByEntrada(id);
         return new Entrada(id,
-                ProdutoDAO.retreave(rs.getInt("produto")),
-                rs.getDouble("quantidade"),
                 rs.getTimestamp("data"),
-                rs.getTimestamp("validade"),
-                rs.getString("lote"),
                 rs.getString("nf_numero"),
-                rs.getInt("considerar_valorsequencia"));
+                rs.getInt("origem"),
+                rs.getString("observacao"),
+                itens);
     }
 
     public static ArrayList<Entrada> retreaveAll() throws SQLException {
@@ -62,15 +64,14 @@ public class EntradaDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Entrada> entrada = new ArrayList<>();
         while (rs.next()) {
+            ArrayList<EntradaItem> itens = EntradaItemDAO.retreaveByEntrada(rs.getInt("id"));
             entrada.add(new Entrada(
                     rs.getInt("id"),
-                    ProdutoDAO.retreave(rs.getInt("produto")),
-                    rs.getDouble("quantidade"),
                     rs.getTimestamp("data"),
-                    rs.getTimestamp("validade"),
-                    rs.getString("lote"),
                     rs.getString("nf_numero"),
-                    rs.getInt("considerar_valorsequencia")));
+                    rs.getInt("origem"),
+                    rs.getString("observacao"),
+                    itens));
         }
         rs.next();
         return entrada;
@@ -90,16 +91,20 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE entradas SET "
-                + "`produto` = '" + entrada.getProduto().getId()
-                + "', `quantidade` = '" + entrada.getQtd()
-                + "', `data` = '" + entrada.getData()
-                + "', `validade` = '" + entrada.getValidade()
-                + "', `lote` = '" + entrada.getLote()
+                + "`data` = '" + entrada.getData()
                 + "', `nf_numero` = '" + entrada.getNfNumero()
-                + "', `considerar_valorsequencia` = '" + entrada.getConsiderarValorSequencia()
-                + "' WHERE `id` = "
-                + entrada.getId();
+                + "', `origem` = '" + entrada.getOrigem()
+                + "', `observacao` = '" + entrada.getObservacao()
+                + "' WHERE `id` = " + entrada.getId();
         stm.execute(sql);
+        
+        for (EntradaItem itens : entrada.getItens()) {
+            if (itens.getId() != 0) {
+                EntradaItemDAO.update(itens);
+            } else {
+                itens.setEntradaId(entrada.getId());
+                EntradaItemDAO.create(itens);
+            }
+        }
     }
-
 }

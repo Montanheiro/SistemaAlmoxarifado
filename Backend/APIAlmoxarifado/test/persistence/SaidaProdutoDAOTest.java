@@ -33,7 +33,7 @@ public class SaidaProdutoDAOTest {
         Requisicao requisicao = RequisicaoDAO.create(new Requisicao(servidor, 
                 new Timestamp((System.currentTimeMillis())), null));
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         ProdutoRequisicao prequisicao = ProdutoRequisicaoDAO.create(new ProdutoRequisicao(requisicao, produto, 35));
         
         SaidaProduto obj = new SaidaProduto(prequisicao, 5358.24, new Timestamp((System.currentTimeMillis())));
@@ -62,7 +62,7 @@ public class SaidaProdutoDAOTest {
         Requisicao requisicao = RequisicaoDAO.create(new Requisicao(servidor, 
                 new Timestamp((System.currentTimeMillis())), null));
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         ProdutoRequisicao prequisicao = ProdutoRequisicaoDAO.create(new ProdutoRequisicao(requisicao, produto, 35));
         
         SaidaProduto obj1 = new SaidaProduto(prequisicao, 24241, new Timestamp((System.currentTimeMillis())));
@@ -80,7 +80,7 @@ public class SaidaProdutoDAOTest {
         Requisicao requisicao = RequisicaoDAO.create(new Requisicao(servidor, 
                 new Timestamp((System.currentTimeMillis())), null));
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         ProdutoRequisicao prequisicao = ProdutoRequisicaoDAO.create(new ProdutoRequisicao(requisicao, produto, 35));
         
         SaidaProduto obj = new SaidaProduto(prequisicao, 42853, new Timestamp((System.currentTimeMillis())));

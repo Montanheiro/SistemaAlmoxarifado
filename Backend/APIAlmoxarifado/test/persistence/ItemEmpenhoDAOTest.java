@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistence;
 
 import constructor.Contato;
@@ -11,6 +6,8 @@ import constructor.Empenho;
 import constructor.Fornecedor;
 import constructor.ItemEmpenho;
 import constructor.NaturezaDespesa;
+import constructor.Produto;
+import constructor.Unidade;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import org.junit.Test;
@@ -18,10 +15,6 @@ import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
-/**
- *
- * @author lucas
- */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ItemEmpenhoDAOTest {
     
@@ -31,6 +24,11 @@ public class ItemEmpenhoDAOTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
+        
+        Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
+        UnidadeDAO.create(unidade);
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        ProdutoDAO.create(produto);
         
         Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
         Contato contato = new Contato("nome", "telefone");        

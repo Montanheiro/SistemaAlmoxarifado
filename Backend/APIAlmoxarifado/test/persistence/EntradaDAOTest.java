@@ -5,32 +5,40 @@
  */
 package persistence;
 
+import constructor.Endereco;
 import constructor.Entrada;
+import constructor.EntradaItem;
 import constructor.Produto;
 import constructor.Unidade;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
-/**
- *
- * @author lucas
- */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EntradaDAOTest {
     
     public EntradaDAOTest() {
     }
-
+    
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada obj = new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
-                new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0);
+        UnidadeDAO.create(unidade);
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        ProdutoDAO.create(produto);
+        EntradaItem item = new EntradaItem(produto, 1, 23.00, new Timestamp((System.currentTimeMillis())), 
+                "lote8fs89", 1, 0.0);
+        
+        ArrayList<EntradaItem> itens = new ArrayList<EntradaItem>() {{
+            add(item);
+        }};
+        
+        Entrada obj = new Entrada(new Timestamp((System.currentTimeMillis())), "245", 2, "obs isufgsif", itens);
+        
         Entrada expResult = obj;
         Entrada result = EntradaDAO.create(obj);
         assertEquals(expResult, result);
@@ -39,38 +47,46 @@ public class EntradaDAOTest {
     @Test
     public void testRetreave() throws Exception {
         System.out.println("retreave");
-        EntradaDAO.retreave(1);
+        EntradaItemDAO.retreave(1);
     }
 
     @Test
     public void testRetreaveAll() throws Exception {
         System.out.println("retreaveAll");
-        EntradaDAO.retreaveAll();
+        EntradaItemDAO.retreaveAll();
     }
 
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada obj1 = new Entrada(produto, 549.24, new Timestamp((System.currentTimeMillis())), 
-                new Timestamp((System.currentTimeMillis())), "853858", "88593", 1);
+        UnidadeDAO.create(unidade);
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        ProdutoDAO.create(produto);
+        
+        EntradaItem item = new EntradaItem(produto, 1, 23.00, new Timestamp((System.currentTimeMillis())), 
+                "lote8fs89", 1, 0.0);
+        
+        ArrayList<EntradaItem> itens = new ArrayList<EntradaItem>() {{
+            add(item);
+        }};
+        
+        Entrada obj1 = new Entrada(1, new Timestamp((System.currentTimeMillis())), "245", 0, "fhehgjdjf", itens);
         EntradaDAO.update(obj1);
-        Entrada obj2 = new Entrada(produto, 37522, new Timestamp((System.currentTimeMillis())), 
-                new Timestamp((System.currentTimeMillis())), "8295838", "466464", 0);
+        Entrada obj2 = new Entrada(1, new Timestamp((System.currentTimeMillis())), "6464", 6, "46yyif", itens);
         EntradaDAO.update(obj2);
+        
         EntradaDAO.retreave(1);        
     }
     
-    @Test
-    public void testDelete() throws Exception {
-        System.out.println("delete");
-        Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Placa de trânsito", unidade));
-        Entrada obj = new Entrada(produto, 4324.25, new Timestamp((System.currentTimeMillis())), 
-                new Timestamp((System.currentTimeMillis())), "4665665", "7564355", 0);
-        EntradaDAO.create(obj);
-        EntradaDAO.delete(obj);
-    }
-    
+//    @Test
+//    public void testDelete() throws Exception {
+//        System.out.println("delete");
+//        Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
+//        Produto produto = ProdutoDAO.create(new Produto("Placa de trânsito", unidade, 23.00, 2.0));
+//        EntradaItem obj = new EntradaItem(produto, 1, 23.00, new Timestamp((System.currentTimeMillis())), 
+//                "lote8fs89", 1, 0.0);
+//        EntradaItemDAO.create(obj);
+//        EntradaItemDAO.delete(obj);
+//    }
 }

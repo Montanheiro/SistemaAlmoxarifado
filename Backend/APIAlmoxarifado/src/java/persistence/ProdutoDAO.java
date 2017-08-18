@@ -21,9 +21,11 @@ public class ProdutoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO produtos (`descricao`, `unidade`) VALUES ('"
+                = "INSERT INTO produtos (`descricao`, `unidade`, `estoque`, `estoque_minimo`) VALUES ('"
                 + produto.getDescricao() + "','"
-                + produto.getUnidade().getId() + "')";
+                + produto.getUnidade().getId() + "','"
+                + produto.getEstoque() + "','"
+                + produto.getEstoque_minimo() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stm.getGeneratedKeys();
@@ -43,7 +45,9 @@ public class ProdutoDAO {
         Unidade un = UnidadeDAO.retreave(rs.getInt("unidade"));
         return new Produto(id,
                 rs.getString("descricao"),
-                un);
+                un,
+                rs.getDouble("estoque"),
+                rs.getDouble("estoque_minimo"));
 
     }
 
@@ -59,7 +63,9 @@ public class ProdutoDAO {
             produto.add(new Produto(
                     rs.getInt("id"),
                     rs.getString("descricao"),
-                    un));
+                    un,
+                    rs.getDouble("estoque"),
+                    rs.getDouble("estoque_minimo")));
         }
         rs.next();
         return produto;
@@ -81,6 +87,8 @@ public class ProdutoDAO {
         String sql = "UPDATE produtos SET "
                 + "`descricao`='" + produto.getDescricao()
                 + "', `unidade`= '" + produto.getUnidade().getId()
+                + "', `estoque`= '" + produto.getEstoque()
+                + "', `estoque_minimo`= '" + produto.getEstoque_minimo()
                 + "' WHERE `id`= "
                 + produto.getId();
         stm.execute(sql);

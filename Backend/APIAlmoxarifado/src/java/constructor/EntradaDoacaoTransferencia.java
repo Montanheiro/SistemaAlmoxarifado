@@ -7,15 +7,15 @@ package constructor;
 public class EntradaDoacaoTransferencia {
     
     private int id;
-    private Entrada entrada;
+    private EntradaItem entrada;
     private DoacaoOuTransferencia doacaoTransferencia;
 
-    public EntradaDoacaoTransferencia(Entrada entrada, DoacaoOuTransferencia doacaoTransferencia) {
+    public EntradaDoacaoTransferencia(EntradaItem entrada, DoacaoOuTransferencia doacaoTransferencia) {
         this.entrada = entrada;
         this.doacaoTransferencia = doacaoTransferencia;
     }
 
-    public EntradaDoacaoTransferencia(int id, Entrada entrada, DoacaoOuTransferencia doacaoTransferencia) {
+    public EntradaDoacaoTransferencia(int id, EntradaItem entrada, DoacaoOuTransferencia doacaoTransferencia) {
         this.id = id;
         this.entrada = entrada;
         this.doacaoTransferencia = doacaoTransferencia;
@@ -29,11 +29,11 @@ public class EntradaDoacaoTransferencia {
         this.id = id;
     }
 
-    public Entrada getEntrada() {
+    public EntradaItem getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Entrada entrada) {
+    public void setEntrada(EntradaItem entrada) {
         this.entrada = entrada;
     }
 

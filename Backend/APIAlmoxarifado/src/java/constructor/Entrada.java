@@ -1,42 +1,34 @@
 package constructor;
-/**
- *
- * @author Barbara
- */
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+
 
 public class Entrada {
-
+    
     private int id;
-
-    private Produto produto;
-    private double qtd;
     private Timestamp data;
-    private Timestamp validade;
-    private String lote;
     private String nfNumero;
-    private int considerarValorSequencia;
+    private int origem;
+    private String observacao;
+    
+    private ArrayList<EntradaItem> itens = new ArrayList<>();
 
-    public Entrada(Produto produto, double qtd, Timestamp data, Timestamp validade, String lote, String nfNumero, int considerarValorSequencia) {
-        this.produto = produto;
-        this.qtd = qtd;
+    public Entrada(int id, Timestamp data, String nfNumero, int origem, String observacao, ArrayList<EntradaItem> itens) {
+        this.id = id;
         this.data = data;
-        this.validade = validade;
-        this.lote = lote;
         this.nfNumero = nfNumero;
-        this.considerarValorSequencia = considerarValorSequencia;
+        this.origem = origem;
+        this.observacao = observacao;
+        this.itens = itens;
     }
 
-    public Entrada(int id, Produto produto, double qtd, Timestamp data, Timestamp validade, String lote, String nfNumero, int considerarValorSequencia) {
-        this.id = id;
-        this.produto = produto;
-        this.qtd = qtd;
+    public Entrada(Timestamp data, String nfNumero, int origem, String observacao, ArrayList<EntradaItem> itens) {
         this.data = data;
-        this.validade = validade;
-        this.lote = lote;
         this.nfNumero = nfNumero;
-        this.considerarValorSequencia = considerarValorSequencia;
+        this.origem = origem;
+        this.observacao = observacao;
+        this.itens = itens;
     }
 
     public int getId() {
@@ -47,44 +39,12 @@ public class Entrada {
         this.id = id;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public double getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(double qtd) {
-        this.qtd = qtd;
-    }
-
     public Timestamp getData() {
         return data;
     }
 
     public void setData(Timestamp data) {
         this.data = data;
-    }
-
-    public Timestamp getValidade() {
-        return validade;
-    }
-
-    public void setValidade(Timestamp validade) {
-        this.validade = validade;
-    }
-
-    public String getLote() {
-        return lote;
-    }
-
-    public void setLote(String lote) {
-        this.lote = lote;
     }
 
     public String getNfNumero() {
@@ -95,17 +55,33 @@ public class Entrada {
         this.nfNumero = nfNumero;
     }
 
-    public int getConsiderarValorSequencia() {
-        return considerarValorSequencia;
+    public int getOrigem() {
+        return origem;
     }
 
-    public void setConsiderarValorSequencia(int considerarValorSequencia) {
-        this.considerarValorSequencia = considerarValorSequencia;
+    public void setOrigem(int origem) {
+        this.origem = origem;
+    }
+
+    public ArrayList<EntradaItem> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<EntradaItem> itens) {
+        this.itens = itens;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     @Override
     public String toString() {
-        return "Entrada{" + "id=" + id + ", produto=" + produto + ", qtd=" + qtd + ", data=" + data + ", validade=" + validade + ", lote=" + lote + ", nfNumero=" + nfNumero + ", considerarValorSequencia=" + considerarValorSequencia + '}';
+        return "Entrada{" + "id=" + id + ", data=" + data + ", nfNumero=" + nfNumero + ", origem=" + origem + ", observacao=" + observacao + ", itens=" + itens + '}';
     }
-
+    
 }

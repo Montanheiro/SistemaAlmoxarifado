@@ -1,7 +1,7 @@
 package constructor;
 
 import java.sql.Timestamp;
-
+import java.util.ArrayList;
 
 public class Empenho {
 
@@ -11,22 +11,26 @@ public class Empenho {
     private String numero;
     private String observacao;
     private double valorTotal;
+    
+    private ArrayList<ItemEmpenho> itens = new ArrayList<>();
 
-    public Empenho(Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal) {
-        this.fornecedor = fornecedor;
-        this.emissao = emissao;
-        this.numero = numero;
-        this.observacao = observacao;
-        this.valorTotal = valorTotal;
-    }
-
-    public Empenho(int id, Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal) {
+    public Empenho(int id, Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal, ArrayList<ItemEmpenho> itens) {
         this.id = id;
         this.fornecedor = fornecedor;
         this.emissao = emissao;
         this.numero = numero;
         this.observacao = observacao;
         this.valorTotal = valorTotal;
+        this.itens = itens;
+    }
+
+    public Empenho(Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal, ArrayList<ItemEmpenho> itens) {
+        this.fornecedor = fornecedor;
+        this.emissao = emissao;
+        this.numero = numero;
+        this.observacao = observacao;
+        this.valorTotal = valorTotal;
+        this.itens = itens;
     }
 
     public int getId() {
@@ -77,9 +81,19 @@ public class Empenho {
         this.valorTotal = valorTotal;
     }
 
+    public ArrayList<ItemEmpenho> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<ItemEmpenho> itens) {
+        this.itens = itens;
+    }
+
     @Override
     public String toString() {
-        return "Empenho{" + "id=" + id + ", fornecedor=" + fornecedor + ", emissao=" + emissao + ", numero=" + numero + ", observacao=" + observacao + ", valorTotal=" + valorTotal + '}';
+        return "Empenho{" + "id=" + id + ", fornecedor=" + fornecedor + ", emissao=" + emissao 
+                + ", numero=" + numero + ", observacao=" + observacao + ", valorTotal=" + valorTotal 
+                + ", item=" + itens + '}';
     }
 
 }

@@ -26,7 +26,7 @@ public class ProdutoDAOTest {
     public void testCreate() throws Exception {
         System.out.println("create");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto obj = new Produto("Caneta preta", unidade);
+        Produto obj = new Produto("Caneta preta", unidade, 23.00, 2.0);
         Produto expResult = obj;
         Produto result = ProdutoDAO.create(obj);
         assertEquals(expResult, result);
@@ -48,9 +48,9 @@ public class ProdutoDAOTest {
     public void testUpdate() throws Exception {
         System.out.println("update");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto obj1 = new Produto(1, "Canetão Azul", unidade);
+        Produto obj1 = new Produto(1, "Canetão Azul", unidade, 23.00, 2.0);
         ProdutoDAO.update(obj1);
-        Produto obj2 = new Produto(1, "Quadro Negro", unidade);
+        Produto obj2 = new Produto(1, "Quadro Negro", unidade, 23.00, 2.0);
         ProdutoDAO.update(obj2);
         ProdutoDAO.retreave(1);        
     }
@@ -59,7 +59,7 @@ public class ProdutoDAOTest {
     public void testDelete() throws Exception {
         System.out.println("delete");  
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto obj = new Produto("Placa de trânsito", unidade);
+        Produto obj = new Produto("Placa de trânsito", unidade, 23.00, 2.0);
         ProdutoDAO.create(obj);
         ProdutoDAO.delete(obj);
     }

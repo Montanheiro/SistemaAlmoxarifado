@@ -3,32 +3,32 @@ package constructor;
 public class ItemEmpenho {
 
     private int id;
-    private Empenho empenho;
+    private int empenhoId;
     private NaturezaDespesa naturezaDespesa;
-
+    private Produto produto;
     private int sequencia;
     private double qtd;
-    private double valorSequencia;
+    private double valorUnitario;
     private String itemProcesso;
-
-    public ItemEmpenho(int id, Empenho empenho, NaturezaDespesa naturezaDespesa,
-            int sequencia, double qtd, double valorSequencia, String itemProcesso) {
+    
+    public ItemEmpenho(int id, int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
         this.id = id;
-        this.empenho = empenho;
+        this.empenhoId = empenho;
         this.naturezaDespesa = naturezaDespesa;
+        this.produto = produto;
         this.sequencia = sequencia;
         this.qtd = qtd;
-        this.valorSequencia = valorSequencia;
+        this.valorUnitario = valorUnitario;
         this.itemProcesso = itemProcesso;
     }
 
-    public ItemEmpenho(Empenho empenho, NaturezaDespesa naturezaDespesa,
-            int sequencia, double qtd, double valorSequencia, String itemProcesso) {
-        this.empenho = empenho;
+    public ItemEmpenho(int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
+        this.empenhoId = empenho;
         this.naturezaDespesa = naturezaDespesa;
+        this.produto = produto;
         this.sequencia = sequencia;
         this.qtd = qtd;
-        this.valorSequencia = valorSequencia;
+        this.valorUnitario = valorUnitario;
         this.itemProcesso = itemProcesso;
     }
 
@@ -40,12 +40,12 @@ public class ItemEmpenho {
         this.id = id;
     }
 
-    public Empenho getEmpenho() {
-        return empenho;
+    public int getEmpenhoId() {
+        return empenhoId;
     }
 
-    public void setEmpenho(Empenho empenho) {
-        this.empenho = empenho;
+    public void setEmpenhoId(int empenhoId) {
+        this.empenhoId = empenhoId;
     }
 
     public NaturezaDespesa getNaturezaDespesa() {
@@ -54,6 +54,14 @@ public class ItemEmpenho {
 
     public void setNaturezaDespesa(NaturezaDespesa naturezaDespesa) {
         this.naturezaDespesa = naturezaDespesa;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public int getSequencia() {
@@ -72,12 +80,12 @@ public class ItemEmpenho {
         this.qtd = qtd;
     }
 
-    public double getValorSequencia() {
-        return valorSequencia;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValorSequencia(double valorSequencia) {
-        this.valorSequencia = valorSequencia;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
     public String getItemProcesso() {
@@ -90,9 +98,10 @@ public class ItemEmpenho {
 
     @Override
     public String toString() {
-        return "ItemEmpenho{" + "id=" + id + ", empenho=" + empenho + ", naturezaDespesa=" 
-                + naturezaDespesa + ", sequencia=" + sequencia + ", qtd=" + qtd 
-                + ", valorSequencia=" + valorSequencia + ", itemProcesso=" + itemProcesso + '}';
+        return "ItemEmpenho{" + "id=" + id + ", empenho=" + empenhoId + ", naturezaDespesa=" 
+                + naturezaDespesa + ", produto=" + produto + ", sequencia=" + sequencia 
+                + ", qtd=" + qtd + ", valorUnitario=" + valorUnitario 
+                + ", itemProcesso=" + itemProcesso + '}';
     }
 
 }

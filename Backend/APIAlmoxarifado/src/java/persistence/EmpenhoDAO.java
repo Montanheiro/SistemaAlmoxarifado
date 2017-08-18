@@ -1,6 +1,7 @@
 package persistence;
 
 import constructor.Empenho;
+import constructor.ItemEmpenho;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,14 @@ public class EmpenhoDAO {
         rs.next();
         int key = rs.getInt(1);
         empenho.setId(key);
+        
+        if(empenho.getItens() != null){
+            for (ItemEmpenho item : empenho.getItens()) {
+                item.setEmpenhoId(key);
+                ItemEmpenhoDAO.create(item);
+            }
+        }
+        
         return empenho;
     }
 
@@ -39,12 +48,14 @@ public class EmpenhoDAO {
         String sql = "SELECT * FROM empenhos where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
+        ArrayList<ItemEmpenho> itens = ItemEmpenhoDAO.retreaveByEmpenho(id);
         return new Empenho(id,
                 FornecedorDAO.retreave(rs.getInt("fornecedor")),
                 rs.getTimestamp("emissao"),
                 rs.getString("numero"),
                 rs.getString("observacao"),
-                rs.getDouble("valor_total"));
+                rs.getDouble("valor_total"),
+                itens);
 
     }
 
@@ -56,13 +67,15 @@ public class EmpenhoDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Empenho> empenho = new ArrayList<>();
         while (rs.next()) {
+            ArrayList<ItemEmpenho> itens = ItemEmpenhoDAO.retreaveByEmpenho(rs.getInt("id"));
             empenho.add(new Empenho(
                     rs.getInt("id"),
                     FornecedorDAO.retreave(rs.getInt("fornecedor")),
                     rs.getTimestamp("emissao"),
                     rs.getString("numero"),
                     rs.getString("observacao"),
-                    rs.getDouble("valor_total")));
+                    rs.getDouble("valor_total"),
+                    itens));
         }
         rs.next();
         return empenho;

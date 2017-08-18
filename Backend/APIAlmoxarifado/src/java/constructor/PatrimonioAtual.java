@@ -9,20 +9,20 @@ package constructor;
  *
  * @author lucas
  */
-public class EstoqueBruto {
+public class PatrimonioAtual {
     
     private int id;
     private Produto produto;
     private double qtd;
     private double valorTotal;
 
-    public EstoqueBruto(Produto produto, double qtd, double valorTotal) {
+    public PatrimonioAtual(Produto produto, double qtd, double valorTotal) {
         this.produto = produto;
         this.qtd = qtd;
         this.valorTotal = valorTotal;
     }
 
-    public EstoqueBruto(int id, Produto produto, double qtd, double valorTotal) {
+    public PatrimonioAtual(int id, Produto produto, double qtd, double valorTotal) {
         this.id = id;
         this.produto = produto;
         this.qtd = qtd;

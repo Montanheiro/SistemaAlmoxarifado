@@ -8,15 +8,15 @@ public class EntradaItemEmpenho {
     
     private int id;
     private ItemEmpenho itemEmpenho;
-    private Entrada entrada;
+    private EntradaItem entrada;
 
-    public EntradaItemEmpenho(int id, ItemEmpenho itemEmpenho, Entrada entrada) {
+    public EntradaItemEmpenho(int id, ItemEmpenho itemEmpenho, EntradaItem entrada) {
         this.id = id;
         this.itemEmpenho = itemEmpenho;
         this.entrada = entrada;
     }
 
-    public EntradaItemEmpenho(ItemEmpenho itemEmpenho, Entrada entrada) {
+    public EntradaItemEmpenho(ItemEmpenho itemEmpenho, EntradaItem entrada) {
         this.itemEmpenho = itemEmpenho;
         this.entrada = entrada;
     }
@@ -37,11 +37,11 @@ public class EntradaItemEmpenho {
         this.itemEmpenho = itemEmpenho;
     }
 
-    public Entrada getEntrada() {
+    public EntradaItem getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Entrada entrada) {
+    public void setEntrada(EntradaItem entrada) {
         this.entrada = entrada;
     }
 

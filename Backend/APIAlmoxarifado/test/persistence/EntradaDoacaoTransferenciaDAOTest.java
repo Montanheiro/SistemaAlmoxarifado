@@ -1,7 +1,7 @@
 package persistence;
 
 import constructor.DoacaoOuTransferencia;
-import constructor.Entrada;
+import constructor.EntradaItem;
 import constructor.EntradaDoacaoTransferencia;
 import constructor.Produto;
 import constructor.Tipo;
@@ -26,8 +26,8 @@ public class EntradaDoacaoTransferenciaDAOTest {
     public void testCreate() throws Exception {
         System.out.println("create");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada entrada = EntradaDAO.create(new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        EntradaItem entrada = EntradaItemDAO.create(new EntradaItem(produto, 23, new Timestamp((System.currentTimeMillis())), 
                 new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0));
         Tipo tipo = TipoDAO.create(new Tipo("Doação Pessoa Juridica"));
         DoacaoOuTransferencia dout = DoacaoOuTransferenciaDAO.create(new DoacaoOuTransferencia(tipo, "Embrapa"));
@@ -41,21 +41,21 @@ public class EntradaDoacaoTransferenciaDAOTest {
     @Test
     public void testRetreave() throws Exception {
         System.out.println("retreave");
-        EntradaDAO.retreave(1);
+        EntradaItemDAO.retreave(1);
     }
 
     @Test
     public void testRetreaveAll() throws Exception {
         System.out.println("retreaveAll");
-        EntradaDAO.retreaveAll();
+        EntradaItemDAO.retreaveAll();
     }
 
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade));
-        Entrada entrada = EntradaDAO.create(new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        EntradaItem entrada = EntradaItemDAO.create(new EntradaItem(produto, 23, new Timestamp((System.currentTimeMillis())), 
                 new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0));
         Tipo tipo = TipoDAO.create(new Tipo("Doação Pessoa Juridica"));
         DoacaoOuTransferencia dout = DoacaoOuTransferenciaDAO.create(new DoacaoOuTransferencia(tipo, "Embrapa"));
@@ -71,8 +71,8 @@ public class EntradaDoacaoTransferenciaDAOTest {
     public void testDelete() throws Exception {
         System.out.println("delete");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Placa de trânsito", unidade));
-        Entrada entrada = EntradaDAO.create(new Entrada(produto, 23, new Timestamp((System.currentTimeMillis())), 
+        Produto produto = ProdutoDAO.create(new Produto("Placa de trânsito", unidade, 23.00, 2.0));
+        EntradaItem entrada = EntradaItemDAO.create(new EntradaItem(produto, 23, new Timestamp((System.currentTimeMillis())), 
                 new Timestamp((System.currentTimeMillis())), "8fs89", "002940", 0));
         Tipo tipo = TipoDAO.create(new Tipo("Doação Pessoa Juridica"));
         DoacaoOuTransferencia dout = DoacaoOuTransferenciaDAO.create(new DoacaoOuTransferencia(tipo, "Embrapa"));
