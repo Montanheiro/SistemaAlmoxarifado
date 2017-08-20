@@ -1,6 +1,6 @@
 package persistence;
 
-import constructor.ProdutoRequisicao;
+import constructor.RequisicaoProduto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author Barbara
  */
-public class ProdutoRequisicaoDAO {
+public class RequisicaoProdutoDAO {
 
-    private ProdutoRequisicaoDAO() {
+    private RequisicaoProdutoDAO() {
     }
 
-    public static ProdutoRequisicao create(ProdutoRequisicao pr) throws SQLException {
+    public static RequisicaoProduto create(RequisicaoProduto pr) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -32,28 +32,28 @@ public class ProdutoRequisicaoDAO {
         return pr;
     }
 
-    public static ProdutoRequisicao retreave(int id) throws SQLException {
+    public static RequisicaoProduto retreave(int id) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM produtos_requisicoes where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        return new ProdutoRequisicao(id,
+        return new RequisicaoProduto(id,
                 rs.getInt("requisicao"),
                 ProdutoDAO.retreave(rs.getInt("produto")),
                 rs.getDouble("quantidade"));
     }
 
-    public static ArrayList<ProdutoRequisicao> retreaveByRequisicao(int requisicaoId) throws SQLException {
+    public static ArrayList<RequisicaoProduto> retreaveByRequisicao(int requisicaoId) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM produtos_requisicoes WHERE requisicao = " + requisicaoId;
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<ProdutoRequisicao> pr = new ArrayList<>();
+        ArrayList<RequisicaoProduto> pr = new ArrayList<>();
         while (rs.next()) {
-            pr.add(new ProdutoRequisicao(
+            pr.add(new RequisicaoProduto(
                     rs.getInt("id"),
                     rs.getInt("requisicao"),
                     ProdutoDAO.retreave(rs.getInt("produto")),
@@ -63,15 +63,15 @@ public class ProdutoRequisicaoDAO {
         return pr;
     }
     
-    public static ArrayList<ProdutoRequisicao> retreaveAll() throws SQLException {
+    public static ArrayList<RequisicaoProduto> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM produtos_requisicoes";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<ProdutoRequisicao> pr = new ArrayList<>();
+        ArrayList<RequisicaoProduto> pr = new ArrayList<>();
         while (rs.next()) {
-            pr.add(new ProdutoRequisicao(
+            pr.add(new RequisicaoProduto(
                     rs.getInt("id"),
                     rs.getInt("requisicao"),
                     ProdutoDAO.retreave(rs.getInt("produto")),
@@ -81,7 +81,7 @@ public class ProdutoRequisicaoDAO {
         return pr;
     }
 
-    public static void delete(ProdutoRequisicao pr) throws SQLException {
+    public static void delete(RequisicaoProduto pr) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
@@ -90,7 +90,7 @@ public class ProdutoRequisicaoDAO {
         stm.execute(sql);
     }
 
-    public static void update(ProdutoRequisicao pr) throws SQLException {
+    public static void update(RequisicaoProduto pr) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();

@@ -12,9 +12,9 @@ public class Empenho {
     private String observacao;
     private double valorTotal;
     
-    private ArrayList<ItemEmpenho> itens = new ArrayList<>();
+    private ArrayList<EmpenhoItem> itens = new ArrayList<>();
 
-    public Empenho(int id, Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal, ArrayList<ItemEmpenho> itens) {
+    public Empenho(int id, Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal, ArrayList<EmpenhoItem> itens) {
         this.id = id;
         this.fornecedor = fornecedor;
         this.emissao = emissao;
@@ -24,7 +24,7 @@ public class Empenho {
         this.itens = itens;
     }
 
-    public Empenho(Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal, ArrayList<ItemEmpenho> itens) {
+    public Empenho(Fornecedor fornecedor, Timestamp emissao, String numero, String observacao, double valorTotal, ArrayList<EmpenhoItem> itens) {
         this.fornecedor = fornecedor;
         this.emissao = emissao;
         this.numero = numero;
@@ -81,11 +81,11 @@ public class Empenho {
         this.valorTotal = valorTotal;
     }
 
-    public ArrayList<ItemEmpenho> getItens() {
+    public ArrayList<EmpenhoItem> getItens() {
         return itens;
     }
 
-    public void setItens(ArrayList<ItemEmpenho> itens) {
+    public void setItens(ArrayList<EmpenhoItem> itens) {
         this.itens = itens;
     }
 

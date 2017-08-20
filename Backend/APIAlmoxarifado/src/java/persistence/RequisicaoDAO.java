@@ -1,6 +1,6 @@
 package persistence;
 
-import constructor.ProdutoRequisicao;
+import constructor.RequisicaoProduto;
 import constructor.Requisicao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,9 +32,9 @@ public class RequisicaoDAO {
         requisicao.setId(rs.getInt(1));
         
         if(requisicao.getItens() != null){
-            for (ProdutoRequisicao item : requisicao.getItens()) {
+            for (RequisicaoProduto item : requisicao.getItens()) {
                 item.setRequisicaoId(requisicao.getId());
-                ProdutoRequisicaoDAO.create(item);
+                RequisicaoProdutoDAO.create(item);
             }
         }
         
@@ -48,7 +48,7 @@ public class RequisicaoDAO {
         String sql = "SELECT * FROM requisicoes where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        ArrayList<ProdutoRequisicao> itens = ProdutoRequisicaoDAO.retreaveByRequisicao(id);
+        ArrayList<RequisicaoProduto> itens = RequisicaoProdutoDAO.retreaveByRequisicao(id);
         return new Requisicao(id,
                 ServidorDAO.retreave(rs.getInt("servidor")),
                 rs.getTimestamp("data"),
@@ -65,7 +65,7 @@ public class RequisicaoDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Requisicao> requisicao = new ArrayList<>();
         while (rs.next()) {
-            ArrayList<ProdutoRequisicao> itens = ProdutoRequisicaoDAO.retreaveByRequisicao(rs.getInt("id"));
+            ArrayList<RequisicaoProduto> itens = RequisicaoProdutoDAO.retreaveByRequisicao(rs.getInt("id"));
             requisicao.add(new Requisicao(
                     rs.getInt("id"),
                     ServidorDAO.retreave(rs.getInt("servidor")),
@@ -98,12 +98,12 @@ public class RequisicaoDAO {
                 + requisicao.getId();
         stm.execute(sql);      
         
-        for (ProdutoRequisicao item : requisicao.getItens()) {
+        for (RequisicaoProduto item : requisicao.getItens()) {
             if (item.getId() != 0) {
-                ProdutoRequisicaoDAO.update(item);
+                RequisicaoProdutoDAO.update(item);
             } else {
                 item.setRequisicaoId(requisicao.getId());
-                ProdutoRequisicaoDAO.create(item);
+                RequisicaoProdutoDAO.create(item);
             }
         }
     }

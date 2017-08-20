@@ -1,17 +1,17 @@
 package persistence;
 
-import constructor.ItemEmpenho;
+import constructor.EmpenhoItem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ItemEmpenhoDAO {
+public class EmpenhoItemDAO {
 
-    private ItemEmpenhoDAO() {
+    private EmpenhoItemDAO() {
     }
 
-    public static ItemEmpenho create(ItemEmpenho item) throws SQLException {
+    public static EmpenhoItem create(EmpenhoItem item) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql
                 = "INSERT INTO itens_empenho (`empenho`, `natureza_despesa`, `produto`,"
@@ -31,12 +31,12 @@ public class ItemEmpenhoDAO {
         return item;
     }
 
-    public static ItemEmpenho retreave(int id) throws SQLException {
+    public static EmpenhoItem retreave(int id) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql = "SELECT * FROM itens_empenho where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        return new ItemEmpenho(id,
+        return new EmpenhoItem(id,
                 rs.getInt("empenho"),
                 NaturezaDespesaDAO.retreave(rs.getInt("natureza_despesa")),
                 ProdutoDAO.retreave(rs.getInt("produto")),
@@ -47,15 +47,15 @@ public class ItemEmpenhoDAO {
 
     }
     
-    public static ArrayList<ItemEmpenho> retreaveByEmpenho(int empenhoId) throws SQLException {
+    public static ArrayList<EmpenhoItem> retreaveByEmpenho(int empenhoId) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql = "SELECT * FROM itens_empenho WHERE empenho = " + empenhoId;
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<ItemEmpenho> temp = new ArrayList<>();
+        ArrayList<EmpenhoItem> temp = new ArrayList<>();
         while (rs.next()) {
-            temp.add(new ItemEmpenho(
+            temp.add(new EmpenhoItem(
                     rs.getInt("id"),
                     rs.getInt("empenho"),
                     NaturezaDespesaDAO.retreave(rs.getInt("natureza_despesa")),
@@ -68,13 +68,13 @@ public class ItemEmpenhoDAO {
         return temp;
     }
 
-    public static ArrayList<ItemEmpenho> retreaveAll() throws SQLException {
+    public static ArrayList<EmpenhoItem> retreaveAll() throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql = "SELECT * FROM itens_empenho";
         ResultSet rs = stm.executeQuery(sql);
-        ArrayList<ItemEmpenho> pe = new ArrayList<>();
+        ArrayList<EmpenhoItem> pe = new ArrayList<>();
         while (rs.next()) {
-            pe.add(new ItemEmpenho(
+            pe.add(new EmpenhoItem(
                     rs.getInt("id"),
                     rs.getInt("empenho"),
                     NaturezaDespesaDAO.retreave(rs.getInt("natureza_despesa")),
@@ -88,13 +88,13 @@ public class ItemEmpenhoDAO {
         return pe;
     }
  
-    public static void delete(ItemEmpenho pe) throws SQLException {
+    public static void delete(EmpenhoItem pe) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql = "DELETE FROM itens_empenho WHERE `id`= " + pe.getId();
         stm.execute(sql);
     }
 
-    public static void update(ItemEmpenho pe) throws SQLException {
+    public static void update(EmpenhoItem pe) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql = "UPDATE itens_empenho SET "
                 + "`empenho` = '" + pe.getEmpenhoId()

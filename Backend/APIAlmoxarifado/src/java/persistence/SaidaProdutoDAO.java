@@ -36,7 +36,7 @@ public class SaidaProdutoDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new SaidaProduto(id,
-                ProdutoRequisicaoDAO.retreave(rs.getInt("produto_requisicao")),
+                RequisicaoProdutoDAO.retreave(rs.getInt("produto_requisicao")),
                 rs.getDouble("quantidade"),
                 rs.getTimestamp("data"));
     }
@@ -51,7 +51,7 @@ public class SaidaProdutoDAO {
         while (rs.next()) {
             saidaProduto.add(new SaidaProduto(
                     rs.getInt("id"),
-                ProdutoRequisicaoDAO.retreave(rs.getInt("produto_requisicao")),
+                RequisicaoProdutoDAO.retreave(rs.getInt("produto_requisicao")),
                 rs.getDouble("quantidade"),
                 rs.getTimestamp("data")));
         }

@@ -1,7 +1,7 @@
 package persistence;
 
 import constructor.Produto;
-import constructor.ProdutoRequisicao;
+import constructor.RequisicaoProduto;
 import constructor.Requisicao;
 import constructor.Servidor;
 import constructor.Setor;
@@ -31,8 +31,8 @@ public class RequisicaoDAOTest {
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
         Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-        ProdutoRequisicao item = new ProdutoRequisicao(produto, 35);
-        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
+        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
+        ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
         }};
         
@@ -63,8 +63,8 @@ public class RequisicaoDAOTest {
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
         Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-        ProdutoRequisicao item = new ProdutoRequisicao(produto, 35);
-        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
+        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
+        ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
         }};
         
@@ -85,7 +85,7 @@ public class RequisicaoDAOTest {
 //        
 //        Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
 //        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-//        ProdutoRequisicao item = new ProdutoRequisicao(produto, 35);
+//        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
 //        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
 //            add(item);
 //        }};

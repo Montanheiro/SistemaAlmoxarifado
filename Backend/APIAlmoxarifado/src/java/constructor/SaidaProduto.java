@@ -9,19 +9,19 @@ import java.sql.Timestamp;
 public class SaidaProduto {
 
     private int id;
-    private ProdutoRequisicao produtoRequisicao;
+    private RequisicaoProduto produtoRequisicao;
 
     private double qtd;
     private Timestamp data;
 
-    public SaidaProduto(int id, ProdutoRequisicao produtoRequisicao, double qtd, Timestamp data) {
+    public SaidaProduto(int id, RequisicaoProduto produtoRequisicao, double qtd, Timestamp data) {
         this.id = id;
         this.produtoRequisicao = produtoRequisicao;
         this.qtd = qtd;
         this.data = data;
     }
 
-    public SaidaProduto(ProdutoRequisicao produtoRequisicao, double qtd, Timestamp data) {
+    public SaidaProduto(RequisicaoProduto produtoRequisicao, double qtd, Timestamp data) {
         this.produtoRequisicao = produtoRequisicao;
         this.qtd = qtd;
         this.data = data;
@@ -43,11 +43,11 @@ public class SaidaProduto {
         this.qtd = qtd;
     }
 
-    public ProdutoRequisicao getProdutoRequisicao() {
+    public RequisicaoProduto getProdutoRequisicao() {
         return produtoRequisicao;
     }
 
-    public void setProdutoRequisicao(ProdutoRequisicao produtoRequisicao) {
+    public void setProdutoRequisicao(RequisicaoProduto produtoRequisicao) {
         this.produtoRequisicao = produtoRequisicao;
     }
 

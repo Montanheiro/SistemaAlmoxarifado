@@ -1,6 +1,6 @@
 package constructor;
 
-public class ItemEmpenho {
+public class EmpenhoItem {
 
     private int id;
     private int empenhoId;
@@ -11,7 +11,7 @@ public class ItemEmpenho {
     private double valorUnitario;
     private String itemProcesso;
     
-    public ItemEmpenho(int id, int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
+    public EmpenhoItem(int id, int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
         this.id = id;
         this.empenhoId = empenho;
         this.naturezaDespesa = naturezaDespesa;
@@ -22,7 +22,7 @@ public class ItemEmpenho {
         this.itemProcesso = itemProcesso;
     }
 
-//    public ItemEmpenho(int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
+//    public EmpenhoItem(int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
 //        this.empenhoId = empenho;
 //        this.naturezaDespesa = naturezaDespesa;
 //        this.produto = produto;
@@ -32,7 +32,7 @@ public class ItemEmpenho {
 //        this.itemProcesso = itemProcesso;
 //    }
     
-    public ItemEmpenho(NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
+    public EmpenhoItem(NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
         this.naturezaDespesa = naturezaDespesa;
         this.produto = produto;
         this.sequencia = sequencia;

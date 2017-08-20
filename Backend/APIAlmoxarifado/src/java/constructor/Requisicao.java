@@ -10,16 +10,16 @@ public class Requisicao {
     private Timestamp data;
     private String observacao;
     
-    private ArrayList<ProdutoRequisicao> itens = new ArrayList<>();
+    private ArrayList<RequisicaoProduto> itens = new ArrayList<>();
 
-    public Requisicao(Servidor servidor, Timestamp data, String observacao, ArrayList<ProdutoRequisicao> itens) {
+    public Requisicao(Servidor servidor, Timestamp data, String observacao, ArrayList<RequisicaoProduto> itens) {
         this.servidor = servidor;
         this.data = data;
         this.observacao = observacao;
         this.itens = itens;
     }
 
-    public Requisicao(int id, Servidor servidor, Timestamp data, String observacao, ArrayList<ProdutoRequisicao> itens) {
+    public Requisicao(int id, Servidor servidor, Timestamp data, String observacao, ArrayList<RequisicaoProduto> itens) {
         this.id = id;
         this.servidor = servidor;
         this.data = data;
@@ -59,11 +59,11 @@ public class Requisicao {
         this.observacao = observacao;
     }
 
-    public ArrayList<ProdutoRequisicao> getItens() {
+    public ArrayList<RequisicaoProduto> getItens() {
         return itens;
     }
 
-    public void setItens(ArrayList<ProdutoRequisicao> itens) {
+    public void setItens(ArrayList<RequisicaoProduto> itens) {
         this.itens = itens;
     }
 

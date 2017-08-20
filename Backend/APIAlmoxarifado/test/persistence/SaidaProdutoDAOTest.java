@@ -1,7 +1,7 @@
 package persistence;
 
 import constructor.Produto;
-import constructor.ProdutoRequisicao;
+import constructor.RequisicaoProduto;
 import constructor.Requisicao;
 import constructor.SaidaProduto;
 import constructor.Servidor;
@@ -25,8 +25,8 @@ public class SaidaProdutoDAOTest {
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
         Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-        ProdutoRequisicao item = new ProdutoRequisicao(produto, 35);
-        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
+        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
+        ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
         }};
         
@@ -44,13 +44,13 @@ public class SaidaProdutoDAOTest {
     @Test
     public void testRetreave() throws Exception {
         System.out.println("retreave");
-        ProdutoRequisicaoDAO.retreave(1);
+        RequisicaoProdutoDAO.retreave(1);
     }
 
     @Test
     public void testRetreaveAll() throws Exception {
         System.out.println("retreaveAll");
-        ProdutoRequisicaoDAO.retreaveAll();
+        RequisicaoProdutoDAO.retreaveAll();
     }
 
     @Test
@@ -61,8 +61,8 @@ public class SaidaProdutoDAOTest {
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
         Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-        ProdutoRequisicao item = new ProdutoRequisicao(produto, 35);
-        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
+        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
+        ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
         }};
         
@@ -87,8 +87,8 @@ public class SaidaProdutoDAOTest {
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
         Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-        ProdutoRequisicao item = new ProdutoRequisicao(produto, 35);
-        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
+        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
+        ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
         }};
         

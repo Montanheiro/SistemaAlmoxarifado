@@ -2,7 +2,7 @@ package persistence;
 
 import constructor.DoacaoOuTransferencia;
 import constructor.EntradaItem;
-import constructor.ItemEmpenho;
+import constructor.EmpenhoItem;
 import constructor.NaturezaDespesa;
 import constructor.Produto;
 import constructor.Tipo;
@@ -90,7 +90,7 @@ public class DoacaoOuTransferenciaDAOTest {
 //        produto = ProdutoDAO.create(produto);
 //        NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
 //        natureza = NaturezaDespesaDAO.create(natureza);
-//        ItemEmpenho item = new ItemEmpenho(natureza, produto, 1, 5, 0.0, "ufuu295728");
+//        EmpenhoItem item = new EmpenhoItem(natureza, produto, 1, 5, 0.0, "ufuu295728");
 //        ArrayList<ItemEmpenho> itens = new ArrayList<ItemEmpenho>() {{
 //            add(item);
 //        }};

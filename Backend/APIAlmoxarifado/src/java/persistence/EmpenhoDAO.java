@@ -1,7 +1,7 @@
 package persistence;
 
 import constructor.Empenho;
-import constructor.ItemEmpenho;
+import constructor.EmpenhoItem;
 import constructor.ProdutoFornecedor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,9 +32,9 @@ public class EmpenhoDAO {
         empenho.setId(key);
         
         if(empenho.getItens() != null){
-            for (ItemEmpenho item : empenho.getItens()) {
+            for (EmpenhoItem item : empenho.getItens()) {
                 item.setEmpenhoId(key);
-                ItemEmpenhoDAO.create(item);
+                EmpenhoItemDAO.create(item);
                 
                 if(ProdutoFornecedorDAO.checkNotExist(
                         empenho.getFornecedor().getId(), 
@@ -55,7 +55,7 @@ public class EmpenhoDAO {
         String sql = "SELECT * FROM empenhos where id = " + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        ArrayList<ItemEmpenho> itens = ItemEmpenhoDAO.retreaveByEmpenho(id);
+        ArrayList<EmpenhoItem> itens = EmpenhoItemDAO.retreaveByEmpenho(id);
         return new Empenho(id,
                 FornecedorDAO.retreave(rs.getInt("fornecedor")),
                 rs.getTimestamp("emissao"),
@@ -74,7 +74,7 @@ public class EmpenhoDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Empenho> empenho = new ArrayList<>();
         while (rs.next()) {
-            ArrayList<ItemEmpenho> itens = ItemEmpenhoDAO.retreaveByEmpenho(rs.getInt("id"));
+            ArrayList<EmpenhoItem> itens = EmpenhoItemDAO.retreaveByEmpenho(rs.getInt("id"));
             empenho.add(new Empenho(
                     rs.getInt("id"),
                     FornecedorDAO.retreave(rs.getInt("fornecedor")),
@@ -111,12 +111,12 @@ public class EmpenhoDAO {
                 + empenho.getId();
         stm.execute(sql);
         
-        for (ItemEmpenho item : empenho.getItens()) {
+        for (EmpenhoItem item : empenho.getItens()) {
             if (item.getId() != 0) {
-                ItemEmpenhoDAO.update(item);
+                EmpenhoItemDAO.update(item);
             } else {
                 item.setEmpenhoId(empenho.getId());
-                ItemEmpenhoDAO.create(item);
+                EmpenhoItemDAO.create(item);
             }
         }
     }

@@ -9,7 +9,7 @@ import constructor.Contato;
 import constructor.Endereco;
 import constructor.Empenho;
 import constructor.Fornecedor;
-import constructor.ItemEmpenho;
+import constructor.EmpenhoItem;
 import constructor.NaturezaDespesa;
 import constructor.Produto;
 import constructor.Unidade;
@@ -51,8 +51,8 @@ public class EmpenhoDAOTest {
         produto = ProdutoDAO.create(produto);
         NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
         natureza = NaturezaDespesaDAO.create(natureza);
-        ItemEmpenho item = new ItemEmpenho(natureza, produto, 1, 5, 0.0, "ufuu295728");
-        ArrayList<ItemEmpenho> itens = new ArrayList<ItemEmpenho>() {{
+        EmpenhoItem item = new EmpenhoItem(natureza, produto, 1, 5, 0.0, "ufuu295728");
+        ArrayList<EmpenhoItem> itens = new ArrayList<EmpenhoItem>() {{
             add(item);
         }};
         
@@ -96,8 +96,8 @@ public class EmpenhoDAOTest {
         ProdutoDAO.create(produto);
         NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
         NaturezaDespesaDAO.create(natureza);
-        ItemEmpenho item = new ItemEmpenho(natureza, produto, 1, 5, 0.0, "uhsakbjfaskjbfk");
-        ArrayList<ItemEmpenho> itens = new ArrayList<ItemEmpenho>() {{
+        EmpenhoItem item = new EmpenhoItem(natureza, produto, 1, 5, 0.0, "uhsakbjfaskjbfk");
+        ArrayList<EmpenhoItem> itens = new ArrayList<EmpenhoItem>() {{
             add(item);
         }};
   
@@ -131,7 +131,7 @@ public class EmpenhoDAOTest {
 //        produto = ProdutoDAO.create(produto);
 //        NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
 //        natureza = NaturezaDespesaDAO.create(natureza);
-//        ItemEmpenho item = new ItemEmpenho(natureza, produto, 0, 0, 0, "ufuu295728");
+//        EmpenhoItem item = new EmpenhoItem(natureza, produto, 0, 0, 0, "ufuu295728");
 //        ArrayList<ItemEmpenho> itens = new ArrayList<ItemEmpenho>() {{
 //            add(item);
 //        }};
