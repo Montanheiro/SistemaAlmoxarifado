@@ -8,10 +8,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-/**
- *
- * @author lucas
- */
 public class DoacaoOuTransferenciaDAO {
 
     private DoacaoOuTransferenciaDAO() {

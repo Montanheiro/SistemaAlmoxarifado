@@ -30,7 +30,7 @@ public class RequisicaoDAOTest {
         Servidor servidor = ServidorDAO.create(new Servidor(setor, "Jucelino", "2858935", "Presidente"));
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00));
         RequisicaoProduto item = new RequisicaoProduto(produto, 35);
         ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
@@ -62,7 +62,7 @@ public class RequisicaoDAOTest {
         Servidor servidor = ServidorDAO.create(new Servidor(setor, "Jucelino", "2858935", "Presidente"));
         
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00));
         RequisicaoProduto item = new RequisicaoProduto(produto, 35);
         ArrayList<RequisicaoProduto> itens = new ArrayList<RequisicaoProduto>() {{
             add(item);
@@ -84,7 +84,7 @@ public class RequisicaoDAOTest {
 //        Servidor servidor = ServidorDAO.create(new Servidor(setor, "Jucelino", "2858935", "Presidente"));
 //        
 //        Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-//        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+//        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00));
 //        RequisicaoProduto item = new RequisicaoProduto(produto, 35);
 //        ArrayList<ProdutoRequisicao> itens = new ArrayList<ProdutoRequisicao>() {{
 //            add(item);

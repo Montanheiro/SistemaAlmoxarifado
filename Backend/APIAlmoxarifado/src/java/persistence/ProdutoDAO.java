@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Barbara
- */
 public class ProdutoDAO {
 
     private ProdutoDAO() {
@@ -21,10 +17,9 @@ public class ProdutoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql
-                = "INSERT INTO produtos (`descricao`, `unidade`, `estoque`, `estoque_minimo`) VALUES ('"
+                = "INSERT INTO produtos (`descricao`, `unidade`, `estoque_minimo`) VALUES ('"
                 + produto.getDescricao() + "','"
                 + produto.getUnidade().getId() + "','"
-                + produto.getEstoque() + "','"
                 + produto.getEstoque_minimo() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
@@ -47,6 +42,7 @@ public class ProdutoDAO {
                 rs.getString("descricao"),
                 un,
                 rs.getDouble("estoque"),
+                rs.getDouble("valor_total"),
                 rs.getDouble("estoque_minimo"));
 
     }
@@ -65,6 +61,7 @@ public class ProdutoDAO {
                     rs.getString("descricao"),
                     un,
                     rs.getDouble("estoque"),
+                    rs.getDouble("valor_total"),
                     rs.getDouble("estoque_minimo")));
         }
         rs.next();
@@ -87,11 +84,22 @@ public class ProdutoDAO {
         String sql = "UPDATE produtos SET "
                 + "`descricao`='" + produto.getDescricao()
                 + "', `unidade`= '" + produto.getUnidade().getId()
-                + "', `estoque`= '" + produto.getEstoque()
                 + "', `estoque_minimo`= '" + produto.getEstoque_minimo()
                 + "' WHERE `id`= "
                 + produto.getId();
         stm.execute(sql);
+    }
+    
+    public static void updateEstoque(Produto produto, double quantidade, double valorUnitario) throws SQLException {
+        Statement stm
+                = Database.createConnection().
+                        createStatement();
+        String sql = "UPDATE produtos SET "
+                + "estoque = estoque + " + quantidade
+                + ", valor_total = valor_total + " + valorUnitario*quantidade
+                + " WHERE id= " + produto.getId();
+        stm.execute(sql);
+
     }
 
 }

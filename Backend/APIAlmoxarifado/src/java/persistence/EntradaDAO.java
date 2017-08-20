@@ -34,7 +34,12 @@ public class EntradaDAO {
         if(entrada.getItens() != null){           
             for (EntradaItem item : entrada.getItens()) {
                 item.setEntradaId(key);
+                
+                if(entrada.getOrigem() == 2) item.setValor_unitario(0.00);
+                
                 EntradaItemDAO.create(item);
+                
+                ProdutoDAO.updateEstoque(item.getProduto(), item.getQtd(), (item.getValor_unitario()));
                 
                 if(entrada.getOrigem() == 1){
                    EmpenhoEntradaDAO.create(new EmpenhoEntrada(entrada.getEmpenhoId(), key));

@@ -40,7 +40,7 @@ public class EntradaDAOTest {
         
         Unidade un = new Unidade("Unidade", "un");
         un = UnidadeDAO.create(un);
-        Produto produto = new Produto("Arroz", un, 23.00, 2.0);
+        Produto produto = new Produto("Arroz", un, 23.00);
         produto = ProdutoDAO.create(produto);
         NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
         natureza = NaturezaDespesaDAO.create(natureza);
@@ -85,7 +85,7 @@ public class EntradaDAOTest {
         System.out.println("update");
         Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
         UnidadeDAO.create(unidade);
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
+        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 7.99));
         ProdutoDAO.create(produto);
         
         EntradaItem item = new EntradaItem(produto, 23.00, new Timestamp((System.currentTimeMillis())), 

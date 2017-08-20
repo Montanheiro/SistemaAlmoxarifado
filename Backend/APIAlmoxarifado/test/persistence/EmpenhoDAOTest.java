@@ -47,7 +47,7 @@ public class EmpenhoDAOTest {
         
         Unidade un = new Unidade("Unidade", "un");
         un = UnidadeDAO.create(un);
-        Produto produto = new Produto("Arroz", un, 23.00, 2.0);
+        Produto produto = new Produto("Arroz", un, 23.00);
         produto = ProdutoDAO.create(produto);
         NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
         natureza = NaturezaDespesaDAO.create(natureza);
@@ -92,7 +92,7 @@ public class EmpenhoDAOTest {
         
         Unidade un = new Unidade("Unidade", "un");
         UnidadeDAO.create(un);
-        Produto produto = new Produto("Arroz", un, 23.00, 2.0);
+        Produto produto = new Produto("Arroz", un, 23.00);
         ProdutoDAO.create(produto);
         NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
         NaturezaDespesaDAO.create(natureza);

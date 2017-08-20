@@ -2,8 +2,6 @@ package persistence;
 
 import constructor.DoacaoOuTransferencia;
 import constructor.EntradaItem;
-import constructor.EmpenhoItem;
-import constructor.NaturezaDespesa;
 import constructor.Produto;
 import constructor.Tipo;
 import constructor.Unidade;
@@ -27,10 +25,10 @@ public class DoacaoOuTransferenciaDAOTest {
         
         Unidade un = new Unidade("Unidade", "un");
         un = UnidadeDAO.create(un);
-        Produto produto = new Produto("Notebook", un, 0.00, 2.0);
+        Produto produto = new Produto("Notebook", un, 2.0);
         produto = ProdutoDAO.create(produto);
         EntradaItem item = new EntradaItem(produto, 23.00, new Timestamp((System.currentTimeMillis())), 
-                "lote8fs89", 30.00);
+                "lote8fs89", 0.00);
         
         ArrayList<EntradaItem> itens = new ArrayList<EntradaItem>() {{
             add(item);
@@ -61,7 +59,7 @@ public class DoacaoOuTransferenciaDAOTest {
         
         Unidade un = new Unidade("Unidade", "un");
         un = UnidadeDAO.create(un);
-        Produto produto = new Produto("Notebook", un, 0.00, 2.0);
+        Produto produto = new Produto("Notebook", un, 2.0);
         produto = ProdutoDAO.create(produto);
         EntradaItem item = new EntradaItem(produto, 23.00, new Timestamp((System.currentTimeMillis())), 
                 "lote8fs89", 30.00);

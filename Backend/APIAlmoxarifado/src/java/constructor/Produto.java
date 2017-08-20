@@ -6,20 +6,28 @@ public class Produto {
     private String descricao;
     private Unidade unidade;
     private Double estoque;
+    private Double valorTotal;
     private Double estoque_minimo;
 
-    public Produto(int id, String descricao, Unidade unidade, Double estoque, Double estoque_minimo) {
+    public Produto(int id, String descricao, Unidade unidade, Double estoque, Double valorTotal, Double estoque_minimo) {
         this.id = id;
         this.descricao = descricao;
         this.unidade = unidade;
         this.estoque = estoque;
+        this.valorTotal = valorTotal;
         this.estoque_minimo = estoque_minimo;
     }
 
-    public Produto(String descricao, Unidade unidade, Double estoque, Double estoque_minimo) {
+    public Produto(int id, String descricao, Unidade unidade, Double estoque_minimo) {
+        this.id = id;
         this.descricao = descricao;
         this.unidade = unidade;
-        this.estoque = estoque;
+        this.estoque_minimo = estoque_minimo;
+    }
+
+    public Produto(String descricao, Unidade unidade, Double estoque_minimo) {
+        this.descricao = descricao;
+        this.unidade = unidade;
         this.estoque_minimo = estoque_minimo;
     }
 
@@ -55,6 +63,14 @@ public class Produto {
         this.estoque = estoque;
     }
 
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
     public Double getEstoque_minimo() {
         return estoque_minimo;
     }
@@ -65,7 +81,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "id=" + id + ", descricao=" + descricao + ", unidade=" + unidade + ", estoque=" + estoque + ", estoque_minimo=" + estoque_minimo + '}';
+        return "Produto{" + "id=" + id + ", descricao=" + descricao + ", unidade=" + unidade + ", estoque=" + estoque + ", valorTotal=" + valorTotal + ", estoque_minimo=" + estoque_minimo + '}';
     }
 
 }
