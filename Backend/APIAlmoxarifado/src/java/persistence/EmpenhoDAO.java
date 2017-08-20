@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 public class EmpenhoDAO {
 
     private EmpenhoDAO() {
@@ -103,6 +102,15 @@ public class EmpenhoDAO {
                 + "' WHERE `id` = "
                 + empenho.getId();
         stm.execute(sql);
+        
+        for (ItemEmpenho item : empenho.getItens()) {
+            if (item.getId() != 0) {
+                ItemEmpenhoDAO.update(item);
+            } else {
+                item.setEmpenhoId(empenho.getId());
+                ItemEmpenhoDAO.create(item);
+            }
+        }
     }
 
 }

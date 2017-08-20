@@ -1,13 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistence;
 
+import constructor.Contato;
+import constructor.Empenho;
 import constructor.Endereco;
 import constructor.Entrada;
 import constructor.EntradaItem;
+import constructor.Fornecedor;
+import constructor.ItemEmpenho;
+import constructor.NaturezaDespesa;
 import constructor.Produto;
 import constructor.Unidade;
 import java.sql.Timestamp;
@@ -26,18 +26,42 @@ public class EntradaDAOTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Unidade unidade = UnidadeDAO.create(new Unidade("Metros", "mt"));
-        UnidadeDAO.create(unidade);
-        Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
-        ProdutoDAO.create(produto);
-        EntradaItem item = new EntradaItem(produto, 1, 23.00, new Timestamp((System.currentTimeMillis())), 
-                "lote8fs89", 1, 0.0);
         
-        ArrayList<EntradaItem> itens = new ArrayList<EntradaItem>() {{
+        Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
+        Contato contato = new Contato("nome", "telefone");        
+        ArrayList<Endereco> enderecos = new ArrayList<Endereco>() {{
+            add(end);
+        }};
+        ArrayList<Contato> contatos = new ArrayList<Contato>() {{
+            add(contato);
+        }};
+        Fornecedor fornecedor = new Fornecedor("razão", "fantasia", "cnpj", enderecos, contatos);
+        fornecedor = FornecedorDAO.create(fornecedor);
+        
+        Unidade un = new Unidade("Unidade", "un");
+        un = UnidadeDAO.create(un);
+        Produto produto = new Produto("Arroz", un, 23.00, 2.0);
+        produto = ProdutoDAO.create(produto);
+        NaturezaDespesa natureza = new NaturezaDespesa("3305039", "02", "Alimentos");
+        natureza = NaturezaDespesaDAO.create(natureza);
+        ItemEmpenho item = new ItemEmpenho(natureza, produto, 1, 5, 0.0, "ufuu295728");
+        ArrayList<ItemEmpenho> itens = new ArrayList<ItemEmpenho>() {{
             add(item);
         }};
         
-        Entrada obj = new Entrada(new Timestamp((System.currentTimeMillis())), "245", 2, "obs isufgsif", itens);
+        Empenho empenho = new Empenho(fornecedor, new Timestamp(System.currentTimeMillis()), "8375584", 
+                "observação bla bla bla bla bla bla", 12.2, itens);   
+        empenho = EmpenhoDAO.create(empenho);
+        
+        
+        EntradaItem itemEntrada = new EntradaItem(produto, 23.00, new Timestamp((System.currentTimeMillis())), 
+                "lote8fs89", 30.00);
+        
+        ArrayList<EntradaItem> itensEntrada = new ArrayList<EntradaItem>() {{
+            add(itemEntrada);
+        }};
+        
+        Entrada obj = new Entrada(new Timestamp((System.currentTimeMillis())), "245", 1, "obs isufgsif", itensEntrada, empenho.getId());
         
         Entrada expResult = obj;
         Entrada result = EntradaDAO.create(obj);
@@ -47,13 +71,13 @@ public class EntradaDAOTest {
     @Test
     public void testRetreave() throws Exception {
         System.out.println("retreave");
-        EntradaItemDAO.retreave(1);
+        EntradaDAO.retreave(1);
     }
 
     @Test
     public void testRetreaveAll() throws Exception {
         System.out.println("retreaveAll");
-        EntradaItemDAO.retreaveAll();
+        EntradaDAO.retreaveAll();
     }
 
     @Test
@@ -64,16 +88,16 @@ public class EntradaDAOTest {
         Produto produto = ProdutoDAO.create(new Produto("Caneta Azul", unidade, 23.00, 2.0));
         ProdutoDAO.create(produto);
         
-        EntradaItem item = new EntradaItem(produto, 1, 23.00, new Timestamp((System.currentTimeMillis())), 
-                "lote8fs89", 1, 0.0);
+        EntradaItem item = new EntradaItem(produto, 23.00, new Timestamp((System.currentTimeMillis())), 
+                "lote8fs89", 29.00);
         
         ArrayList<EntradaItem> itens = new ArrayList<EntradaItem>() {{
             add(item);
         }};
         
-        Entrada obj1 = new Entrada(1, new Timestamp((System.currentTimeMillis())), "245", 0, "fhehgjdjf", itens);
+        Entrada obj1 = new Entrada(1, new Timestamp((System.currentTimeMillis())), "245", 1, "fhehgjdjf", itens);
         EntradaDAO.update(obj1);
-        Entrada obj2 = new Entrada(1, new Timestamp((System.currentTimeMillis())), "6464", 6, "46yyif", itens);
+        Entrada obj2 = new Entrada(1, new Timestamp((System.currentTimeMillis())), "6464", 1, "46yyif", itens);
         EntradaDAO.update(obj2);
         
         EntradaDAO.retreave(1);        

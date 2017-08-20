@@ -14,20 +14,19 @@ public class EntradaItemDAO {
 
     private EntradaItemDAO() {
     }
-
+    
     public static EntradaItem create(EntradaItem entradaItem) throws SQLException {
         Statement stm
                 = Database.createConnection().
                         createStatement();
         String sql
                 = "INSERT INTO entrada_itens (`produto`, `entrada`, `quantidade`,"
-                + "`validade`, `lote`, `considerar_valorempenho`, `valor_unitario`) VALUES ('"
+                + "`validade`, `lote`, `valor_unitario`) VALUES ('"
                 + entradaItem.getProduto().getId() + "','"
                 + entradaItem.getEntradaId() + "','"
                 + entradaItem.getQtd() + "','"
                 + entradaItem.getValidade() + "','"
                 + entradaItem.getLote() + "','"
-                + entradaItem.getConsiderarValorEmpenho() + "','"
                 + entradaItem.getValor_unitario() + "')";
 
         stm.execute(sql, Statement.RETURN_GENERATED_KEYS);
@@ -51,7 +50,6 @@ public class EntradaItemDAO {
                 rs.getDouble("quantidade"),
                 rs.getTimestamp("validade"),
                 rs.getString("lote"),
-                rs.getInt("considerar_valorempenho"),
                 rs.getDouble("valor_unitario"));
     }
     
@@ -70,7 +68,6 @@ public class EntradaItemDAO {
                     rs.getDouble("quantidade"),
                     rs.getTimestamp("validade"),
                     rs.getString("lote"),
-                    rs.getInt("considerar_valorempenho"),
                     rs.getDouble("valor_unitario")));
         }
         rs.next();
@@ -92,7 +89,6 @@ public class EntradaItemDAO {
                     rs.getDouble("quantidade"),
                     rs.getTimestamp("validade"),
                     rs.getString("lote"),
-                    rs.getInt("considerar_valorempenho"),
                     rs.getDouble("valor_unitario")));
         }
         rs.next();
@@ -118,7 +114,6 @@ public class EntradaItemDAO {
                 + "', `quantidade` = '" + entradaItem.getQtd()
                 + "', `validade` = '" + entradaItem.getValidade()
                 + "', `lote` = '" + entradaItem.getLote()
-                + "', `considerar_valorempenho` = '" + entradaItem.getConsiderarValorEmpenho()
                 + "', `valor_unitario` = '" + entradaItem.getValor_unitario()
                 + "' WHERE `id` = "
                 + entradaItem.getId();

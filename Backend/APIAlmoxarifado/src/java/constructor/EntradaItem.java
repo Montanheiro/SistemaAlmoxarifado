@@ -10,27 +10,32 @@ public class EntradaItem {
     private double qtd;
     private Timestamp validade;
     private String lote;
-    private int considerarValorEmpenho;
     private Double valor_unitario;
 
-    public EntradaItem(int id, Produto produto, int entradaId, double qtd, Timestamp validade, String lote, int considerarValorEmpenho, Double valor_unitario) {
+    public EntradaItem(int id, Produto produto, int entradaId, double qtd, Timestamp validade, String lote, Double valor_unitario) {
         this.id = id;
         this.produto = produto;
         this.entradaId = entradaId;
         this.qtd = qtd;
         this.validade = validade;
         this.lote = lote;
-        this.considerarValorEmpenho = considerarValorEmpenho;
         this.valor_unitario = valor_unitario;
     }
 
-    public EntradaItem(Produto produto, int entradaId, double qtd, Timestamp validade, String lote, int considerarValorEmpenho, Double valor_unitario) {
+//    public EntradaItem(Produto produto, int entradaId, double qtd, Timestamp validade, String lote, Double valor_unitario) {
+//        this.produto = produto;
+//        this.entradaId = entradaId;
+//        this.qtd = qtd;
+//        this.validade = validade;
+//        this.lote = lote;
+//        this.valor_unitario = valor_unitario;
+//    }
+    
+    public EntradaItem(Produto produto, double qtd, Timestamp validade, String lote, Double valor_unitario) {
         this.produto = produto;
-        this.entradaId = entradaId;
         this.qtd = qtd;
         this.validade = validade;
         this.lote = lote;
-        this.considerarValorEmpenho = considerarValorEmpenho;
         this.valor_unitario = valor_unitario;
     }
 
@@ -82,14 +87,6 @@ public class EntradaItem {
         this.lote = lote;
     }
 
-    public int getConsiderarValorEmpenho() {
-        return considerarValorEmpenho;
-    }
-
-    public void setConsiderarValorEmpenho(int considerarValorEmpenho) {
-        this.considerarValorEmpenho = considerarValorEmpenho;
-    }
-
     public Double getValor_unitario() {
         return valor_unitario;
     }
@@ -100,7 +97,7 @@ public class EntradaItem {
 
     @Override
     public String toString() {
-        return "EntradaItem{" + "id=" + id + ", produto=" + produto + ", entradaId=" + entradaId + ", qtd=" + qtd + ", validade=" + validade + ", lote=" + lote + ", considerarValorEmpenho=" + considerarValorEmpenho + ", valor_unitario=" + valor_unitario + '}';
+        return "EntradaItem{" + "id=" + id + ", produto=" + produto + ", entradaId=" + entradaId + ", qtd=" + qtd + ", validade=" + validade + ", lote=" + lote + ", valor_unitario=" + valor_unitario + '}';
     }
 
 }

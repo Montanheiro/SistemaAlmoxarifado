@@ -14,10 +14,11 @@ public class ItemEmpenhoDAO {
     public static ItemEmpenho create(ItemEmpenho item) throws SQLException {
         Statement stm = Database.createConnection().createStatement();
         String sql
-                = "INSERT INTO itens_empenho (`empenho`, `natureza_despesa`,"
+                = "INSERT INTO itens_empenho (`empenho`, `natureza_despesa`, `produto`,"
                 + "`sequencia`, `quantidade`, `valor_unitario`, `item_processo`) VALUES ('"
                 + item.getEmpenhoId() + "','"
                 + item.getNaturezaDespesa().getId() + "','"
+                + item.getProduto().getId() + "','"
                 + item.getSequencia() + "','"
                 + item.getQtd() + "','"
                 + item.getValorUnitario() + "','"

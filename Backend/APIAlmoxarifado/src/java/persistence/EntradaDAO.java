@@ -1,5 +1,6 @@
 package persistence;
 
+import constructor.EmpenhoEntrada;
 import constructor.Entrada;
 import constructor.EntradaItem;
 import java.sql.ResultSet;
@@ -30,10 +31,14 @@ public class EntradaDAO {
         int key = rs.getInt(1);
         entrada.setId(key);
         
-        if(entrada.getItens() != null){
+        if(entrada.getItens() != null){           
             for (EntradaItem item : entrada.getItens()) {
                 item.setEntradaId(key);
                 EntradaItemDAO.create(item);
+                
+                if(entrada.getOrigem() == 1){
+                   EmpenhoEntradaDAO.create(new EmpenhoEntrada(entrada.getEmpenhoId(), key));
+                }              
             }
         }
         
@@ -91,20 +96,21 @@ public class EntradaDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE entradas SET "
-                + "`data` = '" + entrada.getData()
-                + "', `nf_numero` = '" + entrada.getNfNumero()
-                + "', `origem` = '" + entrada.getOrigem()
-                + "', `observacao` = '" + entrada.getObservacao()
+                + "`observacao` = '" + entrada.getObservacao()
                 + "' WHERE `id` = " + entrada.getId();
         stm.execute(sql);
         
-        for (EntradaItem itens : entrada.getItens()) {
-            if (itens.getId() != 0) {
-                EntradaItemDAO.update(itens);
-            } else {
-                itens.setEntradaId(entrada.getId());
-                EntradaItemDAO.create(itens);
-            }
-        }
+//        for (EntradaItem itens : entrada.getItens()) {
+//            if (itens.getId() != 0) {
+//                EntradaItemDAO.update(itens);
+//            } else {
+//                itens.setEntradaId(entrada.getId());
+//                EntradaItemDAO.create(itens);
+//                
+//                if(entrada.getOrigem() == 1){
+//                   EmpenhoEntradaDAO.create(new EmpenhoEntrada(entrada.getEmpenhoId(), entrada.getId()));
+//                }
+//            }
+//        }
     }
 }

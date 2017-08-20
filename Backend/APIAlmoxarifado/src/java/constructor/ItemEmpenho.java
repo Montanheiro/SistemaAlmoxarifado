@@ -22,8 +22,17 @@ public class ItemEmpenho {
         this.itemProcesso = itemProcesso;
     }
 
-    public ItemEmpenho(int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
-        this.empenhoId = empenho;
+//    public ItemEmpenho(int empenho, NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
+//        this.empenhoId = empenho;
+//        this.naturezaDespesa = naturezaDespesa;
+//        this.produto = produto;
+//        this.sequencia = sequencia;
+//        this.qtd = qtd;
+//        this.valorUnitario = valorUnitario;
+//        this.itemProcesso = itemProcesso;
+//    }
+    
+    public ItemEmpenho(NaturezaDespesa naturezaDespesa, Produto produto, int sequencia, double qtd, double valorUnitario, String itemProcesso) {
         this.naturezaDespesa = naturezaDespesa;
         this.produto = produto;
         this.sequencia = sequencia;
