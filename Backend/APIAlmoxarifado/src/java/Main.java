@@ -1,8 +1,14 @@
 
 import constructor.Aluno;
+import constructor.Contato;
+import constructor.Endereco;
+import constructor.Fornecedor;
 import constructor.LogErro;
+import constructor.Produto;
+import constructor.ProdutoFornecedor;
 import constructor.Servidor;
 import constructor.Setor;
+import constructor.Unidade;
 import constructor.Usuario;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -15,9 +21,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.core.Response;
 import persistence.AlunoDAO;
+import persistence.FornecedorDAO;
 import persistence.LogErroDAO;
+import persistence.ProdutoDAO;
+import persistence.ProdutoFornecedorDAO;
 import persistence.ServidorDAO;
 import persistence.SetorDAO;
+import persistence.UnidadeDAO;
 import persistence.UsuarioDAO;
 
 public class Main {
@@ -25,6 +35,27 @@ public class Main {
     public static void main(String[] args) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException{
         
              
+//        Endereco end = new Endereco("cidade", "bairro", "cep", "numero", "complemento", "logradouro", "estado");
+//        Contato contato = new Contato("nome", "telefone");        
+//        ArrayList<Endereco> enderecos = new ArrayList<Endereco>() {{
+//            add(end);
+//        }};
+//        ArrayList<Contato> contatos = new ArrayList<Contato>() {{
+//            add(contato);
+//        }};
+//        Fornecedor fornecedor = new Fornecedor("razão", "fantasia", "cnpj", enderecos, contatos);
+//        fornecedor = FornecedorDAO.create(fornecedor);
+//        
+//        Unidade un = new Unidade("Unidade", "un");
+//        un = UnidadeDAO.create(un);
+//        Produto produto = new Produto("Arroz", un, 23.00, 2.0);
+//        produto = ProdutoDAO.create(produto);     
+//        
+//        
+//        ProdutoFornecedor pf = new ProdutoFornecedor(fornecedor.getId(), produto.getId());
+//        System.out.println(ProdutoFornecedorDAO.create(pf));
+        
+//        System.out.println(ProdutoFornecedorDAO.checkNotExist(1, 1));
             // TESTES ADMIN
 
 //        Admin a = new Admin("lucas","lucas123", new Timestamp(System.currentTimeMillis()), 1, 1);

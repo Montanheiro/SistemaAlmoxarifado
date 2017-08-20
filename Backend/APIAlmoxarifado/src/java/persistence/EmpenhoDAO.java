@@ -2,6 +2,7 @@ package persistence;
 
 import constructor.Empenho;
 import constructor.ItemEmpenho;
+import constructor.ProdutoFornecedor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,6 +35,13 @@ public class EmpenhoDAO {
             for (ItemEmpenho item : empenho.getItens()) {
                 item.setEmpenhoId(key);
                 ItemEmpenhoDAO.create(item);
+                
+                if(ProdutoFornecedorDAO.checkNotExist(
+                        empenho.getFornecedor().getId(), 
+                        item.getProduto().getId()))
+                    ProdutoFornecedorDAO.create(
+                            new ProdutoFornecedor(empenho.getFornecedor().getId(), 
+                                    item.getProduto().getId()));
             }
         }
         
