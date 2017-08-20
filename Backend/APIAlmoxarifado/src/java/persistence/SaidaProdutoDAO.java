@@ -6,10 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Barbara
- */
 public class SaidaProdutoDAO {
 
     private SaidaProdutoDAO() {

@@ -21,7 +21,7 @@ public class ProdutoRequisicaoDAO {
                         createStatement();
         String sql
                 = "INSERT INTO produtos_requisicoes (`requisicao`, `produto`, `quantidade`) VALUES ('"
-                + pr.getRequisicao().getId() + "','"
+                + pr.getRequisicaoId() + "','"
                 + pr.getProduto().getId() + "','"
                 + pr.getQtd() + "')";
 
@@ -40,11 +40,29 @@ public class ProdutoRequisicaoDAO {
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
         return new ProdutoRequisicao(id,
-                RequisicaoDAO.retreave(rs.getInt("requisicao")),
+                rs.getInt("requisicao"),
                 ProdutoDAO.retreave(rs.getInt("produto")),
                 rs.getDouble("quantidade"));
     }
 
+    public static ArrayList<ProdutoRequisicao> retreaveByRequisicao(int requisicaoId) throws SQLException {
+        Statement stm
+                = Database.createConnection().
+                        createStatement();
+        String sql = "SELECT * FROM produtos_requisicoes WHERE requisicao = " + requisicaoId;
+        ResultSet rs = stm.executeQuery(sql);
+        ArrayList<ProdutoRequisicao> pr = new ArrayList<>();
+        while (rs.next()) {
+            pr.add(new ProdutoRequisicao(
+                    rs.getInt("id"),
+                    rs.getInt("requisicao"),
+                    ProdutoDAO.retreave(rs.getInt("produto")),
+                    rs.getDouble("quantidade")));
+        }
+        rs.next();
+        return pr;
+    }
+    
     public static ArrayList<ProdutoRequisicao> retreaveAll() throws SQLException {
         Statement stm
                 = Database.createConnection().
@@ -55,7 +73,7 @@ public class ProdutoRequisicaoDAO {
         while (rs.next()) {
             pr.add(new ProdutoRequisicao(
                     rs.getInt("id"),
-                    RequisicaoDAO.retreave(rs.getInt("requisicao")),
+                    rs.getInt("requisicao"),
                     ProdutoDAO.retreave(rs.getInt("produto")),
                     rs.getDouble("quantidade")));
         }
@@ -77,7 +95,7 @@ public class ProdutoRequisicaoDAO {
                 = Database.createConnection().
                         createStatement();
         String sql = "UPDATE produtos_requisicoes SET "
-                + "`requisicao`='" + pr.getRequisicao().getId()
+                + "`requisicao`='" + pr.getRequisicaoId()
                 + "', `produto`= '" + pr.getProduto().getId()
                 + "', `quantidade`= '" + pr.getQtd()
                 + "' WHERE `id`= "

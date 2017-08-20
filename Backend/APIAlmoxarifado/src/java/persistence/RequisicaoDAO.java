@@ -1,5 +1,6 @@
 package persistence;
 
+import constructor.ProdutoRequisicao;
 import constructor.Requisicao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,14 @@ public class RequisicaoDAO {
         ResultSet rs = stm.getGeneratedKeys();
         rs.next();
         requisicao.setId(rs.getInt(1));
+        
+        if(requisicao.getItens() != null){
+            for (ProdutoRequisicao item : requisicao.getItens()) {
+                item.setRequisicaoId(requisicao.getId());
+                ProdutoRequisicaoDAO.create(item);
+            }
+        }
+        
         return requisicao;
     }
 
@@ -39,10 +48,12 @@ public class RequisicaoDAO {
         String sql = "SELECT * FROM requisicoes where id =" + id;
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
+        ArrayList<ProdutoRequisicao> itens = ProdutoRequisicaoDAO.retreaveByRequisicao(id);
         return new Requisicao(id,
                 ServidorDAO.retreave(rs.getInt("servidor")),
                 rs.getTimestamp("data"),
-                rs.getString("observacao"));
+                rs.getString("observacao"),
+                itens);
 
     }
 
@@ -54,11 +65,13 @@ public class RequisicaoDAO {
         ResultSet rs = stm.executeQuery(sql);
         ArrayList<Requisicao> requisicao = new ArrayList<>();
         while (rs.next()) {
+            ArrayList<ProdutoRequisicao> itens = ProdutoRequisicaoDAO.retreaveByRequisicao(rs.getInt("id"));
             requisicao.add(new Requisicao(
                     rs.getInt("id"),
                     ServidorDAO.retreave(rs.getInt("servidor")),
                     rs.getTimestamp("data"),
-                    rs.getString("observacao")));
+                    rs.getString("observacao"),
+                    itens));
         }
         rs.next();
         return requisicao;
@@ -83,7 +96,16 @@ public class RequisicaoDAO {
                 + "', `observacao`= '" + requisicao.getObservacao()
                 + "' WHERE `id`= "
                 + requisicao.getId();
-        stm.execute(sql);
+        stm.execute(sql);      
+        
+        for (ProdutoRequisicao item : requisicao.getItens()) {
+            if (item.getId() != 0) {
+                ProdutoRequisicaoDAO.update(item);
+            } else {
+                item.setRequisicaoId(requisicao.getId());
+                ProdutoRequisicaoDAO.create(item);
+            }
+        }
     }
 
 }

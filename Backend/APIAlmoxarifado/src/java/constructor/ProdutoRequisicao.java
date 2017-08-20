@@ -1,25 +1,20 @@
 package constructor;
 
-/**
- *
- * @author Barbara
- */
 public class ProdutoRequisicao {
 
     private int id;
-    private Requisicao requisicao;
+    private int requisicaoId;
     private Produto produto;
     private double qtd;
 
-    public ProdutoRequisicao(Requisicao requisicao, Produto produto, double qtd) {
-        this.requisicao = requisicao;
+    public ProdutoRequisicao(int id, int requisicaoId, Produto produto, double qtd) {
+        this.id = id;
+        this.requisicaoId = requisicaoId;
         this.produto = produto;
         this.qtd = qtd;
     }
 
-    public ProdutoRequisicao(int id, Requisicao requisicao, Produto produto, double qtd) {
-        this.id = id;
-        this.requisicao = requisicao;
+    public ProdutoRequisicao(Produto produto, double qtd) {
         this.produto = produto;
         this.qtd = qtd;
     }
@@ -32,12 +27,12 @@ public class ProdutoRequisicao {
         this.id = id;
     }
 
-    public Requisicao getRequisicao() {
-        return requisicao;
+    public int getRequisicaoId() {
+        return requisicaoId;
     }
 
-    public void setRequisicao(Requisicao requisicao) {
-        this.requisicao = requisicao;
+    public void setRequisicaoId(int requisicaoId) {
+        this.requisicaoId = requisicaoId;
     }
 
     public Produto getProduto() {
@@ -58,7 +53,7 @@ public class ProdutoRequisicao {
 
     @Override
     public String toString() {
-        return "ProdutoRequisicao{" + "id=" + id + ", requisicao=" + requisicao + ", produto=" + produto + ", qtd=" + qtd + '}';
+        return "ProdutoRequisicao{" + "id=" + id + ", requisicaoId=" + requisicaoId + ", produto=" + produto + ", qtd=" + qtd + '}';
     }
 
 }
